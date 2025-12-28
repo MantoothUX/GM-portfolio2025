@@ -282,7 +282,7 @@ const HomeView = ({
       </StackingCard>
 
       {/* Projects Grid - Spans below the sticky cards */}
-      <div ref={projectsRef} className="relative z-40 bg-white min-h-screen">
+      <div ref={projectsRef} id="projects" className="relative z-40 bg-white min-h-screen">
         <div className="py-24 px-6 md:px-12">
           <div className="container mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
@@ -320,10 +320,6 @@ const HomeView = ({
                           </div>
                         </div>
                         <h4 className="text-3xl font-black uppercase tracking-tight group-hover:text-fuchsia-600 transition-colors">{project.title}</h4>
-                        <div className="flex items-center gap-2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity transform -translate-x-4 group-hover:translate-x-0 duration-300">
-                          <span className="text-sm font-bold uppercase tracking-widest">View Case Study</span>
-                          <ArrowRight size={16} />
-                        </div>
                       </motion.div>
                   </Link>
                 ) : (
@@ -347,10 +343,6 @@ const HomeView = ({
                         </div>
                       </div>
                       <h4 className="text-3xl font-black uppercase tracking-tight group-hover:text-fuchsia-600 transition-colors">{project.title}</h4>
-                      <div className="flex items-center gap-2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity transform -translate-x-4 group-hover:translate-x-0 duration-300">
-                        <span className="text-sm font-bold uppercase tracking-widest">View Case Study</span>
-                        <ArrowRight size={16} />
-                      </div>
                     </motion.div>
                 );
               })}
@@ -499,16 +491,30 @@ export const BrandDesignStudio = () => {
   // Force reset when navigating to home from another route
   useEffect(() => {
     if (location.pathname === '/' && !location.hash) {
-      // Ensure we're showing home view and scroll to top
+      // Check if we should scroll to projects section
+      const shouldScrollToProjects = (location.state as { scrollToProjects?: boolean })?.scrollToProjects;
+      
+      // Ensure we're showing home view
       setCurrentView('home');
       // Force HomeView to remount by changing key
       setHomeViewKey(prev => prev + 1);
-      // Small delay to ensure DOM is ready, then scroll to top
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-      }, 0);
+      
+      if (shouldScrollToProjects) {
+        // Scroll to projects section after component renders
+        setTimeout(() => {
+          const projectsSection = document.getElementById('projects');
+          if (projectsSection) {
+            projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 400);
+      } else {
+        // Otherwise scroll to top
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+        }, 0);
+      }
     }
-  }, [location.pathname]);
+  }, [location.pathname, location.state]);
 
   // Also listen for hash changes (for browser back/forward)
   useEffect(() => {

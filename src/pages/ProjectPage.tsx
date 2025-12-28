@@ -30,8 +30,26 @@ export function ProjectPage() {
   const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
 
   const handleBack = () => {
-    // Navigate back - scroll restoration is handled by ScrollRestoration component
-    navigate(-1);
+    // Get the saved path from where user came from
+    const savedPath = sessionStorage.getItem('scrollPath');
+    
+    if (savedPath === '/work') {
+      // Navigate to work page
+      navigate('/work');
+    } else if (savedPath === '/') {
+      // Navigate to home page with state to scroll to projects
+      navigate('/', { state: { scrollToProjects: true } });
+      // Use setTimeout to ensure navigation completes and component renders
+      setTimeout(() => {
+        const projectsSection = document.getElementById('projects');
+        if (projectsSection) {
+          projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 300);
+    } else {
+      // Default to work page if no saved path (e.g., direct link to project)
+      navigate('/work');
+    }
   };
 
   const handleNextProject = () => {

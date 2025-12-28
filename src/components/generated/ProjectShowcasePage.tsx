@@ -37,32 +37,42 @@ export interface ProjectShowcasePageProps {
 const ImageModal = ({
   images,
   initialIndex,
-  onClose
+  onClose,
+  showPagination = true
 }: {
   images: ImageItem[];
   initialIndex: number;
   onClose: () => void;
+  showPagination?: boolean;
 }) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [showControls, setShowControls] = useState(true);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const minSwipeDistance = 50;
+  const canNavigate = showPagination && images.length > 1;
+  
   const goToNext = () => {
-    setCurrentIndex(prev => (prev + 1) % images.length);
+    if (canNavigate) {
+      setCurrentIndex(prev => (prev + 1) % images.length);
+    }
   };
   const goToPrev = () => {
-    setCurrentIndex(prev => (prev - 1 + images.length) % images.length);
+    if (canNavigate) {
+      setCurrentIndex(prev => (prev - 1 + images.length) % images.length);
+    }
   };
   const onTouchStart = (e: React.TouchEvent) => {
+    if (!canNavigate) return;
     setTouchEnd(null);
     setTouchStart(e.targetTouches[0].clientX);
   };
   const onTouchMove = (e: React.TouchEvent) => {
+    if (!canNavigate) return;
     setTouchEnd(e.targetTouches[0].clientX);
   };
   const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
+    if (!canNavigate || !touchStart || !touchEnd) return;
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
@@ -74,8 +84,9 @@ const ImageModal = ({
     }
   };
 
-  // Keyboard navigation
+  // Keyboard navigation (only for carousels)
   useEffect(() => {
+    if (!canNavigate) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowLeft') goToPrev();
       if (e.key === 'ArrowRight') goToNext();
@@ -83,7 +94,7 @@ const ImageModal = ({
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentIndex]);
+  }, [currentIndex, canNavigate]);
 
   // Auto-hide controls
   useEffect(() => {
@@ -122,7 +133,7 @@ const ImageModal = ({
 
       {/* Previous Button */}
       <AnimatePresence>
-        {showControls && images.length > 1 && <motion.button initial={{
+        {showControls && canNavigate && <motion.button initial={{
         opacity: 0,
         x: -20
       }} animate={{
@@ -141,7 +152,7 @@ const ImageModal = ({
 
       {/* Next Button */}
       <AnimatePresence>
-        {showControls && images.length > 1 && <motion.button initial={{
+        {showControls && canNavigate && <motion.button initial={{
         opacity: 0,
         x: 20
       }} animate={{
@@ -176,7 +187,7 @@ const ImageModal = ({
 
       {/* Image Counter */}
       <AnimatePresence>
-        {showControls && images.length > 1 && <motion.div initial={{
+        {showControls && canNavigate && <motion.div initial={{
         opacity: 0,
         y: 20
       }} animate={{
@@ -198,41 +209,98 @@ const FullBleedImage = ({
 }: {
   image: ImageItem;
 }) => {
-  return <motion.div initial={{
-    opacity: 0,
-    y: 30
-  }} whileInView={{
-    opacity: 1,
-    y: 0
-  }} viewport={{
-    once: true
-  }} transition={{
-    duration: 0.6
-  }} className="w-full h-[60vh] md:h-[80vh] relative overflow-hidden border-y-4 border-black">
-      <img src={image.url} alt={image.alt} className="w-full h-full object-cover" />
-    </motion.div>;
+  const [modalOpen, setModalOpen] = useState(false);
+  
+  return <>
+      <motion.div 
+        initial={{
+          opacity: 0,
+          y: 30
+        }} 
+        whileInView={{
+          opacity: 1,
+          y: 0
+        }} 
+        viewport={{
+          once: true
+        }} 
+        transition={{
+          duration: 0.6
+        }} 
+        className="w-full h-[60vh] md:h-[80vh] relative overflow-hidden border-y-4 border-black cursor-pointer"
+        onClick={() => setModalOpen(true)}
+      >
+        <img src={image.url} alt={image.alt} className="w-full h-full object-cover hover:opacity-90 transition-opacity" />
+      </motion.div>
+      
+      <AnimatePresence>
+        {modalOpen && (
+          <ImageModal 
+            images={[image]} 
+            initialIndex={0} 
+            onClose={() => setModalOpen(false)} 
+            showPagination={false}
+          />
+        )}
+      </AnimatePresence>
+    </>;
 };
 const HalfGridImages = ({
   images
 }: {
   images: ImageItem[];
 }) => {
-  return <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-      {images.map((image, idx) => <motion.div key={image.id} initial={{
-      opacity: 0,
-      y: 30
-    }} whileInView={{
-      opacity: 1,
-      y: 0
-    }} viewport={{
-      once: true
-    }} transition={{
-      duration: 0.6,
-      delay: idx * 0.1
-    }} className="w-full h-[50vh] md:h-[70vh] relative overflow-hidden border-2 border-black">
-          <img src={image.url} alt={image.alt} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
-        </motion.div>)}
-    </div>;
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<ImageItem | null>(null);
+  
+  const openModal = (image: ImageItem) => {
+    setSelectedImage(image);
+    setModalOpen(true);
+  };
+  
+  return <>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+        {images.map((image, idx) => (
+          <motion.div 
+            key={image.id} 
+            initial={{
+              opacity: 0,
+              y: 30
+            }} 
+            whileInView={{
+              opacity: 1,
+              y: 0
+            }} 
+            viewport={{
+              once: true
+            }} 
+            transition={{
+              duration: 0.6,
+              delay: idx * 0.1
+            }} 
+            className="w-full h-[50vh] md:h-[70vh] relative overflow-hidden border-2 border-black cursor-pointer"
+            onClick={() => openModal(image)}
+          >
+            <img 
+              src={image.url} 
+              alt={image.alt} 
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" 
+            />
+          </motion.div>
+        ))}
+      </div>
+      
+      <AnimatePresence>
+        {modalOpen && selectedImage && (
+          <ImageModal 
+            images={[selectedImage]} 
+            initialIndex={0} 
+            onClose={() => setModalOpen(false)} 
+            showPagination={false}
+          />
+        )}
+      </AnimatePresence>
+    </>;
 };
 const CarouselImages = ({
   images
@@ -279,7 +347,7 @@ const CarouselImages = ({
       </div>
 
       <AnimatePresence>
-        {modalOpen && <ImageModal images={images} initialIndex={selectedIndex} onClose={() => setModalOpen(false)} />}
+        {modalOpen && <ImageModal images={images} initialIndex={selectedIndex} onClose={() => setModalOpen(false)} showPagination={true} />}
       </AnimatePresence>
     </>;
 };

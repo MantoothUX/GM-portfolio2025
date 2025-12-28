@@ -56,7 +56,7 @@ export function Navigation({ isScrolled = false, isInProjectsSection = false, on
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8 font-bold text-sm tracking-wider uppercase">
+        <div className="hidden md:flex items-center gap-8 font-bold text-sm tracking-wider">
           <Link
             to="/work"
             className={`hover:text-fuchsia-600 transition-colors ${
@@ -107,7 +107,7 @@ export function Navigation({ isScrolled = false, isInProjectsSection = false, on
               <Link
                 to="/work"
                 onClick={() => setIsOpen(false)}
-                className="text-4xl font-black hover:text-white transition-colors uppercase"
+                className="text-4xl font-black hover:text-white transition-colors"
               >
                 Work
               </Link>

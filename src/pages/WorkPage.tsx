@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
 import { PROJECTS } from '../components/generated/BrandDesignStudio';
 import { PROJECT_ID_MAP } from '../components/generated/BrandDesignStudio';
 import { Navigation } from '../components/Navigation';
@@ -83,10 +82,6 @@ export function WorkPage() {
                   <h4 className="text-3xl font-black uppercase tracking-tight group-hover:text-fuchsia-600 transition-colors">
                     {project.title}
                   </h4>
-                  <div className="flex items-center gap-2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity transform -translate-x-4 group-hover:translate-x-0 duration-300">
-                    <span className="text-sm font-bold uppercase tracking-widest">View Case Study</span>
-                    <ArrowRight size={16} />
-                  </div>
                 </motion.div>
               </Link>
             ) : (
@@ -116,10 +111,6 @@ export function WorkPage() {
                 <h4 className="text-3xl font-black uppercase tracking-tight group-hover:text-fuchsia-600 transition-colors">
                   {project.title}
                 </h4>
-                <div className="flex items-center gap-2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity transform -translate-x-4 group-hover:translate-x-0 duration-300">
-                  <span className="text-sm font-bold uppercase tracking-widest">View Case Study</span>
-                  <ArrowRight size={16} />
-                </div>
               </motion.div>
             );
           })}
