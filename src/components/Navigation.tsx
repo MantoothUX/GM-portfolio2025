@@ -1,43 +1,23 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 interface NavigationProps {
   isScrolled?: boolean;
   isInProjectsSection?: boolean;
-  onAboutClick?: () => void;
-  currentView?: 'home' | 'about';
 }
 
-export function Navigation({ isScrolled = false, isInProjectsSection = false, onAboutClick, currentView }: NavigationProps) {
+export function Navigation({ isScrolled = false, isInProjectsSection = false }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
 
   const handleLogoClick = () => {
-    // Clear hash and navigate to home
-    navigate('/', { replace: true });
-    window.history.replaceState(null, '', '/');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleAboutClick = () => {
-    setIsOpen(false);
-    if (onAboutClick) {
-      onAboutClick();
-    } else if (!isHomePage) {
-      // If on work page, navigate to home with hash to trigger about view
-      navigate('/#about');
-    } else {
-      // If on home page, navigate to about hash
-      navigate('/#about');
-    }
-  };
-
   const isWorkPage = location.pathname === '/work';
-  const isHomePage = location.pathname === '/';
-  const isAboutView = currentView === 'about' || location.hash === '#about';
+  const isAboutPage = location.pathname === '/about';
 
   return (
     <nav
@@ -67,24 +47,14 @@ export function Navigation({ isScrolled = false, isInProjectsSection = false, on
           >
             Work
           </Link>
-          {isHomePage ? (
-            <button
-              onClick={handleAboutClick}
-              className={`hover:text-cyan-600 transition-colors ${
-                isAboutView ? 'text-cyan-600 underline decoration-2 underline-offset-4' : 'text-black'
-              }`}
-            >
-              About Us
-            </button>
-          ) : (
-            <Link
-              to="/#about"
-              onClick={handleAboutClick}
-              className="hover:text-cyan-600 transition-colors text-black"
-            >
-              About Us
-            </Link>
-          )}
+          <Link
+            to="/about"
+            className={`hover:text-cyan-600 transition-colors ${
+              isAboutPage ? 'text-cyan-600 underline decoration-2 underline-offset-4' : 'text-black'
+            }`}
+          >
+            About Us
+          </Link>
           <button className="bg-black text-white px-6 py-2 hover:bg-fuchsia-600 hover:scale-105 transition-all active:scale-95 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.2)]">
             Let's Talk
           </button>
@@ -111,12 +81,13 @@ export function Navigation({ isScrolled = false, isInProjectsSection = false, on
               >
                 Work
               </Link>
-              <button
-                onClick={handleAboutClick}
+              <Link
+                to="/about"
+                onClick={() => setIsOpen(false)}
                 className="text-4xl font-black hover:text-white transition-colors uppercase"
               >
                 About
-              </button>
+              </Link>
               <button className="text-4xl font-black hover:text-white transition-colors uppercase">
                 Contact
               </button>

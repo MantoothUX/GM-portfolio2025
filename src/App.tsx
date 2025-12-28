@@ -3,6 +3,7 @@ import { Container, Theme } from './settings/types';
 import { BrandDesignStudio } from './components/generated/BrandDesignStudio';
 import { ProjectPage } from './pages/ProjectPage';
 import { WorkPage } from './pages/WorkPage';
+import { AboutPage } from './pages/AboutPage';
 import { ScrollRestoration } from './components/ScrollRestoration';
 
 let theme: Theme = 'light';
@@ -26,6 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<BrandDesignStudio />} />
         <Route path="/work" element={<WorkPage />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/project/:id" element={<ProjectPage />} />
       </Routes>
     </BrowserRouter>
