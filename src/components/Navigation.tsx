@@ -21,40 +21,41 @@ export function Navigation({ isScrolled = false, isInProjectsSection = false }: 
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 font-['Inter'] ${
-        isScrolled ? 'py-4 bg-white/95 backdrop-blur-md border-b border-[#E5E5E5]' : 'py-6 bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300`}
+      style={{ fontFamily: 'Plus Jakarta Sans' }}
     >
-      <div className="container mx-auto px-6 flex justify-between items-center">
+      <div className={`container mx-auto px-6 flex justify-between items-center transition-all duration-300 ${
+        isScrolled ? 'py-4 bg-white' : 'py-6 bg-transparent'
+      }`}>
         <Link
           to="/"
           onClick={handleLogoClick}
-          className="text-xl font-medium tracking-[-0.02em] text-[#1A1A1A]"
+          className="text-xl font-extrabold text-[#111111]"
         >
           Greta Mantooth
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8 font-medium text-sm tracking-normal">
+        <div className="hidden md:flex items-center gap-8 font-medium text-sm">
           <Link
             to="/work"
-            className={`hover:text-[#1A1A1A] transition-colors ${
+            className={`hover:text-[#111111] transition-colors ${
               isWorkPage || isInProjectsSection
-                ? 'text-[#1A1A1A] underline decoration-1 underline-offset-4'
-                : 'text-[#666666]'
+                ? 'text-[#111111]'
+                : 'text-[#6B7280]'
             }`}
           >
             Work
           </Link>
           <Link
             to="/about"
-            className={`hover:text-[#1A1A1A] transition-colors ${
-              isAboutPage ? 'text-[#1A1A1A] underline decoration-1 underline-offset-4' : 'text-[#666666]'
+            className={`hover:text-[#111111] transition-colors ${
+              isAboutPage ? 'text-[#111111]' : 'text-[#6B7280]'
             }`}
           >
             About
           </Link>
-          <button className="bg-[#1A1A1A] text-white px-6 py-2 hover:bg-[#333333] transition-colors text-sm font-medium">
+          <button className="bg-[#111111] text-white px-6 py-2 hover:bg-[#EAB308] hover:text-[#111111] transition-colors text-sm font-medium rounded-[2px]">
             Let's Talk
           </button>
         </div>
@@ -76,14 +77,14 @@ export function Navigation({ isScrolled = false, isInProjectsSection = false }: 
               <Link
                 to="/work"
                 onClick={() => setIsOpen(false)}
-                className="text-4xl font-medium hover:text-[#1A1A1A] transition-colors text-[#666666]"
+                className="text-4xl font-extrabold hover:text-[#111111] transition-colors text-[#6B7280]"
               >
                 Work
               </Link>
               <Link
                 to="/about"
                 onClick={() => setIsOpen(false)}
-                className="text-4xl font-medium hover:text-[#1A1A1A] transition-colors text-[#666666]"
+                className="text-4xl font-extrabold hover:text-[#111111] transition-colors text-[#6B7280]"
               >
                 About
               </Link>

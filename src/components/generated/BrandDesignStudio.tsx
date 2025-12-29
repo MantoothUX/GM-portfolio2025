@@ -82,48 +82,48 @@ const StackingCard = ({
 const Footer = () => <footer className="bg-black text-white py-20 px-6 relative z-50">
     <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
       <div className="space-y-6">
-        <h3 className="text-3xl font-medium tracking-[-0.02em]" style={{ fontFamily: 'Inter' }}>
+        <h3 className="text-3xl font-extrabold" style={{ fontFamily: 'Plus Jakarta Sans' }}>
           Greta Mantooth
         </h3>
-        <p className="text-[#666666] max-w-xs font-light" style={{ fontFamily: 'Inter', lineHeight: '1.6' }}>
+        <p className="text-white/80 max-w-xs font-normal" style={{ fontFamily: 'Plus Jakarta Sans', lineHeight: '1.6' }}>
           Brand designer crafting thoughtful visual identities and digital experiences.
         </p>
       </div>
       
       <div>
-        <h4 className="font-medium text-lg mb-6 tracking-normal text-[#1A1A1A]" style={{ fontFamily: 'Inter' }}>Contact</h4>
-        <ul className="space-y-4 text-[#666666] font-light" style={{ fontFamily: 'Inter' }}>
-          <li className="flex items-center gap-2 hover:text-[#1A1A1A] cursor-pointer transition-colors"><Mail size={18} /> hello@gretamantooth.com</li>
-          <li className="hover:text-[#1A1A1A] cursor-pointer transition-colors">Available for projects</li>
+        <h4 className="font-medium text-lg mb-6 text-white" style={{ fontFamily: 'Plus Jakarta Sans' }}>Contact</h4>
+        <ul className="space-y-4 text-white/80 font-normal" style={{ fontFamily: 'Plus Jakarta Sans' }}>
+          <li className="flex items-center gap-2 hover:text-white cursor-pointer transition-colors"><Mail size={18} /> hello@gretamantooth.com</li>
+          <li className="hover:text-white cursor-pointer transition-colors">Available for projects</li>
         </ul>
       </div>
 
       <div>
-        <h4 className="font-medium text-lg mb-6 tracking-normal text-[#1A1A1A]" style={{ fontFamily: 'Inter' }}>Socials</h4>
+        <h4 className="font-medium text-lg mb-6 text-white" style={{ fontFamily: 'Plus Jakarta Sans' }}>Socials</h4>
         <div className="flex gap-4">
-          <a href="#" className="w-10 h-10 bg-white border border-[#E5E5E5] rounded-full flex items-center justify-center hover:bg-[#1A1A1A] hover:text-white hover:border-[#1A1A1A] transition-all text-[#666666]">
+          <a href="#" className="w-10 h-10 bg-white/10 flex items-center justify-center hover:bg-[#EAB308] hover:text-[#111111] transition-all text-white">
             <Instagram size={20} />
           </a>
-          <a href="#" className="w-10 h-10 bg-white border border-[#E5E5E5] rounded-full flex items-center justify-center hover:bg-[#1A1A1A] hover:text-white hover:border-[#1A1A1A] transition-all text-[#666666]">
+          <a href="#" className="w-10 h-10 bg-white/10 flex items-center justify-center hover:bg-[#EAB308] hover:text-[#111111] transition-all text-white">
             <Twitter size={20} />
           </a>
-          <a href="#" className="w-10 h-10 bg-white border border-[#E5E5E5] rounded-full flex items-center justify-center hover:bg-[#1A1A1A] hover:text-white hover:border-[#1A1A1A] transition-all text-[#666666]">
+          <a href="#" className="w-10 h-10 bg-white/10 flex items-center justify-center hover:bg-[#EAB308] hover:text-[#111111] transition-all text-white">
             <Linkedin size={20} />
           </a>
         </div>
       </div>
 
       <div>
-        <h4 className="font-medium text-lg mb-6 tracking-normal text-[#1A1A1A]" style={{ fontFamily: 'Inter' }}>Newsletter</h4>
+        <h4 className="font-medium text-lg mb-6 text-white" style={{ fontFamily: 'Plus Jakarta Sans' }}>Newsletter</h4>
         <div className="flex flex-col gap-4">
-          <input type="email" placeholder="Your email" className="bg-white border border-[#E5E5E5] p-4 text-[#1A1A1A] placeholder:text-[#999999] focus:ring-2 focus:ring-[#1A1A1A] focus:border-[#1A1A1A] outline-none" style={{ fontFamily: 'Inter' }} />
-          <button className="bg-[#1A1A1A] text-white font-medium py-4 hover:bg-[#333333] transition-colors text-sm" style={{ fontFamily: 'Inter' }}>
+          <input type="email" placeholder="Your email" className="bg-white/10 border border-white/20 p-4 text-white placeholder:text-white/50 focus:ring-2 focus:ring-[#EAB308] focus:border-[#EAB308] outline-none rounded-[2px]" style={{ fontFamily: 'Plus Jakarta Sans' }} />
+          <button className="bg-white text-[#111111] font-medium py-4 hover:bg-[#EAB308] hover:text-[#111111] transition-colors text-sm rounded-[2px]" style={{ fontFamily: 'Plus Jakarta Sans' }}>
             Subscribe
           </button>
         </div>
       </div>
     </div>
-    <div className="container mx-auto mt-20 pt-8 border-t border-[#E5E5E5] text-center text-[#999999] text-sm font-light" style={{ fontFamily: 'Inter' }}>
+    <div className="container mx-auto mt-20 pt-8 border-t border-white/10 text-center text-white/60 text-sm font-normal" style={{ fontFamily: 'Plus Jakarta Sans' }}>
       © {new Date().getFullYear()} Greta Mantooth. All rights reserved.
     </div>
   </footer>;
@@ -135,9 +135,9 @@ const HomeView = ({
 }: {
   projectsRef: React.RefObject<HTMLDivElement | null>;
 }) => {
-  return <div className="w-full bg-[#F7F7F7]">
-      {/* Section 1: Introduction - White/Light Gray */}
-      <StackingCard index={1} className="bg-white text-[#1A1A1A]">
+  return <div className="w-full bg-white">
+      {/* Section 1: Introduction - White */}
+      <StackingCard index={1} className="bg-white text-[#222222]">
         <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           <motion.div initial={{
           opacity: 0,
@@ -148,12 +148,12 @@ const HomeView = ({
         }} transition={{
           duration: 0.8
         }} className="space-y-6">
-            <h1 className="text-6xl md:text-8xl font-medium leading-tight tracking-[-0.02em] text-[#1A1A1A]" style={{ fontFamily: 'Inter' }}>
+            <h1 className="text-6xl md:text-8xl font-extrabold leading-tight text-[#111111]" style={{ fontFamily: 'Plus Jakarta Sans' }}>
               I Build <br />
-              <span className="text-[#1A1A1A]">Brands</span> <br />
+              <span className="text-[#111111]">Brands</span> <br />
               That Resonate.
             </h1>
-            <p className="text-xl md:text-2xl font-light max-w-md text-[#666666]" style={{ fontFamily: 'Inter', lineHeight: '1.6' }}>
+            <p className="text-xl md:text-2xl font-normal max-w-md text-[#6B7280]" style={{ fontFamily: 'Plus Jakarta Sans', lineHeight: '1.6' }}>
               Brand designer crafting thoughtful visual identities and digital experiences.
             </p>
             <motion.div animate={{
@@ -175,15 +175,15 @@ const HomeView = ({
           duration: 0.8,
           delay: 0.2
         }} className="hidden md:flex justify-center">
-            <div className="w-96 h-96 bg-[#F7F7F7] p-4 shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
+            <div className="w-96 h-96 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)]">
               <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop" alt="Abstract Art" className="w-full h-full object-cover hover:opacity-90 transition-opacity duration-500" />
             </div>
           </motion.div>
         </div>
       </StackingCard>
 
-      {/* Section 2: Strategy - Neutral Gray */}
-      <StackingCard index={2} className="bg-[#F7F7F7] text-[#1A1A1A]">
+      {/* Section 2: Strategy - Concrete Gray */}
+      <StackingCard index={2} className="bg-[#F0F0F0] text-[#000000]">
         <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           <motion.div initial={{
           opacity: 0,
@@ -195,7 +195,7 @@ const HomeView = ({
           duration: 0.8
         }} className="hidden md:flex justify-center order-2 md:order-1">
             <div className="relative">
-              <div className="relative bg-[#F7F7F7] p-4 w-80 h-96 shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
+              <div className="relative w-80 h-96 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)]">
                  <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" alt="Strategy" className="w-full h-full object-cover hover:opacity-90 transition-opacity duration-500" />
               </div>
             </div>
@@ -227,8 +227,8 @@ const HomeView = ({
         </div>
       </StackingCard>
 
-      {/* Section 3: Design - White */}
-      <StackingCard index={3} className="bg-white text-[#1A1A1A]">
+      {/* Section 3: Design - Paper/Off-White */}
+      <StackingCard index={3} className="bg-[#FDFCF8] text-[#000000]">
         <div className="container mx-auto px-6 text-center">
           <motion.div initial={{
           opacity: 0,
@@ -239,14 +239,14 @@ const HomeView = ({
         }} transition={{
           duration: 0.8
         }} className="max-w-4xl mx-auto space-y-8">
-            <h2 className="text-5xl md:text-8xl font-medium leading-none tracking-[-0.02em] text-[#1A1A1A]" style={{ fontFamily: 'Inter' }}>
-              Design <br />Without <span className="text-[#1A1A1A] bg-[#F7F7F7] px-4 inline-block">Limits</span>
+            <h2 className="text-5xl md:text-8xl font-bold leading-none text-[#000000]" style={{ fontFamily: 'Public Sans' }}>
+              Design <br />Without <span className="text-[#000000] bg-[#F0F0F0] px-4 inline-block">Limits</span>
             </h2>
-            <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto pt-8 text-[#666666]" style={{ fontFamily: 'Inter', lineHeight: '1.6' }}>
+            <p className="text-xl md:text-2xl italic max-w-2xl mx-auto pt-8 text-[#000000]" style={{ fontFamily: 'Source Serif 4', lineHeight: '1.6' }}>
               From pixels to print, I create visual languages that speak louder than words.
             </p>
             <div className="flex flex-wrap justify-center gap-4 pt-8">
-              {['Identity', 'Web', 'Motion', 'Print', 'Social'].map(item => <span key={item} className="px-6 py-3 border border-[#E5E5E5] rounded-full font-medium tracking-normal hover:bg-[#1A1A1A] hover:text-white hover:border-[#1A1A1A] transition-colors cursor-default text-[#666666]" style={{ fontFamily: 'Inter' }}>
+              {['Identity', 'Web', 'Motion', 'Print', 'Social'].map(item => <span key={item} className="px-6 py-3 bg-[#F0F0F0] font-bold hover:bg-[#3A5A8C] hover:text-white transition-colors cursor-default text-[#000000]" style={{ fontFamily: 'Public Sans' }}>
                   {item}
                 </span>)}
             </div>
@@ -255,15 +255,15 @@ const HomeView = ({
       </StackingCard>
 
       {/* Projects Grid - Spans below the sticky cards */}
-      <div ref={projectsRef} id="projects" className="relative z-40 bg-white min-h-screen">
+      <div ref={projectsRef} id="projects" className="relative z-40 bg-[#FDFCF8] min-h-screen">
         <div className="py-24 px-6 md:px-12">
           <div className="container mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
               <div className="text-left">
-                <h3 className="text-6xl font-medium tracking-[-0.02em] mb-4 text-[#1A1A1A]" style={{ fontFamily: 'Inter' }}>Selected<br />Work</h3>
-                <div className="h-1 w-24 bg-[#E5B54F]"></div>
+                <h3 className="text-6xl font-extrabold mb-4 text-[#111111]" style={{ fontFamily: 'Plus Jakarta Sans' }}>Selected<br />Work</h3>
+                <div className="h-2 w-24 bg-[#EAB308]"></div>
               </div>
-              <p className="max-w-md text-[#666666] font-light text-left md:text-right" style={{ fontFamily: 'Inter', lineHeight: '1.6' }}>
+              <p className="max-w-md text-[#6B7280] font-normal text-left md:text-right" style={{ fontFamily: 'Plus Jakarta Sans', lineHeight: '1.6' }}>
                 A curated selection of my favorite projects from the last few years. I take pride in every pixel.
               </p>
             </div>
@@ -285,13 +285,13 @@ const HomeView = ({
                   }} viewport={{
                     once: true
                   }} className="group cursor-pointer">
-                        <div className="relative overflow-hidden aspect-[4/3] mb-6 border border-[#E5E5E5] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300">
+                        <div className="relative overflow-hidden aspect-[4/3] mb-6 bg-[#F0F0F0]">
                           <img src={project.image} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out" />
-                          <div className="absolute bottom-0 left-0 bg-white border-t border-r border-[#E5E5E5] px-4 py-2 z-20">
-                            <span className="text-xs tracking-normal font-medium text-[#666666]" style={{ fontFamily: 'Inter' }}>{project.category}</span>
-                          </div>
                         </div>
-                        <h4 className="text-3xl font-medium tracking-[-0.02em] group-hover:text-[#1A1A1A] transition-colors text-[#1A1A1A]" style={{ fontFamily: 'Inter' }}>{project.title}</h4>
+                        <div className="mb-2">
+                          <span className="text-xs font-bold uppercase tracking-wider text-[#3A5A8C]" style={{ fontFamily: 'Public Sans' }}>{project.category}</span>
+                        </div>
+                        <h4 className="text-3xl font-bold group-hover:text-[#3A5A8C] transition-colors text-[#000000]" style={{ fontFamily: 'Public Sans' }}>{project.title}</h4>
                       </motion.div>
                   </Link>
                 ) : (
@@ -307,13 +307,13 @@ const HomeView = ({
                 }} viewport={{
                   once: true
                 }} className="group cursor-pointer">
-                      <div className="relative overflow-hidden aspect-[4/3] mb-6 border border-[#E5E5E5] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300">
+                      <div className="relative overflow-hidden aspect-[4/3] mb-6 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] hover:shadow-[0_15px_50px_-10px_rgba(0,0,0,0.15)] transition-all duration-300">
                         <img src={project.image} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out" />
-                        <div className="absolute bottom-0 left-0 bg-white border-t border-r border-[#E5E5E5] px-4 py-2 z-20">
-                          <span className="text-xs tracking-normal font-medium text-[#666666]" style={{ fontFamily: 'Inter' }}>{project.category}</span>
-                        </div>
                       </div>
-                      <h4 className="text-3xl font-medium tracking-[-0.02em] group-hover:text-[#1A1A1A] transition-colors text-[#1A1A1A]" style={{ fontFamily: 'Inter' }}>{project.title}</h4>
+                      <div className="mb-2">
+                        <span className="text-xs font-medium text-[#6B7280]" style={{ fontFamily: 'Plus Jakarta Sans' }}>{project.category}</span>
+                      </div>
+                      <h4 className="text-3xl font-extrabold group-hover:text-[#111111] transition-colors text-[#111111]" style={{ fontFamily: 'Plus Jakarta Sans' }}>{project.title}</h4>
                     </motion.div>
                 );
               })}
@@ -321,7 +321,7 @@ const HomeView = ({
             
             <div className="mt-24 text-center">
               <Link to="/work">
-                <button className="px-12 py-5 bg-[#1A1A1A] text-white font-medium text-lg tracking-normal hover:bg-[#333333] transition-colors" style={{ fontFamily: 'Inter' }}>
+                <button className="px-12 py-5 bg-[#111111] text-white font-medium text-lg hover:bg-[#EAB308] hover:text-[#111111] transition-colors rounded-[2px]" style={{ fontFamily: 'Plus Jakarta Sans' }}>
                   View All Projects
                 </button>
               </Link>

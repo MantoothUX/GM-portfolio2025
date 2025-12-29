@@ -27,7 +27,7 @@ export function WorkPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#FDFCF8]">
       <Navigation isScrolled={isScrolled} />
       <div className="pt-24 pb-24">
       <div className="container mx-auto px-6">
@@ -40,12 +40,12 @@ export function WorkPage() {
             className="flex flex-col md:flex-row md:items-end md:justify-between gap-8"
           >
             <div>
-              <h1 className="text-6xl md:text-8xl font-medium tracking-[-0.02em] mb-4 text-[#1A1A1A]" style={{ fontFamily: 'Inter' }}>
+              <h1 className="text-6xl md:text-8xl font-bold mb-4 text-[#000000]" style={{ fontFamily: 'Public Sans' }}>
                 All Work
               </h1>
-              <div className="h-1 w-24 bg-[#E5B54F]"></div>
+              <div className="h-2 w-24 bg-[#3A5A8C]"></div>
             </div>
-            <p className="max-w-md text-[#666666] font-light text-lg" style={{ fontFamily: 'Inter', lineHeight: '1.6' }}>
+            <p className="max-w-md text-[#000000] italic text-lg" style={{ fontFamily: 'Source Serif 4', lineHeight: '1.6' }}>
               A complete collection of my projects from the last few years. I take pride in every pixel.
             </p>
           </motion.div>
@@ -64,19 +64,19 @@ export function WorkPage() {
                   viewport={{ once: true }}
                   className="group cursor-pointer"
                 >
-                  <div className="relative overflow-hidden aspect-[4/3] mb-6 border border-[#E5E5E5] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300">
+                  <div className="relative overflow-hidden aspect-[4/3] mb-6 bg-[#F0F0F0]">
                     <img
                       src={project.image}
                       alt={project.title}
                       className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out"
                     />
-                    <div className="absolute bottom-0 left-0 bg-white border-t border-r border-[#E5E5E5] px-4 py-2 z-20">
-                      <span className="text-xs tracking-normal font-medium text-[#666666]" style={{ fontFamily: 'Inter' }}>
-                        {project.category}
-                      </span>
-                    </div>
                   </div>
-                  <h4 className="text-3xl font-medium tracking-[-0.02em] group-hover:text-[#1A1A1A] transition-colors text-[#1A1A1A]" style={{ fontFamily: 'Inter' }}>
+                  <div className="mb-2">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#3A5A8C]" style={{ fontFamily: 'Public Sans' }}>
+                      {project.category}
+                    </span>
+                  </div>
+                  <h4 className="text-3xl font-bold group-hover:text-[#3A5A8C] transition-colors text-[#000000]" style={{ fontFamily: 'Public Sans' }}>
                     {project.title}
                   </h4>
                 </motion.div>
