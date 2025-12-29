@@ -40,13 +40,13 @@ export function WorkPage() {
             className="flex flex-col md:flex-row md:items-end md:justify-between gap-8"
           >
             <div>
-              <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-4">
+              <h1 className="text-6xl md:text-8xl font-medium tracking-[-0.02em] mb-4 text-[#1A1A1A]" style={{ fontFamily: 'Inter' }}>
                 All Work
               </h1>
-              <div className="h-2 w-24 bg-fuchsia-600"></div>
+              <div className="h-1 w-24 bg-[#E5B54F]"></div>
             </div>
-            <p className="max-w-md text-gray-600 font-medium text-lg">
-              A complete collection of our projects from the last few years. We take pride in every pixel.
+            <p className="max-w-md text-[#666666] font-light text-lg" style={{ fontFamily: 'Inter', lineHeight: '1.6' }}>
+              A complete collection of my projects from the last few years. I take pride in every pixel.
             </p>
           </motion.div>
         </div>
@@ -64,22 +64,19 @@ export function WorkPage() {
                   viewport={{ once: true }}
                   className="group cursor-pointer"
                 >
-                  <div className="relative overflow-hidden aspect-[4/3] mb-6 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:-translate-x-1 transition-all duration-300">
-                    <div
-                      className={`absolute inset-0 ${project.color} opacity-20 group-hover:opacity-0 transition-opacity z-10`}
-                    />
+                  <div className="relative overflow-hidden aspect-[4/3] mb-6 border border-[#E5E5E5] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out"
                     />
-                    <div className="absolute bottom-0 left-0 bg-white border-t-2 border-r-2 border-black px-4 py-2 z-20">
-                      <span className="font-mono text-sm uppercase tracking-wider font-bold">
+                    <div className="absolute bottom-0 left-0 bg-white border-t border-r border-[#E5E5E5] px-4 py-2 z-20">
+                      <span className="text-xs tracking-normal font-medium text-[#666666]" style={{ fontFamily: 'Inter' }}>
                         {project.category}
                       </span>
                     </div>
                   </div>
-                  <h4 className="text-3xl font-black uppercase tracking-tight group-hover:text-fuchsia-600 transition-colors">
+                  <h4 className="text-3xl font-medium tracking-[-0.02em] group-hover:text-[#1A1A1A] transition-colors text-[#1A1A1A]" style={{ fontFamily: 'Inter' }}>
                     {project.title}
                   </h4>
                 </motion.div>
