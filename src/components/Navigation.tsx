@@ -21,41 +21,40 @@ export function Navigation({ isScrolled = false, isInProjectsSection = false }: 
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'py-4 bg-white/90 backdrop-blur-md border-b border-black' : 'py-6 bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 font-['Inter'] ${
+        isScrolled ? 'py-4 bg-white/95 backdrop-blur-md border-b border-[#E5E5E5]' : 'py-6 bg-transparent'
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link
           to="/"
           onClick={handleLogoClick}
-          className="text-2xl font-black tracking-tighter uppercase italic flex items-center gap-2"
+          className="text-xl font-medium tracking-[-0.02em] text-[#1A1A1A]"
         >
-          <span className="bg-black text-white px-2 py-1 transform -skew-x-12">Pixel</span>
-          <span className="text-black">Perfect</span>
+          Greta Mantooth
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8 font-bold text-sm tracking-wider">
+        <div className="hidden md:flex items-center gap-8 font-medium text-sm tracking-normal">
           <Link
             to="/work"
-            className={`hover:text-fuchsia-600 transition-colors ${
+            className={`hover:text-[#1A1A1A] transition-colors ${
               isWorkPage || isInProjectsSection
-                ? 'text-fuchsia-600 underline decoration-2 underline-offset-4'
-                : 'text-black'
+                ? 'text-[#1A1A1A] underline decoration-1 underline-offset-4'
+                : 'text-[#666666]'
             }`}
           >
             Work
           </Link>
           <Link
             to="/about"
-            className={`hover:text-cyan-600 transition-colors ${
-              isAboutPage ? 'text-cyan-600 underline decoration-2 underline-offset-4' : 'text-black'
+            className={`hover:text-[#1A1A1A] transition-colors ${
+              isAboutPage ? 'text-[#1A1A1A] underline decoration-1 underline-offset-4' : 'text-[#666666]'
             }`}
           >
-            About Us
+            About
           </Link>
-          <button className="bg-black text-white px-6 py-2 hover:bg-fuchsia-600 hover:scale-105 transition-all active:scale-95 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.2)]">
+          <button className="bg-[#1A1A1A] text-white px-6 py-2 hover:bg-[#333333] transition-colors text-sm font-medium">
             Let's Talk
           </button>
         </div>
@@ -72,19 +71,19 @@ export function Navigation({ isScrolled = false, isInProjectsSection = false }: 
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="absolute top-0 left-0 w-full h-screen bg-yellow-300 flex flex-col items-center justify-center gap-8 z-40 md:hidden"
+              className="absolute top-0 left-0 w-full h-screen bg-white flex flex-col items-center justify-center gap-8 z-40 md:hidden"
             >
               <Link
                 to="/work"
                 onClick={() => setIsOpen(false)}
-                className="text-4xl font-black hover:text-white transition-colors"
+                className="text-4xl font-medium hover:text-[#1A1A1A] transition-colors text-[#666666]"
               >
                 Work
               </Link>
               <Link
                 to="/about"
                 onClick={() => setIsOpen(false)}
-                className="text-4xl font-black hover:text-white transition-colors uppercase"
+                className="text-4xl font-medium hover:text-[#1A1A1A] transition-colors text-[#666666]"
               >
                 About
               </Link>
