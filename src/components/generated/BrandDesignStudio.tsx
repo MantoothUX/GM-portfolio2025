@@ -82,50 +82,49 @@ const StackingCard = ({
 const Footer = () => <footer className="bg-black text-white py-20 px-6 relative z-50">
     <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
       <div className="space-y-6">
-        <h3 className="text-3xl font-black uppercase italic">
-          Pixel<span className="text-fuchsia-500">Perfect</span>
+        <h3 className="text-3xl font-bold" style={{ fontFamily: 'Public Sans' }}>
+          Greta Mantooth
         </h3>
-        <p className="text-gray-400 max-w-xs">
-          Crafting digital experiences that melt faces and win hearts. Based in the digital ether.
+        <p className="text-[#000000] max-w-xs italic" style={{ fontFamily: 'Source Serif 4', lineHeight: '1.6' }}>
+          Brand designer crafting thoughtful visual identities and digital experiences.
         </p>
       </div>
       
       <div>
-        <h4 className="font-bold text-lg mb-6 uppercase tracking-wider text-yellow-300">Contact</h4>
-        <ul className="space-y-4 text-gray-300">
-          <li className="flex items-center gap-2 hover:text-white cursor-pointer"><Mail size={18} /> hello@pixelperfect.studio</li>
-          <li className="hover:text-white cursor-pointer">123 Design District</li>
-          <li className="hover:text-white cursor-pointer">New York, NY 10012</li>
+        <h4 className="font-bold text-lg mb-6 text-[#000000]" style={{ fontFamily: 'Public Sans' }}>Contact</h4>
+        <ul className="space-y-4 text-[#000000] italic" style={{ fontFamily: 'Source Serif 4' }}>
+          <li className="flex items-center gap-2 hover:text-[#3A5A8C] cursor-pointer transition-colors"><Mail size={18} /> hello@gretamantooth.com</li>
+          <li className="hover:text-[#3A5A8C] cursor-pointer transition-colors">Available for projects</li>
         </ul>
       </div>
 
       <div>
-        <h4 className="font-bold text-lg mb-6 uppercase tracking-wider text-cyan-400">Socials</h4>
+        <h4 className="font-bold text-lg mb-6 text-[#000000]" style={{ fontFamily: 'Public Sans' }}>Socials</h4>
         <div className="flex gap-4">
-          <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-fuchsia-500 hover:text-white transition-all">
+          <a href="#" className="w-10 h-10 bg-[#FDFCF8] flex items-center justify-center hover:bg-[#3A5A8C] hover:text-white transition-all text-[#000000]">
             <Instagram size={20} />
           </a>
-          <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-cyan-500 hover:text-white transition-all">
+          <a href="#" className="w-10 h-10 bg-[#FDFCF8] flex items-center justify-center hover:bg-[#3A5A8C] hover:text-white transition-all text-[#000000]">
             <Twitter size={20} />
           </a>
-          <a href="#" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-yellow-400 hover:text-black transition-all">
+          <a href="#" className="w-10 h-10 bg-[#FDFCF8] flex items-center justify-center hover:bg-[#3A5A8C] hover:text-white transition-all text-[#000000]">
             <Linkedin size={20} />
           </a>
         </div>
       </div>
 
       <div>
-        <h4 className="font-bold text-lg mb-6 uppercase tracking-wider text-fuchsia-500">Newsletter</h4>
+        <h4 className="font-bold text-lg mb-6 text-[#000000]" style={{ fontFamily: 'Public Sans' }}>Newsletter</h4>
         <div className="flex flex-col gap-4">
-          <input type="email" placeholder="Your email" className="bg-white/10 border-none p-4 text-white placeholder:text-gray-500 focus:ring-2 focus:ring-fuchsia-500 outline-none rounded-none" />
-          <button className="bg-white text-black font-bold py-4 hover:bg-fuchsia-500 hover:text-white transition-all uppercase tracking-widest text-sm">
+          <input type="email" placeholder="Your email" className="bg-[#FDFCF8] p-4 text-[#000000] placeholder:text-[#666666] focus:ring-2 focus:ring-[#3A5A8C] outline-none" style={{ fontFamily: 'Public Sans' }} />
+          <button className="bg-[#000000] text-white font-bold py-4 hover:bg-[#3A5A8C] transition-colors text-sm" style={{ fontFamily: 'Public Sans' }}>
             Subscribe
           </button>
         </div>
       </div>
     </div>
-    <div className="container mx-auto mt-20 pt-8 border-t border-white/10 text-center text-gray-500 text-sm">
-      © {new Date().getFullYear()} Pixel Perfect Studio. All rights reserved.
+    <div className="container mx-auto mt-20 pt-8 border-t border-[#000000]/10 text-center text-[#000000] text-sm italic" style={{ fontFamily: 'Source Serif 4' }}>
+      © {new Date().getFullYear()} Greta Mantooth. All rights reserved.
     </div>
   </footer>;
 
@@ -136,9 +135,9 @@ const HomeView = ({
 }: {
   projectsRef: React.RefObject<HTMLDivElement | null>;
 }) => {
-  return <div className="w-full bg-black">
-      {/* Section 1: Introduction - Cyan/Blue */}
-      <StackingCard index={1} className="bg-cyan-400 text-black">
+  return <div className="w-full bg-[#F7F7F7]">
+      {/* Section 1: Introduction - White/Light Gray */}
+      <StackingCard index={1} className="bg-white text-[#1A1A1A]">
         <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           <motion.div initial={{
           opacity: 0,
@@ -149,13 +148,13 @@ const HomeView = ({
         }} transition={{
           duration: 0.8
         }} className="space-y-6">
-            <h1 className="text-6xl md:text-8xl font-black leading-tight tracking-tighter uppercase">
-              We Build <br />
-              <span className="text-white drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">Brands</span> <br />
-              That Pop.
+            <h1 className="text-6xl md:text-8xl font-bold leading-tight text-[#000000]" style={{ fontFamily: 'Public Sans' }}>
+              I Build <br />
+              <span className="text-[#000000]">Brands</span> <br />
+              That Resonate.
             </h1>
-            <p className="text-xl md:text-2xl font-bold max-w-md">
-              A digital design studio for the bold, the brave, and the slightly unhinged.
+            <p className="text-xl md:text-2xl italic max-w-md text-[#000000]" style={{ fontFamily: 'Source Serif 4', lineHeight: '1.6' }}>
+              Brand designer crafting thoughtful visual identities and digital experiences.
             </p>
             <motion.div animate={{
             y: [0, 10, 0]
@@ -168,41 +167,36 @@ const HomeView = ({
           </motion.div>
           <motion.div initial={{
           opacity: 0,
-          scale: 0.8,
-          rotate: 10
+          scale: 0.95
         }} whileInView={{
           opacity: 1,
-          scale: 1,
-          rotate: 3
+          scale: 1
         }} transition={{
           duration: 0.8,
           delay: 0.2
         }} className="hidden md:flex justify-center">
-            <div className="w-96 h-96 bg-black p-4 rotate-3 shadow-[16px_16px_0px_0px_rgba(255,255,255,1)]">
-              <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop" alt="Abstract Art" className="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-500" />
+            <div className="w-96 h-96 bg-[#F0F0F0]">
+              <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop" alt="Abstract Art" className="w-full h-full object-cover hover:opacity-90 transition-opacity duration-500" />
             </div>
           </motion.div>
         </div>
       </StackingCard>
 
-      {/* Section 2: Strategy - Hot Pink */}
-      <StackingCard index={2} className="bg-fuchsia-600 text-white">
+      {/* Section 2: Strategy - Concrete Gray */}
+      <StackingCard index={2} className="bg-[#F0F0F0] text-[#000000]">
         <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           <motion.div initial={{
           opacity: 0,
-          scale: 0.8,
-          rotate: -5
+          scale: 0.95
         }} whileInView={{
           opacity: 1,
-          scale: 1,
-          rotate: -2
+          scale: 1
         }} transition={{
           duration: 0.8
         }} className="hidden md:flex justify-center order-2 md:order-1">
             <div className="relative">
-              <div className="absolute inset-0 bg-yellow-400 translate-x-4 translate-y-4"></div>
-              <div className="relative bg-black p-1 border-4 border-black w-80 h-96">
-                 <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" alt="Strategy" className="w-full h-full object-cover" />
+              <div className="relative bg-[#FDFCF8] w-80 h-96">
+                 <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" alt="Strategy" className="w-full h-full object-cover hover:opacity-90 transition-opacity duration-500" />
               </div>
             </div>
           </motion.div>
@@ -224,7 +218,7 @@ const HomeView = ({
               <span className="text-yellow-300 italic">Controlled.</span>
             </h2>
             <p className="text-lg md:text-xl font-medium max-w-md">
-              We don't just make things pretty. We engineer brand systems that scale, adapt, and dominate market share.
+              I don't just make things pretty. I engineer brand systems that scale, adapt, and resonate with audiences.
             </p>
             <button className="flex items-center gap-2 font-bold uppercase tracking-widest text-sm border-b-2 border-white pb-1 hover:text-yellow-300 hover:border-yellow-300 transition-colors">
               See Our Process <ArrowRight size={16} />
@@ -233,9 +227,8 @@ const HomeView = ({
         </div>
       </StackingCard>
 
-      {/* Section 3: Design - Yellow/Orange */}
-      <StackingCard index={3} className="bg-yellow-400 text-black">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 pointer-events-none"></div>
+      {/* Section 3: Design - Paper/Off-White */}
+      <StackingCard index={3} className="bg-[#FDFCF8] text-[#000000]">
         <div className="container mx-auto px-6 text-center">
           <motion.div initial={{
           opacity: 0,
@@ -246,14 +239,14 @@ const HomeView = ({
         }} transition={{
           duration: 0.8
         }} className="max-w-4xl mx-auto space-y-8">
-            <h2 className="text-5xl md:text-8xl font-black uppercase leading-none tracking-tighter">
-              Design <br />Without <span className="text-white bg-black px-4 transform inline-block -rotate-2">Limits</span>
+            <h2 className="text-5xl md:text-8xl font-bold leading-none text-[#000000]" style={{ fontFamily: 'Public Sans' }}>
+              Design <br />Without <span className="text-[#000000] bg-[#F0F0F0] px-4 inline-block">Limits</span>
             </h2>
-            <p className="text-xl md:text-2xl font-bold max-w-2xl mx-auto pt-8">
-              From pixels to print, we create visual languages that speak louder than words.
+            <p className="text-xl md:text-2xl italic max-w-2xl mx-auto pt-8 text-[#000000]" style={{ fontFamily: 'Source Serif 4', lineHeight: '1.6' }}>
+              From pixels to print, I create visual languages that speak louder than words.
             </p>
             <div className="flex flex-wrap justify-center gap-4 pt-8">
-              {['Identity', 'Web', 'Motion', 'Print', 'Social'].map(item => <span key={item} className="px-6 py-3 border-2 border-black rounded-full font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors cursor-default">
+              {['Identity', 'Web', 'Motion', 'Print', 'Social'].map(item => <span key={item} className="px-6 py-3 bg-[#F0F0F0] font-bold hover:bg-[#3A5A8C] hover:text-white transition-colors cursor-default text-[#000000]" style={{ fontFamily: 'Public Sans' }}>
                   {item}
                 </span>)}
             </div>
@@ -262,16 +255,16 @@ const HomeView = ({
       </StackingCard>
 
       {/* Projects Grid - Spans below the sticky cards */}
-      <div ref={projectsRef} id="projects" className="relative z-40 bg-white min-h-screen">
+      <div ref={projectsRef} id="projects" className="relative z-40 bg-[#FDFCF8] min-h-screen">
         <div className="py-24 px-6 md:px-12">
           <div className="container mx-auto">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-              <div>
-                <h3 className="text-6xl font-black uppercase tracking-tighter mb-4">Selected<br />Work</h3>
-                <div className="h-2 w-24 bg-fuchsia-600"></div>
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+              <div className="text-left">
+                <h3 className="text-6xl font-bold mb-4 text-[#000000]" style={{ fontFamily: 'Public Sans' }}>Selected<br />Work</h3>
+                <div className="h-2 w-24 bg-[#3A5A8C]"></div>
               </div>
-              <p className="max-w-md text-gray-600 font-medium">
-                A curated selection of our favorite projects from the last few years. We take pride in every pixel.
+              <p className="max-w-md text-[#000000] italic text-left md:text-right" style={{ fontFamily: 'Source Serif 4', lineHeight: '1.6' }}>
+                A curated selection of my favorite projects from the last few years. I take pride in every pixel.
               </p>
             </div>
 
@@ -292,14 +285,13 @@ const HomeView = ({
                   }} viewport={{
                     once: true
                   }} className="group cursor-pointer">
-                        <div className="relative overflow-hidden aspect-[4/3] mb-6 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:-translate-x-1 transition-all duration-300">
-                          <div className={`absolute inset-0 ${project.color} opacity-20 group-hover:opacity-0 transition-opacity z-10`} />
-                          <img src={project.image} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out" />
-                          <div className="absolute bottom-0 left-0 bg-white border-t-2 border-r-2 border-black px-4 py-2 z-20">
-                            <span className="font-mono text-sm uppercase tracking-wider font-bold">{project.category}</span>
-                          </div>
+                        <div className="relative overflow-hidden aspect-[4/3] mb-6 bg-[#F0F0F0]">
+                          <img src={project.image} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out" />
                         </div>
-                        <h4 className="text-3xl font-black uppercase tracking-tight group-hover:text-fuchsia-600 transition-colors">{project.title}</h4>
+                        <div className="mb-2">
+                          <span className="text-xs font-bold uppercase tracking-wider text-[#3A5A8C]" style={{ fontFamily: 'Public Sans' }}>{project.category}</span>
+                        </div>
+                        <h4 className="text-3xl font-bold group-hover:text-[#3A5A8C] transition-colors text-[#000000]" style={{ fontFamily: 'Public Sans' }}>{project.title}</h4>
                       </motion.div>
                   </Link>
                 ) : (
@@ -315,14 +307,13 @@ const HomeView = ({
                 }} viewport={{
                   once: true
                 }} className="group cursor-pointer">
-                      <div className="relative overflow-hidden aspect-[4/3] mb-6 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:-translate-x-1 transition-all duration-300">
-                        <div className={`absolute inset-0 ${project.color} opacity-20 group-hover:opacity-0 transition-opacity z-10`} />
-                        <img src={project.image} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out" />
-                        <div className="absolute bottom-0 left-0 bg-white border-t-2 border-r-2 border-black px-4 py-2 z-20">
-                          <span className="font-mono text-sm uppercase tracking-wider font-bold">{project.category}</span>
-                        </div>
+                      <div className="relative overflow-hidden aspect-[4/3] mb-6 bg-[#F0F0F0]">
+                        <img src={project.image} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out" />
                       </div>
-                      <h4 className="text-3xl font-black uppercase tracking-tight group-hover:text-fuchsia-600 transition-colors">{project.title}</h4>
+                      <div className="mb-2">
+                        <span className="text-xs font-bold uppercase tracking-wider text-[#3A5A8C]" style={{ fontFamily: 'Public Sans' }}>{project.category}</span>
+                      </div>
+                      <h4 className="text-3xl font-bold group-hover:text-[#3A5A8C] transition-colors text-[#000000]" style={{ fontFamily: 'Public Sans' }}>{project.title}</h4>
                     </motion.div>
                 );
               })}
@@ -330,7 +321,7 @@ const HomeView = ({
             
             <div className="mt-24 text-center">
               <Link to="/work">
-                <button className="px-12 py-5 bg-black text-white font-bold text-lg uppercase tracking-widest hover:bg-cyan-500 hover:text-black transition-all shadow-[8px_8px_0px_0px_rgba(120,120,120,0.5)] active:shadow-none active:translate-x-2 active:translate-y-2">
+                <button className="px-12 py-5 bg-[#000000] text-white font-bold text-lg hover:bg-[#3A5A8C] transition-colors" style={{ fontFamily: 'Public Sans' }}>
                   View All Projects
                 </button>
               </Link>
