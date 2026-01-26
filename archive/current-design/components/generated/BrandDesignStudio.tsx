@@ -79,51 +79,51 @@ const StackingCard = ({
       {children}
     </div>;
 };
-const Footer = () => <footer className="bg-black text-white py-20 px-6 relative z-50">
+const Footer = () => <footer className="bg-[#000000] text-white py-20 px-6 relative z-50">
     <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
       <div className="space-y-6">
-        <h3 className="text-3xl font-extrabold" style={{ fontFamily: 'Plus Jakarta Sans' }}>
+        <h3 className="text-3xl font-bold" style={{ fontFamily: 'Public Sans', fontWeight: 700 }}>
           Greta Mantooth
         </h3>
-        <p className="text-white/80 max-w-xs font-normal" style={{ fontFamily: 'Plus Jakarta Sans', lineHeight: '1.6' }}>
+        <p className="text-white/80 max-w-xs italic" style={{ fontFamily: 'Source Serif 4', fontWeight: 400, fontStyle: 'italic', lineHeight: '1.6' }}>
           Brand designer crafting thoughtful visual identities and digital experiences.
         </p>
       </div>
       
       <div>
-        <h4 className="font-medium text-lg mb-6 text-white" style={{ fontFamily: 'Plus Jakarta Sans' }}>Contact</h4>
-        <ul className="space-y-4 text-white/80 font-normal" style={{ fontFamily: 'Plus Jakarta Sans' }}>
+        <h4 className="font-bold text-lg mb-6 text-white" style={{ fontFamily: 'Public Sans', fontWeight: 700 }}>Contact</h4>
+        <ul className="space-y-4 text-white/80 italic" style={{ fontFamily: 'Source Serif 4', fontWeight: 400, fontStyle: 'italic' }}>
           <li className="flex items-center gap-2 hover:text-white cursor-pointer transition-colors"><Mail size={18} /> hello@gretamantooth.com</li>
           <li className="hover:text-white cursor-pointer transition-colors">Available for projects</li>
         </ul>
       </div>
 
       <div>
-        <h4 className="font-medium text-lg mb-6 text-white" style={{ fontFamily: 'Plus Jakarta Sans' }}>Socials</h4>
+        <h4 className="font-bold text-lg mb-6 text-white" style={{ fontFamily: 'Public Sans', fontWeight: 700 }}>Socials</h4>
         <div className="flex gap-4">
-          <a href="#" className="w-10 h-10 bg-white/10 flex items-center justify-center hover:bg-[#EAB308] hover:text-[#111111] transition-all text-white">
+          <a href="#" className="w-10 h-10 bg-white/10 flex items-center justify-center hover:bg-[#3A5A8C] transition-all text-white">
             <Instagram size={20} />
           </a>
-          <a href="#" className="w-10 h-10 bg-white/10 flex items-center justify-center hover:bg-[#EAB308] hover:text-[#111111] transition-all text-white">
+          <a href="#" className="w-10 h-10 bg-white/10 flex items-center justify-center hover:bg-[#3A5A8C] transition-all text-white">
             <Twitter size={20} />
           </a>
-          <a href="#" className="w-10 h-10 bg-white/10 flex items-center justify-center hover:bg-[#EAB308] hover:text-[#111111] transition-all text-white">
+          <a href="#" className="w-10 h-10 bg-white/10 flex items-center justify-center hover:bg-[#3A5A8C] transition-all text-white">
             <Linkedin size={20} />
           </a>
         </div>
       </div>
 
       <div>
-        <h4 className="font-medium text-lg mb-6 text-white" style={{ fontFamily: 'Plus Jakarta Sans' }}>Newsletter</h4>
+        <h4 className="font-bold text-lg mb-6 text-white" style={{ fontFamily: 'Public Sans', fontWeight: 700 }}>Newsletter</h4>
         <div className="flex flex-col gap-4">
-          <input type="email" placeholder="Your email" className="bg-white/10 border border-white/20 p-4 text-white placeholder:text-white/50 focus:ring-2 focus:ring-[#EAB308] focus:border-[#EAB308] outline-none rounded-[2px]" style={{ fontFamily: 'Plus Jakarta Sans' }} />
-          <button className="bg-white text-[#111111] font-medium py-4 hover:bg-[#EAB308] hover:text-[#111111] transition-colors text-sm rounded-[2px]" style={{ fontFamily: 'Plus Jakarta Sans' }}>
+          <input type="email" placeholder="Your email" className="bg-white/10 border border-white/20 p-4 text-white placeholder:text-white/50 focus:ring-2 focus:ring-[#3A5A8C] focus:border-[#3A5A8C] outline-none" style={{ fontFamily: 'Source Serif 4', fontStyle: 'italic' }} />
+          <button className="bg-white text-[#000000] font-bold py-4 hover:bg-[#3A5A8C] hover:text-white transition-colors text-sm" style={{ fontFamily: 'Public Sans', fontWeight: 700 }}>
             Subscribe
           </button>
         </div>
       </div>
     </div>
-    <div className="container mx-auto mt-20 pt-8 border-t border-white/10 text-center text-white/60 text-sm font-normal" style={{ fontFamily: 'Plus Jakarta Sans' }}>
+    <div className="container mx-auto mt-20 pt-8 border-t border-white/10 text-center text-white/60 text-sm italic" style={{ fontFamily: 'Source Serif 4', fontWeight: 400, fontStyle: 'italic' }}>
       © {new Date().getFullYear()} Greta Mantooth. All rights reserved.
     </div>
   </footer>;
@@ -135,9 +135,9 @@ const HomeView = ({
 }: {
   projectsRef: React.RefObject<HTMLDivElement | null>;
 }) => {
-  return <div className="w-full bg-white">
-      {/* Section 1: Introduction - White */}
-      <StackingCard index={1} className="bg-white text-[#222222]">
+  return <div className="w-full bg-[#FDFCF8]">
+      {/* Section 1: Introduction - Paper/Off-White */}
+      <StackingCard index={1} className="bg-[#FDFCF8] text-[#000000]">
         <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           <motion.div initial={{
           opacity: 0,
@@ -148,12 +148,12 @@ const HomeView = ({
         }} transition={{
           duration: 0.8
         }} className="space-y-6">
-            <h1 className="text-6xl md:text-8xl font-extrabold leading-tight text-[#111111]" style={{ fontFamily: 'Plus Jakarta Sans' }}>
+            <h1 className="text-6xl md:text-8xl font-bold leading-tight text-[#000000]" style={{ fontFamily: 'Public Sans', fontWeight: 700 }}>
               I Build <br />
-              <span className="text-[#111111]">Brands</span> <br />
+              <span className="text-[#000000]">Brands</span> <br />
               That Resonate.
             </h1>
-            <p className="text-xl md:text-2xl font-normal max-w-md text-[#6B7280]" style={{ fontFamily: 'Plus Jakarta Sans', lineHeight: '1.6' }}>
+            <p className="text-xl md:text-2xl italic max-w-md text-[#000000]" style={{ fontFamily: 'Source Serif 4', fontWeight: 400, fontStyle: 'italic', lineHeight: '1.6' }}>
               Brand designer crafting thoughtful visual identities and digital experiences.
             </p>
             <motion.div animate={{
@@ -175,7 +175,7 @@ const HomeView = ({
           duration: 0.8,
           delay: 0.2
         }} className="hidden md:flex justify-center">
-            <div className="w-96 h-96 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)]">
+            <div className="w-96 h-96">
               <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop" alt="Abstract Art" className="w-full h-full object-cover hover:opacity-90 transition-opacity duration-500" />
             </div>
           </motion.div>
@@ -195,7 +195,7 @@ const HomeView = ({
           duration: 0.8
         }} className="hidden md:flex justify-center order-2 md:order-1">
             <div className="relative">
-              <div className="relative w-80 h-96 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)]">
+              <div className="relative w-80 h-96">
                  <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" alt="Strategy" className="w-full h-full object-cover hover:opacity-90 transition-opacity duration-500" />
               </div>
             </div>
@@ -210,17 +210,17 @@ const HomeView = ({
           duration: 0.8
         }} className="space-y-6 order-1 md:order-2">
             <div className="flex items-center gap-3 mb-4">
-              <Zap className="w-8 h-8 text-yellow-300" />
-              <span className="font-mono text-yellow-300 tracking-widest uppercase">Strategy First</span>
+              <Zap className="w-8 h-8 text-[#3A5A8C]" />
+              <span className="font-mono text-[#3A5A8C] tracking-widest uppercase" style={{ fontFamily: 'Public Sans', fontWeight: 700 }}>Strategy First</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-black leading-tight tracking-tighter uppercase">
+            <h2 className="text-5xl md:text-7xl font-bold leading-tight tracking-tighter uppercase" style={{ fontFamily: 'Public Sans', fontWeight: 700 }}>
               Chaos <br />
-              <span className="text-yellow-300 italic">Controlled.</span>
+              <span className="text-[#3A5A8C] italic" style={{ fontFamily: 'Source Serif 4', fontStyle: 'italic' }}>Controlled.</span>
             </h2>
-            <p className="text-lg md:text-xl font-medium max-w-md">
+            <p className="text-lg md:text-xl italic max-w-md text-[#000000]" style={{ fontFamily: 'Source Serif 4', fontWeight: 400, fontStyle: 'italic' }}>
               I don't just make things pretty. I engineer brand systems that scale, adapt, and resonate with audiences.
             </p>
-            <button className="flex items-center gap-2 font-bold uppercase tracking-widest text-sm border-b-2 border-white pb-1 hover:text-yellow-300 hover:border-yellow-300 transition-colors">
+            <button className="flex items-center gap-2 font-bold uppercase tracking-widest text-sm border-b-2 border-[#000000] pb-1 hover:text-[#3A5A8C] hover:border-[#3A5A8C] transition-colors" style={{ fontFamily: 'Public Sans', fontWeight: 700 }}>
               See Our Process <ArrowRight size={16} />
             </button>
           </motion.div>
@@ -246,7 +246,7 @@ const HomeView = ({
               From pixels to print, I create visual languages that speak louder than words.
             </p>
             <div className="flex flex-wrap justify-center gap-4 pt-8">
-              {['Identity', 'Web', 'Motion', 'Print', 'Social'].map(item => <span key={item} className="px-6 py-3 bg-[#F0F0F0] font-bold hover:bg-[#3A5A8C] hover:text-white transition-colors cursor-default text-[#000000]" style={{ fontFamily: 'Public Sans' }}>
+              {['Identity', 'Web', 'Motion', 'Print', 'Social'].map(item => <span key={item} className="px-6 py-3 bg-[#F0F0F0] font-bold hover:bg-[#3A5A8C] hover:text-white transition-colors cursor-default text-[#000000]" style={{ fontFamily: 'Public Sans', fontWeight: 700 }}>
                   {item}
                 </span>)}
             </div>
@@ -260,10 +260,10 @@ const HomeView = ({
           <div className="container mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
               <div className="text-left">
-                <h3 className="text-6xl font-extrabold mb-4 text-[#111111]" style={{ fontFamily: 'Plus Jakarta Sans' }}>Selected<br />Work</h3>
-                <div className="h-2 w-24 bg-[#EAB308]"></div>
+                <h3 className="text-6xl font-bold mb-4 text-[#000000]" style={{ fontFamily: 'Public Sans', fontWeight: 700 }}>Selected<br />Work</h3>
+                <div className="h-2 w-24 bg-[#3A5A8C]"></div>
               </div>
-              <p className="max-w-md text-[#6B7280] font-normal text-left md:text-right" style={{ fontFamily: 'Plus Jakarta Sans', lineHeight: '1.6' }}>
+              <p className="max-w-md italic text-left md:text-right text-[#000000]" style={{ fontFamily: 'Source Serif 4', fontWeight: 400, fontStyle: 'italic', lineHeight: '1.6' }}>
                 A curated selection of my favorite projects from the last few years. I take pride in every pixel.
               </p>
             </div>
@@ -289,9 +289,9 @@ const HomeView = ({
                           <img src={project.image} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out" />
                         </div>
                         <div className="mb-2">
-                          <span className="text-xs font-bold uppercase tracking-wider text-[#3A5A8C]" style={{ fontFamily: 'Public Sans' }}>{project.category}</span>
+                          <span className="text-xs font-bold uppercase tracking-wider text-[#3A5A8C]" style={{ fontFamily: 'Public Sans', fontWeight: 700 }}>{project.category}</span>
                         </div>
-                        <h4 className="text-3xl font-bold group-hover:text-[#3A5A8C] transition-colors text-[#000000]" style={{ fontFamily: 'Public Sans' }}>{project.title}</h4>
+                        <h4 className="text-3xl font-bold group-hover:text-[#3A5A8C] transition-colors text-[#000000]" style={{ fontFamily: 'Public Sans', fontWeight: 700 }}>{project.title}</h4>
                       </motion.div>
                   </Link>
                 ) : (
@@ -307,13 +307,13 @@ const HomeView = ({
                 }} viewport={{
                   once: true
                 }} className="group cursor-pointer">
-                      <div className="relative overflow-hidden aspect-[4/3] mb-6 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] hover:shadow-[0_15px_50px_-10px_rgba(0,0,0,0.15)] transition-all duration-300">
+                      <div className="relative overflow-hidden aspect-[4/3] mb-6 bg-[#F0F0F0]">
                         <img src={project.image} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out" />
                       </div>
                       <div className="mb-2">
-                        <span className="text-xs font-medium text-[#6B7280]" style={{ fontFamily: 'Plus Jakarta Sans' }}>{project.category}</span>
+                        <span className="text-xs font-bold uppercase tracking-wider text-[#3A5A8C]" style={{ fontFamily: 'Public Sans', fontWeight: 700 }}>{project.category}</span>
                       </div>
-                      <h4 className="text-3xl font-extrabold group-hover:text-[#111111] transition-colors text-[#111111]" style={{ fontFamily: 'Plus Jakarta Sans' }}>{project.title}</h4>
+                      <h4 className="text-3xl font-bold group-hover:text-[#3A5A8C] transition-colors text-[#000000]" style={{ fontFamily: 'Public Sans', fontWeight: 700 }}>{project.title}</h4>
                     </motion.div>
                 );
               })}
@@ -321,7 +321,7 @@ const HomeView = ({
             
             <div className="mt-24 text-center">
               <Link to="/work">
-                <button className="px-12 py-5 bg-[#111111] text-white font-medium text-lg hover:bg-[#EAB308] hover:text-[#111111] transition-colors rounded-[2px]" style={{ fontFamily: 'Plus Jakarta Sans' }}>
+                <button className="px-12 py-5 bg-[#000000] text-white font-bold text-lg hover:bg-[#3A5A8C] transition-colors" style={{ fontFamily: 'Public Sans', fontWeight: 700 }}>
                   View All Projects
                 </button>
               </Link>
@@ -399,7 +399,7 @@ export const BrandDesignStudio = () => {
   }, []);
 
   // @return
-  return <div className="font-sans antialiased bg-gray-50 min-h-screen selection:bg-fuchsia-300 selection:text-fuchsia-900">
+  return <div className="font-sans antialiased bg-[#FDFCF8] min-h-screen selection:bg-[#3A5A8C] selection:text-white">
       <Navigation isScrolled={isScrolled} isInProjectsSection={isInProjectsSection} />
 
       <main>

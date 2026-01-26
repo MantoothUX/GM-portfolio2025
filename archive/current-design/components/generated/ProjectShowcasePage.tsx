@@ -490,7 +490,7 @@ export const ProjectShowcasePage = ({
 
       {/* Image Gallery */}
       <div className="space-y-0">
-        {project.imageGroups.map((group, idx) => <div key={idx}>
+        {project.imageGroups.map((group, idx) => <div key={`${project.id}-${group.type}-${idx}-${group.images[0]?.id || idx}`}>
             {group.type === 'fullbleed' && group.images.length > 0 && <FullBleedImage image={group.images[0]} />}
             {group.type === 'half' && <HalfGridImages images={group.images} />}
             {group.type === 'carousel' && <CarouselImages images={group.images} />}
