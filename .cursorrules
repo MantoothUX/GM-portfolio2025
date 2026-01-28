@@ -1,0 +1,170 @@
+# UI Skills - Project Rules
+# Combined from ibelick/ui-skills: baseline-ui, fixing-accessibility, fixing-metadata, fixing-motion-performance
+
+## Stack Requirements
+
+- MUST use Tailwind CSS defaults unless custom values already exist or are explicitly requested
+- MUST use `motion/react` (formerly `framer-motion`) when JavaScript animation is required
+- SHOULD use `tw-animate-css` for entrance and micro-animations in Tailwind CSS
+- MUST use `cn` utility (`clsx` + `tailwind-merge`) for class logic
+
+## Component Guidelines
+
+- MUST use accessible component primitives for anything with keyboard or focus behavior (`Base UI`, `React Aria`, `Radix`)
+- MUST use the project's existing component primitives first
+- NEVER mix primitive systems within the same interaction surface
+- SHOULD prefer `Base UI` for new primitives if compatible with the stack
+- MUST add an `aria-label` to icon-only buttons
+- NEVER rebuild keyboard or focus behavior by hand unless explicitly requested
+
+## Interaction Patterns
+
+- MUST use an `AlertDialog` for destructive or irreversible actions
+- SHOULD use structural skeletons for loading states
+- NEVER use `h-screen`, use `h-dvh`
+- MUST respect `safe-area-inset` for fixed elements
+- MUST show errors next to where the action happens
+- NEVER block paste in `input` or `textarea` elements
+
+## Animation Rules
+
+- NEVER add animation unless it is explicitly requested
+- MUST animate only compositor props (`transform`, `opacity`)
+- NEVER animate layout properties (`width`, `height`, `top`, `left`, `margin`, `padding`)
+- SHOULD avoid animating paint properties (`background`, `color`) except for small, local UI (text, icons)
+- SHOULD use `ease-out` on entrance
+- NEVER exceed `200ms` for interaction feedback
+- MUST pause looping animations when off-screen
+- SHOULD respect `prefers-reduced-motion`
+- NEVER introduce custom easing curves unless explicitly requested
+- SHOULD avoid animating large images or full-screen surfaces
+- Never interleave layout reads and writes in the same frame
+- No requestAnimationFrame loops without a stop condition
+- Use IntersectionObserver for visibility and pausing
+- Keep blur animation small (<=8px) and only for short, one-time effects
+- Never animate blur continuously or on large surfaces
+- Never animate CSS variables for transform, opacity, or position
+
+## Typography
+
+- MUST use `text-balance` for headings and `text-pretty` for body/paragraphs
+- MUST use `tabular-nums` for data
+- SHOULD use `truncate` or `line-clamp` for dense UI
+- NEVER modify `letter-spacing` (`tracking-*`) unless explicitly requested
+
+## Layout
+
+- MUST use a fixed `z-index` scale (no arbitrary `z-*`)
+- SHOULD use `size-*` for square elements instead of `w-*` + `h-*`
+
+## Performance
+
+- NEVER animate large `blur()` or `backdrop-filter` surfaces
+- NEVER apply `will-change` outside an active animation
+- NEVER use `useEffect` for anything that can be expressed as render logic
+
+## Design Constraints
+
+- NEVER use gradients unless explicitly requested
+- NEVER use purple or multicolor gradients
+- NEVER use glow effects as primary affordances
+- SHOULD use Tailwind CSS default shadow scale unless explicitly requested
+- MUST give empty states one clear next action
+- SHOULD limit accent color usage to one per view
+- SHOULD use existing theme or Tailwind CSS color tokens before introducing new ones
+
+## Accessibility (Critical Priority)
+
+### Accessible Names
+- Every interactive control must have an accessible name
+- Icon-only buttons must have aria-label or aria-labelledby
+- Every input, select, and textarea must be labeled
+- Links must have meaningful text (no "click here")
+- Decorative icons must be aria-hidden
+
+### Keyboard Access
+- Do not use div or span as buttons without full keyboard support
+- All interactive elements must be reachable by Tab
+- Focus must be visible for keyboard users
+- Do not use tabindex greater than 0
+- Escape must close dialogs or overlays when applicable
+
+### Focus and Dialogs
+- Modals must trap focus while open
+- Restore focus to the trigger on close
+- Set initial focus inside dialogs
+- Opening a dialog should not scroll the page unexpectedly
+
+### Semantics
+- Prefer native elements (button, a, input) over role-based hacks
+- If a role is used, required aria attributes must be present
+- Lists must use ul or ol with li
+- Do not skip heading levels
+- Tables must use th for headers when applicable
+
+### Forms and Errors
+- Errors must be linked to fields using aria-describedby
+- Required fields must be announced
+- Invalid fields must set aria-invalid
+- Helper text must be associated with inputs
+- Disabled submit actions must explain why
+
+### Announcements
+- Critical form errors should use aria-live
+- Loading states should use aria-busy or status text
+- Toasts must not be the only way to convey critical information
+- Expandable controls must use aria-expanded and aria-controls
+
+### Contrast and States
+- Ensure sufficient contrast for text and icons
+- Hover-only interactions must have keyboard equivalents
+- Disabled states must not rely on color alone
+- Do not remove focus outlines without a visible replacement
+
+### Media and Motion
+- Images must have correct alt text (meaningful or empty)
+- Videos with speech should provide captions when relevant
+- Respect prefers-reduced-motion for non-essential motion
+- Avoid autoplaying media with sound
+
+## Metadata Requirements
+
+### Page Basics
+- Every page must have a title
+- Use a consistent title format across the site
+- Keep titles short and readable, avoid stuffing
+- Shareable or searchable pages should have a meta description
+- Descriptions must be plain text, no markdown or quote spam
+
+### Canonical and Indexing
+- Canonical must point to the preferred URL for the page
+- Use noindex only for private, duplicate, or non-public pages
+- Robots meta must match actual access intent
+- Previews or staging pages should be noindex by default when possible
+
+### Social Cards (Open Graph)
+- Shareable pages must set Open Graph title, description, and image
+- Open Graph and Twitter images must use absolute URLs
+- Prefer correct image dimensions and stable aspect ratios
+- og:url must match the canonical URL
+- Use a sensible og:type, usually website or article
+- Set twitter:card appropriately, summary_large_image by default
+
+### Icons and Manifest
+- Include at least one favicon that works across browsers
+- Include apple-touch-icon when relevant
+- Manifest must be valid and referenced when used
+- Set theme-color intentionally to avoid mismatched UI chrome
+- Icon paths should be stable and cacheable
+
+### Locale
+- Set the html lang attribute correctly
+- Set og:locale when localization exists
+
+## Tool Boundaries
+
+- Prefer minimal changes, do not refactor unrelated code
+- Do not add aria when native semantics already solve the problem
+- Do not migrate UI libraries unless requested
+- Do not migrate or rewrite animation libraries unless explicitly requested
+- Follow the project's existing patterns

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { Mail, Linkedin, Pin } from 'lucide-react';
 
 interface BaseComponentProps {
   className?: string;
@@ -7,19 +8,23 @@ interface BaseComponentProps {
   children?: React.ReactNode;
 }
 
-// Vintage color palette
+// Brand color palette
 export const COLORS = {
-  cream: '#F5F1E8',
-  warmWhite: '#FAF8F3',
-  sage: '#9FA58A',
-  olive: '#6B7B5C',
-  terracotta: '#C97A63',
-  rust: '#A25642',
-  ochre: '#D4A574',
+  background: '#EDD9D6', // Off-pink main background
+  card1: '#3F3E32',
+  card2: '#E0D623',
+  card3: '#EDD9D6',
   charcoal: '#2D2D2A',
   warmGray: '#8B8980',
-  lightSage: '#D4D9C8',
-  deepBrown: '#4A3F35'
+  deepBrown: '#4A3F35',
+  white: '#FFFFFF',
+  offWhite: '#EAE4DA' // For contrasting text on dark backgrounds and card backgrounds
+};
+
+// Helper function to determine if a background color is dark
+const isDarkBackground = (backgroundColor: string): boolean => {
+  const darkColors = [COLORS.card1, COLORS.charcoal, COLORS.deepBrown];
+  return darkColors.includes(backgroundColor);
 };
 
 // Spacing constants
@@ -40,8 +45,8 @@ export const PROJECTS = [
     description: 'Complete visual identity for a sustainable fashion startup',
     client: 'EcoThread Collective',
     roles: ['Brand Strategy', 'Visual Identity', 'Guidelines'],
-    heroColor: COLORS.sage,
-    galleryColors: [COLORS.lightSage, COLORS.cream, COLORS.ochre, COLORS.sage]
+    heroImage: '/placeholder.jpg',
+    galleryImages: ['/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg']
   },
   {
     id: '2',
@@ -49,8 +54,8 @@ export const PROJECTS = [
     description: 'Website and app design for an artisan coffee roaster',
     client: 'Morning Ritual Coffee',
     roles: ['UX Design', 'UI Design', 'Art Direction'],
-    heroColor: COLORS.ochre,
-    galleryColors: [COLORS.terracotta, COLORS.cream, COLORS.lightSage, COLORS.ochre]
+    heroImage: '/placeholder.jpg',
+    galleryImages: ['/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg']
   },
   {
     id: '3',
@@ -58,8 +63,8 @@ export const PROJECTS = [
     description: 'Product packaging for a botanical skincare line',
     client: 'Verdant Botanicals',
     roles: ['Packaging', 'Print Design', 'Brand Extension'],
-    heroColor: COLORS.lightSage,
-    galleryColors: [COLORS.sage, COLORS.cream, COLORS.ochre, COLORS.lightSage]
+    heroImage: '/placeholder.jpg',
+    galleryImages: ['/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg']
   },
   {
     id: '4',
@@ -67,8 +72,8 @@ export const PROJECTS = [
     description: 'Magazine layout and art direction for quarterly publication',
     client: 'Slow Living Magazine',
     roles: ['Editorial', 'Typography', 'Layout'],
-    heroColor: COLORS.cream,
-    galleryColors: [COLORS.warmWhite, COLORS.sage, COLORS.terracotta, COLORS.cream]
+    heroImage: '/placeholder.jpg',
+    galleryImages: ['/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg']
   },
   {
     id: '5',
@@ -76,8 +81,8 @@ export const PROJECTS = [
     description: 'Wayfinding and signage for boutique hotel',
     client: 'The Wanderer Hotel',
     roles: ['Signage', 'Wayfinding', 'Environmental'],
-    heroColor: COLORS.terracotta,
-    galleryColors: [COLORS.rust, COLORS.cream, COLORS.sage, COLORS.terracotta]
+    heroImage: '/placeholder.jpg',
+    galleryImages: ['/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg']
   },
   {
     id: '6',
@@ -85,8 +90,8 @@ export const PROJECTS = [
     description: 'Integrated marketing campaign for wellness brand',
     client: 'Breathe Wellness',
     roles: ['Campaign', 'Digital', 'Print'],
-    heroColor: COLORS.sage,
-    galleryColors: [COLORS.lightSage, COLORS.ochre, COLORS.cream, COLORS.sage]
+    heroImage: '/placeholder.jpg',
+    galleryImages: ['/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg']
   }
 ];
 
@@ -140,12 +145,12 @@ export const TopBar = () => {
       justifyContent: 'space-between',
       alignItems: 'center',
       padding: '0 32px',
-      backgroundColor: COLORS.warmWhite,
+      backgroundColor: COLORS.offWhite,
       borderBottom: `1px solid ${COLORS.warmGray}40`,
       boxSizing: 'border-box',
       position: 'sticky',
       top: 0,
-      zIndex: 100
+      zIndex: 10000
     }}>
       <button onClick={handleLogoClick} style={{
         background: 'none',
@@ -160,9 +165,10 @@ export const TopBar = () => {
         <span style={{
           color: COLORS.charcoal,
           fontSize: '14px',
-          fontFamily: '"Courier New", "Courier", monospace',
-          fontWeight: 500,
-          letterSpacing: '0.5px'
+          fontFamily: '"Compadre Extended", sans-serif',
+          fontWeight: 400,
+          letterSpacing: '0.5px',
+          textTransform: 'uppercase'
         }}>
           GRETA MANTOOTH
         </span>
@@ -178,24 +184,30 @@ export const TopBar = () => {
           border: 'none',
           color: COLORS.charcoal,
           fontSize: '14px',
-          fontFamily: '"Inter", sans-serif',
+          fontFamily: '"Vulf Mono", monospace',
+          fontStyle: 'italic',
+          fontWeight: 300,
           cursor: 'pointer',
           padding: '8px',
-          transition: 'color 0.2s ease'
-        }} onMouseEnter={e => e.currentTarget.style.color = COLORS.rust} onMouseLeave={e => e.currentTarget.style.color = COLORS.charcoal}>
-          Projects
+          transition: 'color 0.2s ease',
+          textTransform: 'lowercase'
+        }} onMouseEnter={e => e.currentTarget.style.color = COLORS.warmGray} onMouseLeave={e => e.currentTarget.style.color = COLORS.charcoal}>
+          portfolio
         </button>
         <button onClick={handleAboutClick} style={{
           background: 'none',
           border: 'none',
           color: COLORS.charcoal,
           fontSize: '14px',
-          fontFamily: '"Inter", sans-serif',
+          fontFamily: '"Vulf Mono", monospace',
+          fontStyle: 'italic',
+          fontWeight: 300,
           cursor: 'pointer',
           padding: '8px',
-          transition: 'color 0.2s ease'
-        }} onMouseEnter={e => e.currentTarget.style.color = COLORS.rust} onMouseLeave={e => e.currentTarget.style.color = COLORS.charcoal}>
-          About
+          transition: 'color 0.2s ease',
+          textTransform: 'lowercase'
+        }} onMouseEnter={e => e.currentTarget.style.color = COLORS.warmGray} onMouseLeave={e => e.currentTarget.style.color = COLORS.charcoal}>
+          about
         </button>
       </nav>
     </header>
@@ -247,16 +259,6 @@ const StickyCard = ({
         flexDirection: 'column',
         gap: '48px'
       }}>
-        <span style={{
-          color: COLORS.deepBrown,
-          fontSize: '16px',
-          fontFamily: '"Courier New", "Courier", monospace',
-          fontWeight: 400,
-          letterSpacing: '1.5px',
-          textTransform: 'uppercase'
-        }}>
-          {title}
-        </span>
         <div style={{
           display: 'flex',
           flexDirection: 'column',
@@ -264,21 +266,23 @@ const StickyCard = ({
         }}>
           <h2 style={{
             margin: 0,
-            color: COLORS.charcoal,
+            color: isDarkBackground(backgroundColor) ? COLORS.offWhite : COLORS.charcoal,
             fontSize: '48px',
-            fontFamily: '"Playfair Display", "Georgia", serif',
-            fontWeight: 500,
-            lineHeight: '1.2'
+            fontFamily: '"Vulf Mono", monospace',
+            fontStyle: 'italic',
+            fontWeight: 300,
+            lineHeight: '1.2',
+            textTransform: 'lowercase'
           }}>
             {headline}
           </h2>
           <p style={{
             margin: 0,
             maxWidth: '727px',
-            color: COLORS.deepBrown,
+            color: isDarkBackground(backgroundColor) ? COLORS.offWhite : COLORS.deepBrown,
             fontSize: '20px',
-            fontFamily: '"Inter", sans-serif',
-            fontWeight: 400,
+            fontFamily: '"Vulf Mono", monospace',
+            fontWeight: 300,
             lineHeight: '1.6'
           }}>
             {description}
@@ -331,14 +335,33 @@ const ImageModal = ({
       justifyContent: 'center',
       cursor: 'pointer'
     }}>
-      <div onClick={e => e.stopPropagation()} style={{
-        width: '80vw',
-        height: '70vh',
-        maxWidth: '1000px',
-        backgroundColor: images[currentIndex],
-        cursor: 'default',
-        boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)'
-      }} />
+      <div
+        onClick={e => e.stopPropagation()}
+        style={{
+          width: '80vw',
+          height: '70vh',
+          maxWidth: '1000px',
+          backgroundColor: COLORS.offWhite,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          cursor: 'default',
+          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)'
+        }}
+      >
+        <img
+          src={images[currentIndex]}
+          alt={`Gallery image ${currentIndex + 1}`}
+          style={{
+            maxWidth: '200px',
+            maxHeight: '200px',
+            width: 'auto',
+            height: 'auto',
+            objectFit: 'contain',
+            opacity: 0.3
+          }}
+        />
+      </div>
       
       <button onClick={onClose} style={{
         position: 'absolute',
@@ -424,15 +447,16 @@ const ImageModal = ({
 };
 
 // Gallery image data - duplicated for seamless infinite scroll
+// Using image placeholders instead of colors
 const galleryImages = [
-  { bg: COLORS.lightSage, width: 378, height: 378, top: 0, left: 0 },
-  { bg: COLORS.sage, width: 378, height: 378, top: 378, left: 0 },
-  { bg: COLORS.ochre, width: 583, height: 756, top: 0, left: 378 },
-  { bg: COLORS.cream, width: 378, height: 378, top: 0, left: 961 },
-  { bg: COLORS.lightSage, width: 378, height: 378, top: 378, left: 961 },
-  { bg: COLORS.terracotta, width: 825, height: 756, top: 0, left: 1339 },
-  { bg: COLORS.sage, width: 378, height: 378, top: 0, left: 2164 },
-  { bg: COLORS.cream, width: 378, height: 378, top: 378, left: 2164 },
+  { image: '/placeholder.jpg', width: 378, height: 378, top: 0, left: 0 },
+  { image: '/placeholder.jpg', width: 378, height: 378, top: 378, left: 0 },
+  { image: '/placeholder.jpg', width: 583, height: 756, top: 0, left: 378 },
+  { image: '/placeholder.jpg', width: 378, height: 378, top: 0, left: 961 },
+  { image: '/placeholder.jpg', width: 378, height: 378, top: 378, left: 961 },
+  { image: '/placeholder.jpg', width: 825, height: 756, top: 0, left: 1339 },
+  { image: '/placeholder.jpg', width: 378, height: 378, top: 0, left: 2164 },
+  { image: '/placeholder.jpg', width: 378, height: 378, top: 378, left: 2164 },
 ];
 
 const GALLERY_WIDTH = 2542;
@@ -472,6 +496,8 @@ const MediaGallery = () => {
 
   // Mouse drag handlers
   const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     isDraggingRef.current = true;
     isPausedRef.current = true;
     startXRef.current = e.pageX - (containerRef.current?.offsetLeft || 0);
@@ -484,6 +510,7 @@ const MediaGallery = () => {
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDraggingRef.current) return;
     e.preventDefault();
+    e.stopPropagation();
     const x = e.pageX - (containerRef.current?.offsetLeft || 0);
     const walk = (x - startXRef.current) * 1.5;
     if (containerRef.current) {
@@ -492,7 +519,9 @@ const MediaGallery = () => {
     }
   };
 
-  const handleMouseUp = () => {
+  const handleMouseUp = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     isDraggingRef.current = false;
     if (containerRef.current) {
       containerRef.current.style.cursor = 'grab';
@@ -516,7 +545,8 @@ const MediaGallery = () => {
     }
   };
 
-  const handleWheel = () => {
+  const handleWheel = (e: React.WheelEvent) => {
+    e.preventDefault();
     isPausedRef.current = true;
     if (containerRef.current) {
       scrollPosRef.current = containerRef.current.scrollLeft;
@@ -537,9 +567,30 @@ const MediaGallery = () => {
           top: `${img.top}px`,
           width: `${img.width}px`,
           height: `${img.height}px`,
-          background: img.bg
+          backgroundColor: COLORS.offWhite,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          pointerEvents: 'none'
         }}
-      />
+      >
+        <img
+          src={img.image}
+          alt=""
+          draggable={false}
+          onDragStart={(e) => e.preventDefault()}
+          onMouseDown={(e) => e.preventDefault()}
+          style={{
+            maxWidth: '60px',
+            maxHeight: '60px',
+            width: 'auto',
+            height: 'auto',
+            objectFit: 'contain',
+            userSelect: 'none',
+            opacity: 0.3
+          }}
+        />
+      </div>
     ));
   };
 
@@ -551,12 +602,13 @@ const MediaGallery = () => {
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseLeave}
+      onDragStart={(e) => e.preventDefault()}
       style={{
         width: '100%',
         height: '100vh',
         overflowX: 'auto',
         overflowY: 'hidden',
-        backgroundColor: COLORS.warmWhite,
+        backgroundColor: COLORS.background,
         scrollbarWidth: 'none',
         cursor: 'grab',
         userSelect: 'none'
@@ -582,13 +634,13 @@ const ProjectCard = ({
   id,
   title,
   description,
-  heroColor,
+  heroImage,
   onClick
 }: {
   id: string;
   title: string;
   description: string;
-  heroColor: string;
+  heroImage: string;
   onClick: () => void;
 }) => (
   <div
@@ -598,7 +650,7 @@ const ProjectCard = ({
       minWidth: '300px',
       display: 'flex',
       flexDirection: 'column',
-      backgroundColor: COLORS.cream,
+      backgroundColor: COLORS.offWhite,
       overflow: 'hidden',
       cursor: 'pointer',
       transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -608,9 +660,26 @@ const ProjectCard = ({
     onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
   >
     <div style={{
+      width: '100%',
       height: '448px',
-      backgroundColor: heroColor
-    }} />
+      backgroundColor: COLORS.offWhite,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}>
+      <img
+        src="/placeholder.jpg"
+        alt={title}
+        style={{
+          maxWidth: '80px',
+          maxHeight: '80px',
+          width: 'auto',
+          height: 'auto',
+          objectFit: 'contain',
+          opacity: 0.3
+        }}
+      />
+    </div>
     <div style={{
       padding: '20px 24px 24px 24px',
       display: 'flex',
@@ -620,16 +689,18 @@ const ProjectCard = ({
       <h3 style={{
         margin: 0,
         fontSize: '28px',
-        fontFamily: '"Playfair Display", "Georgia", serif',
-        fontWeight: 500,
-        color: COLORS.charcoal
+        fontFamily: '"Compadre Narrow", sans-serif',
+        fontWeight: 400,
+        color: COLORS.charcoal,
+        textTransform: 'uppercase'
       }}>
         {title}
       </h3>
       <p style={{
         margin: 0,
         fontSize: '12px',
-        fontFamily: '"Courier New", "Courier", monospace',
+        fontFamily: '"Vulf Mono", monospace',
+        fontWeight: 300,
         color: COLORS.deepBrown,
         letterSpacing: '0.3px'
       }}>
@@ -660,14 +731,17 @@ const FeaturedProjects = () => {
       maxWidth: '1190px',
       width: '100%',
       margin: '0 auto',
-      padding: `${SPACING.md} 32px 0 32px`
+      padding: `${SPACING.md} 32px 0 32px`,
+      backgroundColor: COLORS.card3
     }}>
       <h2 style={{
         fontSize: '36px',
-        fontFamily: '"Playfair Display", "Georgia", serif',
-        fontWeight: 500,
+        fontFamily: '"Vulf Mono", monospace',
+        fontStyle: 'italic',
+        fontWeight: 300,
         marginBottom: '48px',
-        color: COLORS.charcoal
+        color: COLORS.charcoal,
+        textTransform: 'lowercase'
       }}>
         Featured projects
       </h2>
@@ -684,7 +758,7 @@ const FeaturedProjects = () => {
             id={project.id}
             title={project.title}
             description={project.description}
-            heroColor={project.heroColor}
+            heroImage={project.heroImage}
             onClick={() => handleProjectClick(project.id)}
           />
         ))}
@@ -698,17 +772,18 @@ const FeaturedProjects = () => {
           style={{
             width: '220px',
             height: '52px',
-            backgroundColor: COLORS.olive,
-            color: COLORS.warmWhite,
+            backgroundColor: COLORS.charcoal,
+            color: COLORS.white,
             border: 'none',
+            borderRadius: '10px',
             cursor: 'pointer',
             fontSize: '14px',
-            fontFamily: '"Inter", sans-serif',
-            transition: 'background-color 0.3s ease',
-            fontWeight: 500
+            fontFamily: '"Vulf Mono", monospace',
+            fontWeight: 300,
+            transition: 'background-color 0.3s ease'
           }}
-          onMouseEnter={e => e.currentTarget.style.backgroundColor = COLORS.rust}
-          onMouseLeave={e => e.currentTarget.style.backgroundColor = COLORS.olive}
+          onMouseEnter={e => e.currentTarget.style.backgroundColor = COLORS.warmGray}
+          onMouseLeave={e => e.currentTarget.style.backgroundColor = COLORS.charcoal}
         >
           See all projects →
         </button>
@@ -722,17 +797,19 @@ const AboutSection = () => {
   const socialButtonStyle: React.CSSProperties = {
     height: '52px',
     padding: '0 48px',
-    backgroundColor: COLORS.sage,
-    color: COLORS.warmWhite,
+    backgroundColor: COLORS.charcoal,
+    color: COLORS.white,
     border: 'none',
+    borderRadius: '10px',
     cursor: 'pointer',
     fontSize: '14px',
-    fontFamily: '"Inter", sans-serif',
+    fontFamily: '"Vulf Mono", monospace',
+    fontWeight: 300,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    transition: 'background-color 0.3s ease',
-    fontWeight: 500
+    gap: '8px',
+    transition: 'background-color 0.3s ease'
   };
 
   return (
@@ -744,10 +821,12 @@ const AboutSection = () => {
     }}>
       <h2 style={{
         fontSize: '36px',
-        fontFamily: '"Playfair Display", "Georgia", serif',
-        fontWeight: 500,
+        fontFamily: '"Vulf Mono", monospace',
+        fontStyle: 'italic',
+        fontWeight: 300,
         marginBottom: '48px',
-        color: COLORS.charcoal
+        color: COLORS.charcoal,
+        textTransform: 'lowercase'
       }}>
         About Greta
       </h2>
@@ -762,8 +841,24 @@ const AboutSection = () => {
           flex: '1',
           minWidth: '300px',
           height: '500px',
-          backgroundColor: COLORS.ochre
-        }} />
+          backgroundColor: COLORS.offWhite,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <img
+            src="/placeholder.jpg"
+            alt="Greta Mantooth"
+            style={{
+              maxWidth: '100px',
+              maxHeight: '100px',
+              width: 'auto',
+              height: 'auto',
+              objectFit: 'contain',
+              opacity: 0.3
+            }}
+          />
+        </div>
         <div style={{
           flex: '1',
           minWidth: '300px'
@@ -771,7 +866,8 @@ const AboutSection = () => {
           <p style={{
             margin: 0,
             fontSize: '20px',
-            fontFamily: '"Inter", sans-serif',
+            fontFamily: '"Vulf Mono", monospace',
+            fontWeight: 300,
             lineHeight: '1.7',
             color: COLORS.deepBrown,
             whiteSpace: 'pre-line'
@@ -789,13 +885,16 @@ Her passion lies in empowering businesses to articulate their unique value propo
         gap: '20px',
         flexWrap: 'wrap'
       }}>
-        <button style={socialButtonStyle} onMouseEnter={e => e.currentTarget.style.backgroundColor = COLORS.rust} onMouseLeave={e => e.currentTarget.style.backgroundColor = COLORS.sage}>
+        <button style={socialButtonStyle} onMouseEnter={e => e.currentTarget.style.backgroundColor = COLORS.warmGray} onMouseLeave={e => e.currentTarget.style.backgroundColor = COLORS.charcoal}>
+          <Mail size={18} />
           Mail
         </button>
-        <button style={socialButtonStyle} onMouseEnter={e => e.currentTarget.style.backgroundColor = COLORS.rust} onMouseLeave={e => e.currentTarget.style.backgroundColor = COLORS.sage}>
+        <button style={socialButtonStyle} onMouseEnter={e => e.currentTarget.style.backgroundColor = COLORS.warmGray} onMouseLeave={e => e.currentTarget.style.backgroundColor = COLORS.charcoal}>
+          <Linkedin size={18} />
           LinkedIn
         </button>
-        <button style={socialButtonStyle} onMouseEnter={e => e.currentTarget.style.backgroundColor = COLORS.rust} onMouseLeave={e => e.currentTarget.style.backgroundColor = COLORS.sage}>
+        <button style={socialButtonStyle} onMouseEnter={e => e.currentTarget.style.backgroundColor = COLORS.warmGray} onMouseLeave={e => e.currentTarget.style.backgroundColor = COLORS.charcoal}>
+          <Pin size={18} />
           Pinterest
         </button>
       </div>
@@ -803,11 +902,11 @@ Her passion lies in empowering businesses to articulate their unique value propo
   );
 };
 
-// Footer with terracotta background and placeholder GIF
+// Footer with background and placeholder GIF
 const Footer = () => (
   <footer style={{
     padding: `${SPACING.lg} 0`,
-    backgroundColor: COLORS.terracotta,
+    backgroundColor: COLORS.charcoal,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -818,12 +917,12 @@ const Footer = () => (
     <div style={{
       width: '120px',
       height: '120px',
-      backgroundColor: COLORS.warmWhite,
+      backgroundColor: COLORS.white,
       borderRadius: '8px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      fontFamily: '"Courier New", "Courier", monospace',
+      fontFamily: '"Vulf Mono", monospace',
       fontSize: '10px',
       color: COLORS.charcoal,
       textAlign: 'center',
@@ -833,8 +932,9 @@ const Footer = () => (
     </div>
     <p style={{
       margin: 0,
-      color: COLORS.warmWhite,
-      fontFamily: '"Courier New", "Courier", monospace',
+      color: COLORS.white,
+      fontFamily: '"Vulf Mono", monospace',
+      fontWeight: 300,
       fontSize: '12px',
       letterSpacing: '0.5px'
     }}>
@@ -860,21 +960,21 @@ export const HomePage = () => {
         title="Vision"
         headline="A really stylish headline will go here"
         description="A bunch of really nice supporting text will go here. It will probably be several lines and that is neat. How about a third line for the children? Let's bring it on home with a fourth line, for good measure."
-        backgroundColor={COLORS.cream}
+        backgroundColor={COLORS.card1}
       />
       <StickyCard
         index={1}
         title="Craft"
         headline="A really stylish headline will go here"
         description="A bunch of really nice supporting text will go here. It will probably be several lines and that is neat. How about a third line for the children? Let's bring it on home with a fourth line, for good measure."
-        backgroundColor={COLORS.lightSage}
+        backgroundColor={COLORS.card2}
       />
       <StickyCard
         index={2}
         title="Elevate"
         headline="A really stylish headline will go here"
         description="A bunch of really nice supporting text will go here. It will probably be several lines and that is neat. How about a third line for the children? Let's bring it on home with a fourth line, for good measure."
-        backgroundColor={COLORS.sage}
+        backgroundColor={COLORS.card3}
       />
 
       {/* Media Wall Section - Full bleed, no padding */}
@@ -883,7 +983,7 @@ export const HomePage = () => {
         position: 'sticky',
         top: '70px',
         zIndex: 100,
-        backgroundColor: COLORS.warmWhite
+        backgroundColor: COLORS.card3
       }}>
         <MediaGallery />
       </section>
@@ -893,7 +993,7 @@ export const HomePage = () => {
         minHeight: '100vh',
         position: 'relative',
         zIndex: 100,
-        backgroundColor: COLORS.warmWhite,
+        backgroundColor: COLORS.background,
         paddingTop: SPACING.lg
       }}>
         <FeaturedProjects />
@@ -920,7 +1020,7 @@ export const ProjectsPage = () => {
     <main style={{
       width: '100%',
       minHeight: 'calc(100vh - 70px)',
-      backgroundColor: COLORS.warmWhite
+      backgroundColor: COLORS.card3
     }}>
       <section style={{
         maxWidth: '1190px',
@@ -930,10 +1030,12 @@ export const ProjectsPage = () => {
       }}>
         <h1 style={{
           fontSize: '64px',
-          fontFamily: '"Playfair Display", "Georgia", serif',
-          fontWeight: 500,
+          fontFamily: '"Vulf Mono", monospace',
+          fontStyle: 'italic',
+          fontWeight: 300,
           marginBottom: '64px',
-          color: COLORS.charcoal
+          color: COLORS.charcoal,
+          textTransform: 'lowercase'
         }}>
           All Projects
         </h1>
@@ -948,7 +1050,7 @@ export const ProjectsPage = () => {
               id={project.id}
               title={project.title}
               description={project.description}
-              heroColor={project.heroColor}
+              heroImage={project.heroImage}
               onClick={() => handleProjectClick(project.id)}
             />
           ))}
@@ -1002,13 +1104,13 @@ export const ProjectDetailPage = () => {
 
   const handleNextImage = () => {
     if (project) {
-      setCurrentImageIndex((prev) => (prev + 1) % project.galleryColors.length);
+      setCurrentImageIndex((prev) => (prev + 1) % project.galleryImages.length);
     }
   };
 
   const handlePrevImage = () => {
     if (project) {
-      setCurrentImageIndex((prev) => (prev - 1 + project.galleryColors.length) % project.galleryColors.length);
+      setCurrentImageIndex((prev) => (prev - 1 + project.galleryImages.length) % project.galleryImages.length);
     }
   };
 
@@ -1017,7 +1119,7 @@ export const ProjectDetailPage = () => {
       <main style={{
         width: '100%',
         minHeight: '100vh',
-        backgroundColor: COLORS.warmWhite,
+        backgroundColor: COLORS.background,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -1031,12 +1133,12 @@ export const ProjectDetailPage = () => {
     <main style={{
       width: '100%',
       minHeight: '100vh',
-      backgroundColor: COLORS.warmWhite
+      backgroundColor: COLORS.background
     }}>
       {/* Image Modal */}
       {modalOpen && (
         <ImageModal
-          images={project.galleryColors}
+          images={project.galleryImages}
           currentIndex={currentImageIndex}
           onClose={() => setModalOpen(false)}
           onNext={handleNextImage}
@@ -1048,22 +1150,51 @@ export const ProjectDetailPage = () => {
       <section style={{
         width: '100%',
         height: isMobile ? '50vh' : '70vh',
-        backgroundColor: project.heroColor,
+        position: 'relative',
         display: 'flex',
         alignItems: 'flex-end',
         padding: isMobile ? SPACING.sm : SPACING.lg
       }}>
         <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: COLORS.charcoal,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 0
+        }}>
+          <img
+            src="/placeholder.jpg"
+            alt={project.title}
+            style={{
+              maxWidth: '120px',
+              maxHeight: '120px',
+              width: 'auto',
+              height: 'auto',
+              objectFit: 'contain',
+              opacity: 0.3
+            }}
+          />
+        </div>
+        <div style={{
           maxWidth: '1190px',
           width: '100%',
-          margin: '0 auto'
+          margin: '0 auto',
+          position: 'relative',
+          zIndex: 1
         }}>
           <h1 style={{
             fontSize: isMobile ? '36px' : '64px',
-            fontFamily: '"Playfair Display", "Georgia", serif',
-            fontWeight: 500,
-            color: COLORS.charcoal,
-            marginBottom: SPACING.sm
+            fontFamily: '"Compadre Narrow", sans-serif',
+            fontWeight: 400,
+            color: COLORS.white,
+            marginBottom: SPACING.sm,
+            textTransform: 'uppercase',
+            textShadow: '0 2px 4px rgba(0,0,0,0.3)'
           }}>
             {project.title}
           </h1>
@@ -1092,7 +1223,8 @@ export const ProjectDetailPage = () => {
                 border: 'none',
                 cursor: 'pointer',
                 fontSize: '14px',
-                fontFamily: '"Inter", sans-serif',
+                fontFamily: '"Vulf Mono", monospace',
+                fontWeight: 300,
                 color: COLORS.charcoal,
                 padding: '8px 0',
                 display: 'flex',
@@ -1109,7 +1241,7 @@ export const ProjectDetailPage = () => {
               <span style={{
                 display: 'block',
                 fontSize: '12px',
-                fontFamily: '"Courier New", "Courier", monospace',
+                fontFamily: '"Compadre Narrow", sans-serif',
                 color: COLORS.warmGray,
                 letterSpacing: '1px',
                 textTransform: 'uppercase',
@@ -1119,7 +1251,8 @@ export const ProjectDetailPage = () => {
               </span>
               <span style={{
                 fontSize: '18px',
-                fontFamily: '"Inter", sans-serif',
+                fontFamily: '"Vulf Mono", monospace',
+                fontWeight: 300,
                 color: COLORS.charcoal
               }}>
                 {project.client}
@@ -1131,7 +1264,7 @@ export const ProjectDetailPage = () => {
               <span style={{
                 display: 'block',
                 fontSize: '12px',
-                fontFamily: '"Courier New", "Courier", monospace',
+                fontFamily: '"Compadre Narrow", sans-serif',
                 color: COLORS.warmGray,
                 letterSpacing: '1px',
                 textTransform: 'uppercase',
@@ -1147,11 +1280,13 @@ export const ProjectDetailPage = () => {
                 {project.roles.map((role, idx) => (
                   <span key={idx} style={{
                     fontSize: '14px',
-                    fontFamily: '"Inter", sans-serif',
+                    fontFamily: '"Compadre Narrow", sans-serif',
+                    fontWeight: 400,
                     color: COLORS.charcoal,
-                    backgroundColor: COLORS.cream,
+                    backgroundColor: COLORS.white,
                     padding: '4px 12px',
-                    borderRadius: '2px'
+                    borderRadius: '2px',
+                    textTransform: 'uppercase'
                   }}>
                     {role}
                   </span>
@@ -1163,7 +1298,8 @@ export const ProjectDetailPage = () => {
             <p style={{
               margin: 0,
               fontSize: '20px',
-              fontFamily: '"Inter", sans-serif',
+              fontFamily: '"Vulf Mono", monospace',
+              fontWeight: 300,
               lineHeight: '1.6',
               color: COLORS.deepBrown
             }}>
@@ -1174,7 +1310,8 @@ export const ProjectDetailPage = () => {
             <p style={{
               margin: 0,
               fontSize: '16px',
-              fontFamily: '"Inter", sans-serif',
+              fontFamily: '"Vulf Mono", monospace',
+              fontWeight: 300,
               lineHeight: '1.7',
               color: COLORS.deepBrown
             }}>
@@ -1183,7 +1320,8 @@ export const ProjectDetailPage = () => {
             <p style={{
               margin: 0,
               fontSize: '16px',
-              fontFamily: '"Inter", sans-serif',
+              fontFamily: '"Vulf Mono", monospace',
+              fontWeight: 300,
               lineHeight: '1.7',
               color: COLORS.deepBrown
             }}>
@@ -1201,7 +1339,8 @@ export const ProjectDetailPage = () => {
                 border: 'none',
                 cursor: 'pointer',
                 fontSize: '14px',
-                fontFamily: '"Inter", sans-serif',
+                fontFamily: '"Vulf Mono", monospace',
+                fontWeight: 300,
                 color: COLORS.charcoal,
                 marginBottom: SPACING.lg,
                 padding: '8px 0',
@@ -1210,7 +1349,7 @@ export const ProjectDetailPage = () => {
                 gap: '8px',
                 transition: 'color 0.2s ease'
               }}
-              onMouseEnter={e => e.currentTarget.style.color = COLORS.rust}
+              onMouseEnter={e => e.currentTarget.style.color = COLORS.warmGray}
               onMouseLeave={e => e.currentTarget.style.color = COLORS.charcoal}
             >
               ← Back to {from === 'projects' ? 'all projects' : 'home'}
@@ -1232,7 +1371,7 @@ export const ProjectDetailPage = () => {
                   <span style={{
                     display: 'block',
                     fontSize: '12px',
-                    fontFamily: '"Courier New", "Courier", monospace',
+                    fontFamily: '"Compadre Narrow", sans-serif',
                     color: COLORS.warmGray,
                     letterSpacing: '1px',
                     textTransform: 'uppercase',
@@ -1242,7 +1381,8 @@ export const ProjectDetailPage = () => {
                   </span>
                   <span style={{
                     fontSize: '18px',
-                    fontFamily: '"Inter", sans-serif',
+                    fontFamily: '"Vulf Mono", monospace',
+                    fontWeight: 300,
                     color: COLORS.charcoal
                   }}>
                     {project.client}
@@ -1252,7 +1392,7 @@ export const ProjectDetailPage = () => {
                   <span style={{
                     display: 'block',
                     fontSize: '12px',
-                    fontFamily: '"Courier New", "Courier", monospace',
+                    fontFamily: '"Compadre Narrow", sans-serif',
                     color: COLORS.warmGray,
                     letterSpacing: '1px',
                     textTransform: 'uppercase',
@@ -1268,11 +1408,13 @@ export const ProjectDetailPage = () => {
                     {project.roles.map((role, idx) => (
                       <span key={idx} style={{
                         fontSize: '14px',
-                        fontFamily: '"Inter", sans-serif',
+                        fontFamily: '"Compadre Narrow", sans-serif',
+                        fontWeight: 400,
                         color: COLORS.charcoal,
-                        backgroundColor: COLORS.cream,
+                        backgroundColor: COLORS.white,
                         padding: '4px 12px',
-                        borderRadius: '2px'
+                        borderRadius: '2px',
+                        textTransform: 'uppercase'
                       }}>
                         {role}
                       </span>
@@ -1286,7 +1428,8 @@ export const ProjectDetailPage = () => {
                 <p style={{
                   margin: 0,
                   fontSize: '24px',
-                  fontFamily: '"Inter", sans-serif',
+                  fontFamily: '"Vulf Mono", monospace',
+                  fontWeight: 300,
                   lineHeight: '1.6',
                   color: COLORS.deepBrown
                 }}>
@@ -1295,7 +1438,8 @@ export const ProjectDetailPage = () => {
                 <p style={{
                   marginTop: SPACING.md,
                   fontSize: '18px',
-                  fontFamily: '"Inter", sans-serif',
+                  fontFamily: '"Vulf Mono", monospace',
+                  fontWeight: 300,
                   lineHeight: '1.7',
                   color: COLORS.deepBrown
                 }}>
@@ -1304,7 +1448,8 @@ export const ProjectDetailPage = () => {
                 <p style={{
                   marginTop: SPACING.sm,
                   fontSize: '18px',
-                  fontFamily: '"Inter", sans-serif',
+                  fontFamily: '"Vulf Mono", monospace',
+                  fontWeight: 300,
                   lineHeight: '1.7',
                   color: COLORS.deepBrown
                 }}>
@@ -1326,19 +1471,36 @@ export const ProjectDetailPage = () => {
           gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
           gap: '4px'
         }}>
-          {project.galleryColors.map((color, idx) => (
+          {project.galleryImages.map((image, idx) => (
             <div
               key={idx}
               onClick={() => handleImageClick(idx)}
               style={{
+                width: '100%',
                 height: isMobile ? '250px' : '400px',
-                backgroundColor: color,
-                cursor: 'pointer',
-                transition: 'opacity 0.2s ease'
-              }}
+          backgroundColor: COLORS.offWhite,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          cursor: 'pointer',
+          transition: 'opacity 0.2s ease'
+        }}
               onMouseEnter={e => e.currentTarget.style.opacity = '0.9'}
               onMouseLeave={e => e.currentTarget.style.opacity = '1'}
-            />
+            >
+              <img
+                src={image}
+                alt={`${project.title} gallery image ${idx + 1}`}
+                style={{
+                  maxWidth: '80px',
+                  maxHeight: '80px',
+                  width: 'auto',
+                  height: 'auto',
+                  objectFit: 'contain',
+                  opacity: 0.3
+                }}
+              />
+            </div>
           ))}
         </div>
       </section>
@@ -1353,7 +1515,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => (
   <div style={{
     width: '100%',
     minHeight: '100vh',
-    backgroundColor: COLORS.warmWhite,
+    backgroundColor: COLORS.background,
     display: 'flex',
     flexDirection: 'column'
   }}>
