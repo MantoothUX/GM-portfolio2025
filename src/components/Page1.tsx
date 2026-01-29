@@ -45,7 +45,7 @@ export const PROJECTS = [
     description: 'Complete visual identity for a sustainable fashion startup',
     client: 'EcoThread Collective',
     roles: ['Brand Strategy', 'Visual Identity', 'Guidelines'],
-    heroImage: '/placeholder.jpg',
+    heroImage: '/GretaMantooth_IndeedBrand_Hero.png',
     galleryImages: ['/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg']
   },
   {
@@ -1151,54 +1151,18 @@ export const ProjectDetailPage = () => {
         width: '100%',
         height: isMobile ? '50vh' : '70vh',
         position: 'relative',
-        display: 'flex',
-        alignItems: 'flex-end',
-        padding: isMobile ? SPACING.sm : SPACING.lg
+        backgroundColor: COLORS.charcoal
       }}>
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundColor: COLORS.charcoal,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 0
-        }}>
-          <img
-            src="/placeholder.jpg"
-            alt={project.title}
-            style={{
-              maxWidth: '120px',
-              maxHeight: '120px',
-              width: 'auto',
-              height: 'auto',
-              objectFit: 'contain',
-              opacity: 0.3
-            }}
-          />
-        </div>
-        <div style={{
-          maxWidth: '1190px',
-          width: '100%',
-          margin: '0 auto',
-          position: 'relative',
-          zIndex: 1
-        }}>
-          <h1 style={{
-            fontSize: isMobile ? '36px' : '64px',
-            fontFamily: '"Compadre Narrow", sans-serif',
-            fontWeight: 400,
-            color: COLORS.white,
-            marginBottom: SPACING.sm,
-            textTransform: 'uppercase',
-            textShadow: '0 2px 4px rgba(0,0,0,0.3)'
-          }}>
-            {project.title}
-          </h1>
-        </div>
+        <img
+          src={project.heroImage}
+          alt={project.title}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center'
+          }}
+        />
       </section>
 
       {/* Content section - responsive layout */}
@@ -1235,6 +1199,17 @@ export const ProjectDetailPage = () => {
             >
               ← Back to {from === 'projects' ? 'all projects' : 'home'}
             </button>
+
+            <h1 style={{
+              fontSize: '36px',
+              fontFamily: '"Compadre Narrow", sans-serif',
+              fontWeight: 400,
+              color: '#3f3e32',
+              margin: '0 0 24px 0',
+              textTransform: 'uppercase'
+            }}>
+              {project.title}
+            </h1>
 
             {/* Client */}
             <div>
@@ -1354,6 +1329,17 @@ export const ProjectDetailPage = () => {
             >
               ← Back to {from === 'projects' ? 'all projects' : 'home'}
             </button>
+
+            <h1 style={{
+              fontSize: '64px',
+              fontFamily: '"Compadre Narrow", sans-serif',
+              fontWeight: 400,
+              color: '#3f3e32',
+              margin: '0 0 32px 0',
+              textTransform: 'uppercase'
+            }}>
+              {project.title}
+            </h1>
 
             <div style={{
               display: 'grid',
