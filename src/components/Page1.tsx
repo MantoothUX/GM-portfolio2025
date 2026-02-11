@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { Mail, Linkedin, Pin } from 'lucide-react';
+import { ProjectGallery, getDefaultLayout } from '@/components/ProjectGallery';
+import { GALLERY_LAYOUTS } from '@/data/galleryLayouts';
 
 interface BaseComponentProps {
   className?: string;
@@ -46,7 +48,12 @@ export const PROJECTS = [
     client: 'EcoThread Collective',
     roles: ['Brand Strategy', 'Visual Identity', 'Guidelines'],
     heroImage: '/GretaMantooth_IndeedBrand_Hero.png',
-    galleryImages: ['/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg']
+    galleryImages: [
+      'https://picsum.photos/id/30/800/600',
+      'https://picsum.photos/id/31/800/600',
+      'https://picsum.photos/id/32/800/600',
+      'https://picsum.photos/id/33/800/600',
+    ]
   },
   {
     id: '2',
@@ -54,8 +61,13 @@ export const PROJECTS = [
     description: 'Website and app design for an artisan coffee roaster',
     client: 'Morning Ritual Coffee',
     roles: ['UX Design', 'UI Design', 'Art Direction'],
-    heroImage: '/placeholder.jpg',
-    galleryImages: ['/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg']
+    heroImage: 'https://picsum.photos/id/20/1400/800',
+    galleryImages: [
+      'https://picsum.photos/id/34/800/600',
+      'https://picsum.photos/id/35/800/600',
+      'https://picsum.photos/id/36/800/600',
+      'https://picsum.photos/id/37/800/600',
+    ]
   },
   {
     id: '3',
@@ -63,8 +75,13 @@ export const PROJECTS = [
     description: 'Product packaging for a botanical skincare line',
     client: 'Verdant Botanicals',
     roles: ['Packaging', 'Print Design', 'Brand Extension'],
-    heroImage: '/placeholder.jpg',
-    galleryImages: ['/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg']
+    heroImage: 'https://picsum.photos/id/21/1400/800',
+    galleryImages: [
+      'https://picsum.photos/id/38/800/600',
+      'https://picsum.photos/id/39/800/600',
+      'https://picsum.photos/id/40/800/600',
+      'https://picsum.photos/id/41/800/600',
+    ]
   },
   {
     id: '4',
@@ -72,8 +89,13 @@ export const PROJECTS = [
     description: 'Magazine layout and art direction for quarterly publication',
     client: 'Slow Living Magazine',
     roles: ['Editorial', 'Typography', 'Layout'],
-    heroImage: '/placeholder.jpg',
-    galleryImages: ['/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg']
+    heroImage: 'https://picsum.photos/id/22/1400/800',
+    galleryImages: [
+      'https://picsum.photos/id/42/800/600',
+      'https://picsum.photos/id/43/800/600',
+      'https://picsum.photos/id/44/800/600',
+      'https://picsum.photos/id/45/800/600',
+    ]
   },
   {
     id: '5',
@@ -81,8 +103,13 @@ export const PROJECTS = [
     description: 'Wayfinding and signage for boutique hotel',
     client: 'The Wanderer Hotel',
     roles: ['Signage', 'Wayfinding', 'Environmental'],
-    heroImage: '/placeholder.jpg',
-    galleryImages: ['/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg']
+    heroImage: 'https://picsum.photos/id/23/1400/800',
+    galleryImages: [
+      'https://picsum.photos/id/46/800/600',
+      'https://picsum.photos/id/47/800/600',
+      'https://picsum.photos/id/48/800/600',
+      'https://picsum.photos/id/49/800/600',
+    ]
   },
   {
     id: '6',
@@ -90,8 +117,13 @@ export const PROJECTS = [
     description: 'Integrated marketing campaign for wellness brand',
     client: 'Breathe Wellness',
     roles: ['Campaign', 'Digital', 'Print'],
-    heroImage: '/placeholder.jpg',
-    galleryImages: ['/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg', '/placeholder.jpg']
+    heroImage: 'https://picsum.photos/id/24/1400/800',
+    galleryImages: [
+      'https://picsum.photos/id/50/800/600',
+      'https://picsum.photos/id/51/800/600',
+      'https://picsum.photos/id/52/800/600',
+      'https://picsum.photos/id/53/800/600',
+    ]
   }
 ];
 
@@ -294,169 +326,18 @@ const StickyCard = ({
 };
 
 // Image Modal Component - for project detail pages
-const ImageModal = ({
-  images,
-  currentIndex,
-  onClose,
-  onNext,
-  onPrev
-}: {
-  images: string[];
-  currentIndex: number;
-  onClose: () => void;
-  onNext: () => void;
-  onPrev: () => void;
-}) => {
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-      if (e.key === 'ArrowRight') onNext();
-      if (e.key === 'ArrowLeft') onPrev();
-    };
-    window.addEventListener('keydown', handleEscape);
-    document.body.style.overflow = 'hidden';
-    return () => {
-      window.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'auto';
-    };
-  }, [onClose, onNext, onPrev]);
-
-  return (
-    <div onClick={onClose} style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      zIndex: 1000,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      cursor: 'pointer'
-    }}>
-      <div
-        onClick={e => e.stopPropagation()}
-        style={{
-          width: '80vw',
-          height: '70vh',
-          maxWidth: '1000px',
-          backgroundColor: COLORS.offWhite,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          cursor: 'default',
-          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)'
-        }}
-      >
-        <img
-          src={images[currentIndex]}
-          alt={`Gallery image ${currentIndex + 1}`}
-          style={{
-            maxWidth: '200px',
-            maxHeight: '200px',
-            width: 'auto',
-            height: 'auto',
-            objectFit: 'contain',
-            opacity: 0.3
-          }}
-        />
-      </div>
-      
-      <button onClick={onClose} style={{
-        position: 'absolute',
-        top: '32px',
-        right: '32px',
-        background: 'white',
-        border: 'none',
-        borderRadius: '50%',
-        width: '48px',
-        height: '48px',
-        cursor: 'pointer',
-        fontSize: '24px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        transition: 'transform 0.2s ease',
-        zIndex: 10
-      }} onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.1)'} onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
-        ×
-      </button>
-      
-      <button onClick={e => { e.stopPropagation(); onPrev(); }} style={{
-        position: 'absolute',
-        left: '32px',
-        top: '50%',
-        transform: 'translateY(-50%)',
-        background: 'white',
-        border: 'none',
-        borderRadius: '50%',
-        width: '56px',
-        height: '56px',
-        cursor: 'pointer',
-        fontSize: '24px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        transition: 'transform 0.2s ease',
-        fontFamily: '"Inter", sans-serif',
-        fontWeight: 'bold'
-      }} onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)'} onMouseLeave={e => e.currentTarget.style.transform = 'translateY(-50%) scale(1)'}>
-        ←
-      </button>
-      
-      <button onClick={e => { e.stopPropagation(); onNext(); }} style={{
-        position: 'absolute',
-        right: '32px',
-        top: '50%',
-        transform: 'translateY(-50%)',
-        background: 'white',
-        border: 'none',
-        borderRadius: '50%',
-        width: '56px',
-        height: '56px',
-        cursor: 'pointer',
-        fontSize: '24px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        transition: 'transform 0.2s ease',
-        fontFamily: '"Inter", sans-serif',
-        fontWeight: 'bold'
-      }} onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)'} onMouseLeave={e => e.currentTarget.style.transform = 'translateY(-50%) scale(1)'}>
-        →
-      </button>
-      
-      <div style={{
-        position: 'absolute',
-        bottom: '32px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        background: 'rgba(255, 255, 255, 0.9)',
-        padding: '8px 16px',
-        borderRadius: '20px',
-        fontFamily: '"Courier New", "Courier", monospace',
-        fontSize: '12px',
-        color: COLORS.charcoal,
-        letterSpacing: '0.5px'
-      }}>
-        {currentIndex + 1} / {images.length}
-      </div>
-    </div>
-  );
-};
 
 // Gallery image data - duplicated for seamless infinite scroll
 // Using image placeholders instead of colors
 const galleryImages = [
-  { image: '/placeholder.jpg', width: 378, height: 378, top: 0, left: 0 },
-  { image: '/placeholder.jpg', width: 378, height: 378, top: 378, left: 0 },
-  { image: '/placeholder.jpg', width: 583, height: 756, top: 0, left: 378 },
-  { image: '/placeholder.jpg', width: 378, height: 378, top: 0, left: 961 },
-  { image: '/placeholder.jpg', width: 378, height: 378, top: 378, left: 961 },
-  { image: '/placeholder.jpg', width: 825, height: 756, top: 0, left: 1339 },
-  { image: '/placeholder.jpg', width: 378, height: 378, top: 0, left: 2164 },
-  { image: '/placeholder.jpg', width: 378, height: 378, top: 378, left: 2164 },
+  { image: 'https://picsum.photos/id/60/378/378', width: 378, height: 378, top: 0, left: 0 },
+  { image: 'https://picsum.photos/id/61/378/378', width: 378, height: 378, top: 378, left: 0 },
+  { image: 'https://picsum.photos/id/62/583/756', width: 583, height: 756, top: 0, left: 378 },
+  { image: 'https://picsum.photos/id/63/378/378', width: 378, height: 378, top: 0, left: 961 },
+  { image: 'https://picsum.photos/id/64/378/378', width: 378, height: 378, top: 378, left: 961 },
+  { image: 'https://picsum.photos/id/65/825/756', width: 825, height: 756, top: 0, left: 1339 },
+  { image: 'https://picsum.photos/id/66/378/378', width: 378, height: 378, top: 0, left: 2164 },
+  { image: 'https://picsum.photos/id/67/378/378', width: 378, height: 378, top: 378, left: 2164 },
 ];
 
 const GALLERY_WIDTH = 2542;
@@ -663,20 +544,15 @@ const ProjectCard = ({
       width: '100%',
       height: '448px',
       backgroundColor: COLORS.offWhite,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center'
+      overflow: 'hidden',
     }}>
       <img
-        src="/placeholder.jpg"
+        src={heroImage}
         alt={title}
         style={{
-          maxWidth: '80px',
-          maxHeight: '80px',
-          width: 'auto',
-          height: 'auto',
-          objectFit: 'contain',
-          opacity: 0.3
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
         }}
       />
     </div>
@@ -847,15 +723,12 @@ const AboutSection = () => {
           justifyContent: 'center'
         }}>
           <img
-            src="/placeholder.jpg"
+            src="https://picsum.photos/id/64/600/500"
             alt="Greta Mantooth"
             style={{
-              maxWidth: '100px',
-              maxHeight: '100px',
-              width: 'auto',
-              height: 'auto',
-              objectFit: 'contain',
-              opacity: 0.3
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
             }}
           />
         </div>
@@ -1066,8 +939,6 @@ export const ProjectDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const location = useLocation();
-  const [modalOpen, setModalOpen] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   
   const project = PROJECTS.find(p => p.id === id);
@@ -1097,23 +968,6 @@ export const ProjectDetailPage = () => {
     }
   };
 
-  const handleImageClick = (index: number) => {
-    setCurrentImageIndex(index);
-    setModalOpen(true);
-  };
-
-  const handleNextImage = () => {
-    if (project) {
-      setCurrentImageIndex((prev) => (prev + 1) % project.galleryImages.length);
-    }
-  };
-
-  const handlePrevImage = () => {
-    if (project) {
-      setCurrentImageIndex((prev) => (prev - 1 + project.galleryImages.length) % project.galleryImages.length);
-    }
-  };
-
   if (!project) {
     return (
       <main style={{
@@ -1135,17 +989,6 @@ export const ProjectDetailPage = () => {
       minHeight: '100vh',
       backgroundColor: COLORS.background
     }}>
-      {/* Image Modal */}
-      {modalOpen && (
-        <ImageModal
-          images={project.galleryImages}
-          currentIndex={currentImageIndex}
-          onClose={() => setModalOpen(false)}
-          onNext={handleNextImage}
-          onPrev={handlePrevImage}
-        />
-      )}
-
       {/* Full bleed hero */}
       <section style={{
         width: '100%',
@@ -1447,48 +1290,15 @@ export const ProjectDetailPage = () => {
         )}
       </section>
 
-      {/* Gallery wall - 2x2 grid, clickable, responsive */}
+      {/* Project gallery grid */}
       <section style={{
         width: '100%',
-        padding: isMobile ? `${SPACING.md} 0` : `${SPACING.lg} 0`
+        paddingTop: SPACING.lg,
+        paddingBottom: SPACING.lg,
       }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
-          gap: '4px'
-        }}>
-          {project.galleryImages.map((image, idx) => (
-            <div
-              key={idx}
-              onClick={() => handleImageClick(idx)}
-              style={{
-                width: '100%',
-                height: isMobile ? '250px' : '400px',
-          backgroundColor: COLORS.offWhite,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          cursor: 'pointer',
-          transition: 'opacity 0.2s ease'
-        }}
-              onMouseEnter={e => e.currentTarget.style.opacity = '0.9'}
-              onMouseLeave={e => e.currentTarget.style.opacity = '1'}
-            >
-              <img
-                src={image}
-                alt={`${project.title} gallery image ${idx + 1}`}
-                style={{
-                  maxWidth: '80px',
-                  maxHeight: '80px',
-                  width: 'auto',
-                  height: 'auto',
-                  objectFit: 'contain',
-                  opacity: 0.3
-                }}
-              />
-            </div>
-          ))}
-        </div>
+        <ProjectGallery
+          sections={GALLERY_LAYOUTS[project.id] || getDefaultLayout(project.galleryImages)}
+        />
       </section>
 
       <Footer />
