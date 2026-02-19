@@ -1,6 +1,7 @@
 import React from 'react';
 import { COLORS, SPACING } from '@/components/Page1';
 import { useBreakpoint, type Breakpoint } from '@/hooks/use-breakpoint';
+import OptimizedImage from '@/components/OptimizedImage';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -12,6 +13,8 @@ export interface GridImage {
   alt: string;
   span: 1 | 2 | 3 | 4;
   objectPosition?: string;
+  cloudflareImageId?: string | null;
+  cloudflareR2Url?: string | null;
 }
 
 export interface GridVideo {
@@ -19,6 +22,7 @@ export interface GridVideo {
   src: string;
   poster?: string;
   span: 1 | 2 | 3 | 4;
+  cloudflareR2Url?: string | null;
 }
 
 export interface GridText {
@@ -86,24 +90,30 @@ const GalleryImage = ({
   alt,
   objectPosition,
   height,
+  cloudflareImageId,
+  cloudflareR2Url,
 }: {
   src: string;
   alt: string;
   objectPosition?: string;
   height: string;
+  cloudflareImageId?: string | null;
+  cloudflareR2Url?: string | null;
 }) => (
   <div style={{ width: '100%', height, overflow: 'hidden' }}>
-    <img
+    <OptimizedImage
       src={src}
       alt={alt}
+      cloudflareImageId={cloudflareImageId ?? undefined}
+      cloudflareR2Url={cloudflareR2Url ?? undefined}
       loading="lazy"
       style={{
         width: '100%',
         height: '100%',
         objectFit: 'cover',
-        objectPosition: objectPosition || 'center',
         display: 'block',
       }}
+      objectPosition={objectPosition || 'center'}
     />
   </div>
 );
@@ -112,14 +122,16 @@ const GalleryVideo = ({
   src,
   poster,
   height,
+  cloudflareR2Url,
 }: {
   src: string;
   poster?: string;
   height: string;
+  cloudflareR2Url?: string | null;
 }) => (
   <div style={{ width: '100%', height, overflow: 'hidden' }}>
     <video
-      src={src}
+      src={cloudflareR2Url || src}
       poster={poster}
       autoPlay
       muted
@@ -287,6 +299,8 @@ const GalleryRow = ({
                 alt={item.alt}
                 objectPosition={item.objectPosition}
                 height={height}
+                cloudflareImageId={item.cloudflareImageId}
+                cloudflareR2Url={item.cloudflareR2Url}
               />
             )}
             {item.type === 'video' && (
@@ -294,6 +308,7 @@ const GalleryRow = ({
                 src={item.src}
                 poster={item.poster}
                 height={height}
+                cloudflareR2Url={item.cloudflareR2Url}
               />
             )}
             {item.type === 'text' && (
