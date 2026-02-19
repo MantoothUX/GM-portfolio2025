@@ -1,0 +1,131 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "title": "Brand Identity System",
+      "description": "Complete visual identity for a sustainable fashion startup",
+      "client": "EcoThread Collective",
+      "roles": ["Brand Strategy", "Visual Identity", "Guidelines"],
+      "heroImage": "/GretaMantooth_IndeedBrand_Hero.png",
+      "galleryImages": [
+        "https://picsum.photos/id/30/800/600",
+        "https://picsum.photos/id/31/800/600",
+        "https://picsum.photos/id/32/800/600",
+        "https://picsum.photos/id/33/800/600"
+      ],
+      "cloudflareImageId": null,
+      "cloudflareGalleryIds": [],
+      "cloudflareR2Url": null,
+      "cloudflareGalleryR2Urls": []
+    },
+    {
+      "id": "2",
+      "title": "Digital Experience",
+      "description": "Website and app design for an artisan coffee roaster",
+      "client": "Morning Ritual Coffee",
+      "roles": ["UX Design", "UI Design", "Art Direction"],
+      "heroImage": "https://picsum.photos/id/20/1400/800",
+      "galleryImages": [
+        "https://picsum.photos/id/34/800/600",
+        "https://picsum.photos/id/35/800/600",
+        "https://picsum.photos/id/36/800/600",
+        "https://picsum.photos/id/37/800/600"
+      ],
+      "cloudflareImageId": null,
+      "cloudflareGalleryIds": [],
+      "cloudflareR2Url": null,
+      "cloudflareGalleryR2Urls": []
+    },
+    {
+      "id": "3",
+      "title": "Packaging Design",
+      "description": "Product packaging for a botanical skincare line",
+      "client": "Verdant Botanicals",
+      "roles": ["Packaging", "Print Design", "Brand Extension"],
+      "heroImage": "https://picsum.photos/id/21/1400/800",
+      "galleryImages": [
+        "https://picsum.photos/id/38/800/600",
+        "https://picsum.photos/id/39/800/600",
+        "https://picsum.photos/id/40/800/600",
+        "https://picsum.photos/id/41/800/600"
+      ],
+      "cloudflareImageId": null,
+      "cloudflareGalleryIds": [],
+      "cloudflareR2Url": null,
+      "cloudflareGalleryR2Urls": []
+    },
+    {
+      "id": "4",
+      "title": "Editorial Design",
+      "description": "Magazine layout and art direction for quarterly publication",
+      "client": "Slow Living Magazine",
+      "roles": ["Editorial", "Typography", "Layout"],
+      "heroImage": "https://picsum.photos/id/22/1400/800",
+      "galleryImages": [
+        "https://picsum.photos/id/42/800/600",
+        "https://picsum.photos/id/43/800/600",
+        "https://picsum.photos/id/44/800/600",
+        "https://picsum.photos/id/45/800/600"
+      ],
+      "cloudflareImageId": null,
+      "cloudflareGalleryIds": [],
+      "cloudflareR2Url": null,
+      "cloudflareGalleryR2Urls": []
+    },
+    {
+      "id": "5",
+      "title": "Environmental Graphics",
+      "description": "Wayfinding and signage for boutique hotel",
+      "client": "The Wanderer Hotel",
+      "roles": ["Signage", "Wayfinding", "Environmental"],
+      "heroImage": "https://picsum.photos/id/23/1400/800",
+      "galleryImages": [
+        "https://picsum.photos/id/46/800/600",
+        "https://picsum.photos/id/47/800/600",
+        "https://picsum.photos/id/48/800/600",
+        "https://picsum.photos/id/49/800/600"
+      ],
+      "cloudflareImageId": null,
+      "cloudflareGalleryIds": [],
+      "cloudflareR2Url": null,
+      "cloudflareGalleryR2Urls": []
+    },
+    {
+      "id": "6",
+      "title": "Campaign Design",
+      "description": "Integrated marketing campaign for wellness brand",
+      "client": "Breathe Wellness",
+      "roles": ["Campaign", "Digital", "Print"],
+      "heroImage": "https://picsum.photos/id/24/1400/800",
+      "galleryImages": [
+        "https://picsum.photos/id/50/800/600",
+        "https://picsum.photos/id/51/800/600",
+        "https://picsum.photos/id/52/800/600",
+        "https://picsum.photos/id/53/800/600"
+      ],
+      "cloudflareImageId": null,
+      "cloudflareGalleryIds": [],
+      "cloudflareR2Url": null,
+      "cloudflareGalleryR2Urls": []
+    }
+  ],
+  "mediaGallery": [
+    { "image": "https://picsum.photos/id/60/378/378", "width": 378, "height": 378, "top": 0, "left": 0, "cloudflareImageId": null, "cloudflareR2Url": null },
+    { "image": "https://picsum.photos/id/61/378/378", "width": 378, "height": 378, "top": 378, "left": 0, "cloudflareImageId": null, "cloudflareR2Url": null },
+    { "image": "https://picsum.photos/id/62/583/756", "width": 583, "height": 756, "top": 0, "left": 378, "cloudflareImageId": null, "cloudflareR2Url": null },
+    { "image": "https://picsum.photos/id/63/378/378", "width": 378, "height": 378, "top": 0, "left": 961, "cloudflareImageId": null, "cloudflareR2Url": null },
+    { "image": "https://picsum.photos/id/64/378/378", "width": 378, "height": 378, "top": 378, "left": 961, "cloudflareImageId": null, "cloudflareR2Url": null },
+    { "image": "https://picsum.photos/id/65/825/756", "width": 825, "height": 756, "top": 0, "left": 1339, "cloudflareImageId": null, "cloudflareR2Url": null },
+    { "image": "https://picsum.photos/id/66/378/378", "width": 378, "height": 378, "top": 0, "left": 2164, "cloudflareImageId": null, "cloudflareR2Url": null },
+    { "image": "https://picsum.photos/id/67/378/378", "width": 378, "height": 378, "top": 378, "left": 2164, "cloudflareImageId": null, "cloudflareR2Url": null }
+  ],
+  "about": {
+    "photo": "https://picsum.photos/id/64/600/500",
+    "cloudflareImageId": null,
+    "cloudflareR2Url": null
+  },
+  "footer": {
+    "gifImage": null,
+    "gifCloudflareR2Url": null
+  }
+}

@@ -3,6 +3,8 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { Mail, Linkedin, Pin } from 'lucide-react';
 import { ProjectGallery, getDefaultLayout } from '@/components/ProjectGallery';
 import { GALLERY_LAYOUTS } from '@/data/galleryLayouts';
+import OptimizedImage from '@/components/OptimizedImage';
+import projectsData from '@/data/projects.json';
 
 interface BaseComponentProps {
   className?: string;
@@ -39,93 +41,22 @@ export const SPACING = {
   xxl: '160px'
 };
 
-// Project data
-export const PROJECTS = [
-  {
-    id: '1',
-    title: 'Brand Identity System',
-    description: 'Complete visual identity for a sustainable fashion startup',
-    client: 'EcoThread Collective',
-    roles: ['Brand Strategy', 'Visual Identity', 'Guidelines'],
-    heroImage: '/GretaMantooth_IndeedBrand_Hero.png',
-    galleryImages: [
-      'https://picsum.photos/id/30/800/600',
-      'https://picsum.photos/id/31/800/600',
-      'https://picsum.photos/id/32/800/600',
-      'https://picsum.photos/id/33/800/600',
-    ]
-  },
-  {
-    id: '2',
-    title: 'Digital Experience',
-    description: 'Website and app design for an artisan coffee roaster',
-    client: 'Morning Ritual Coffee',
-    roles: ['UX Design', 'UI Design', 'Art Direction'],
-    heroImage: 'https://picsum.photos/id/20/1400/800',
-    galleryImages: [
-      'https://picsum.photos/id/34/800/600',
-      'https://picsum.photos/id/35/800/600',
-      'https://picsum.photos/id/36/800/600',
-      'https://picsum.photos/id/37/800/600',
-    ]
-  },
-  {
-    id: '3',
-    title: 'Packaging Design',
-    description: 'Product packaging for a botanical skincare line',
-    client: 'Verdant Botanicals',
-    roles: ['Packaging', 'Print Design', 'Brand Extension'],
-    heroImage: 'https://picsum.photos/id/21/1400/800',
-    galleryImages: [
-      'https://picsum.photos/id/38/800/600',
-      'https://picsum.photos/id/39/800/600',
-      'https://picsum.photos/id/40/800/600',
-      'https://picsum.photos/id/41/800/600',
-    ]
-  },
-  {
-    id: '4',
-    title: 'Editorial Design',
-    description: 'Magazine layout and art direction for quarterly publication',
-    client: 'Slow Living Magazine',
-    roles: ['Editorial', 'Typography', 'Layout'],
-    heroImage: 'https://picsum.photos/id/22/1400/800',
-    galleryImages: [
-      'https://picsum.photos/id/42/800/600',
-      'https://picsum.photos/id/43/800/600',
-      'https://picsum.photos/id/44/800/600',
-      'https://picsum.photos/id/45/800/600',
-    ]
-  },
-  {
-    id: '5',
-    title: 'Environmental Graphics',
-    description: 'Wayfinding and signage for boutique hotel',
-    client: 'The Wanderer Hotel',
-    roles: ['Signage', 'Wayfinding', 'Environmental'],
-    heroImage: 'https://picsum.photos/id/23/1400/800',
-    galleryImages: [
-      'https://picsum.photos/id/46/800/600',
-      'https://picsum.photos/id/47/800/600',
-      'https://picsum.photos/id/48/800/600',
-      'https://picsum.photos/id/49/800/600',
-    ]
-  },
-  {
-    id: '6',
-    title: 'Campaign Design',
-    description: 'Integrated marketing campaign for wellness brand',
-    client: 'Breathe Wellness',
-    roles: ['Campaign', 'Digital', 'Print'],
-    heroImage: 'https://picsum.photos/id/24/1400/800',
-    galleryImages: [
-      'https://picsum.photos/id/50/800/600',
-      'https://picsum.photos/id/51/800/600',
-      'https://picsum.photos/id/52/800/600',
-      'https://picsum.photos/id/53/800/600',
-    ]
-  }
-];
+// Project data - sourced from JSON for Cloudflare integration
+export interface ProjectData {
+  id: string;
+  title: string;
+  description: string;
+  client: string;
+  roles: string[];
+  heroImage: string;
+  galleryImages: string[];
+  cloudflareImageId: string | null;
+  cloudflareGalleryIds: (string | null)[];
+  cloudflareR2Url: string | null;
+  cloudflareGalleryR2Urls: (string | null)[];
+}
+
+export const PROJECTS: ProjectData[] = projectsData.projects as ProjectData[];
 
 // Scroll position storage
 let savedHomeScrollPosition = 0;
@@ -327,18 +258,8 @@ const StickyCard = ({
 
 // Image Modal Component - for project detail pages
 
-// Gallery image data - duplicated for seamless infinite scroll
-// Using image placeholders instead of colors
-const galleryImages = [
-  { image: 'https://picsum.photos/id/60/378/378', width: 378, height: 378, top: 0, left: 0 },
-  { image: 'https://picsum.photos/id/61/378/378', width: 378, height: 378, top: 378, left: 0 },
-  { image: 'https://picsum.photos/id/62/583/756', width: 583, height: 756, top: 0, left: 378 },
-  { image: 'https://picsum.photos/id/63/378/378', width: 378, height: 378, top: 0, left: 961 },
-  { image: 'https://picsum.photos/id/64/378/378', width: 378, height: 378, top: 378, left: 961 },
-  { image: 'https://picsum.photos/id/65/825/756', width: 825, height: 756, top: 0, left: 1339 },
-  { image: 'https://picsum.photos/id/66/378/378', width: 378, height: 378, top: 0, left: 2164 },
-  { image: 'https://picsum.photos/id/67/378/378', width: 378, height: 378, top: 378, left: 2164 },
-];
+// Gallery image data - sourced from JSON for Cloudflare integration
+const galleryImages = projectsData.mediaGallery;
 
 const GALLERY_WIDTH = 2542;
 
@@ -449,26 +370,24 @@ const MediaGallery = () => {
           width: `${img.width}px`,
           height: `${img.height}px`,
           backgroundColor: COLORS.offWhite,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+          overflow: 'hidden',
           pointerEvents: 'none'
         }}
       >
-        <img
+        <OptimizedImage
           src={img.image}
           alt=""
-          draggable={false}
-          onDragStart={(e) => e.preventDefault()}
-          onMouseDown={(e) => e.preventDefault()}
+          cloudflareImageId={img.cloudflareImageId ?? undefined}
+          cloudflareR2Url={img.cloudflareR2Url ?? undefined}
+          width={img.width}
+          height={img.height}
+          loading="lazy"
           style={{
-            maxWidth: '60px',
-            maxHeight: '60px',
-            width: 'auto',
-            height: 'auto',
-            objectFit: 'contain',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
             userSelect: 'none',
-            opacity: 0.3
+            pointerEvents: 'none',
           }}
         />
       </div>
@@ -516,12 +435,16 @@ const ProjectCard = ({
   title,
   description,
   heroImage,
+  cloudflareImageId,
+  cloudflareR2Url,
   onClick
 }: {
   id: string;
   title: string;
   description: string;
   heroImage: string;
+  cloudflareImageId?: string | null;
+  cloudflareR2Url?: string | null;
   onClick: () => void;
 }) => (
   <div
@@ -533,12 +456,20 @@ const ProjectCard = ({
       flexDirection: 'column',
       backgroundColor: COLORS.offWhite,
       overflow: 'hidden',
+      borderRadius: '10px',
       cursor: 'pointer',
-      transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-      border: `1px solid ${COLORS.warmGray}30`
+      transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+      border: '1px solid rgba(30, 36, 22, 0.15)',
+      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05)'
     }}
-    onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-8px)'}
-    onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+    onMouseEnter={e => {
+      e.currentTarget.style.transform = 'translateY(-8px)';
+      e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08)';
+    }}
+    onMouseLeave={e => {
+      e.currentTarget.style.transform = 'translateY(0)';
+      e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05)';
+    }}
   >
     <div style={{
       width: '100%',
@@ -546,9 +477,14 @@ const ProjectCard = ({
       backgroundColor: COLORS.offWhite,
       overflow: 'hidden',
     }}>
-      <img
+      <OptimizedImage
         src={heroImage}
         alt={title}
+        cloudflareImageId={cloudflareImageId ?? undefined}
+        cloudflareR2Url={cloudflareR2Url ?? undefined}
+        width={600}
+        height={448}
+        loading="lazy"
         style={{
           width: '100%',
           height: '100%',
@@ -635,6 +571,8 @@ const FeaturedProjects = () => {
             title={project.title}
             description={project.description}
             heroImage={project.heroImage}
+            cloudflareImageId={project.cloudflareImageId}
+            cloudflareR2Url={project.cloudflareR2Url}
             onClick={() => handleProjectClick(project.id)}
           />
         ))}
@@ -718,13 +656,17 @@ const AboutSection = () => {
           minWidth: '300px',
           height: '500px',
           backgroundColor: COLORS.offWhite,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
+          overflow: 'hidden',
+          position: 'relative'
         }}>
-          <img
-            src="https://picsum.photos/id/64/600/500"
+          <OptimizedImage
+            src={projectsData.about.photo}
             alt="Greta Mantooth"
+            cloudflareImageId={projectsData.about.cloudflareImageId ?? undefined}
+            cloudflareR2Url={projectsData.about.cloudflareR2Url ?? undefined}
+            width={600}
+            height={500}
+            loading="eager"
             style={{
               width: '100%',
               height: '100%',
@@ -786,23 +728,42 @@ const Footer = () => (
     justifyContent: 'center',
     gap: SPACING.sm
   }}>
-    {/* Placeholder for animated GIF */}
-    <div style={{
-      width: '120px',
-      height: '120px',
-      backgroundColor: COLORS.white,
-      borderRadius: '8px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontFamily: '"Vulf Mono", monospace',
-      fontSize: '10px',
-      color: COLORS.charcoal,
-      textAlign: 'center',
-      padding: '8px'
-    }}>
-      [animated gif placeholder]
-    </div>
+    {/* Animated GIF - served from R2 when available */}
+    {(projectsData.footer.gifCloudflareR2Url || projectsData.footer.gifImage) ? (
+      <div style={{
+        width: '120px',
+        height: '120px',
+        overflow: 'hidden',
+        borderRadius: '8px',
+      }}>
+        <OptimizedImage
+          src={projectsData.footer.gifImage || ''}
+          alt="Greta Mantooth animated logo"
+          cloudflareR2Url={projectsData.footer.gifCloudflareR2Url ?? undefined}
+          width={120}
+          height={120}
+          loading="eager"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
+      </div>
+    ) : (
+      <div style={{
+        width: '120px',
+        height: '120px',
+        backgroundColor: COLORS.white,
+        borderRadius: '8px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontFamily: '"Vulf Mono", monospace',
+        fontSize: '10px',
+        color: COLORS.charcoal,
+        textAlign: 'center',
+        padding: '8px'
+      }}>
+        [animated gif placeholder]
+      </div>
+    )}
     <p style={{
       margin: 0,
       color: COLORS.white,
@@ -924,6 +885,8 @@ export const ProjectsPage = () => {
               title={project.title}
               description={project.description}
               heroImage={project.heroImage}
+              cloudflareImageId={project.cloudflareImageId}
+              cloudflareR2Url={project.cloudflareR2Url}
               onClick={() => handleProjectClick(project.id)}
             />
           ))}
@@ -996,15 +959,20 @@ export const ProjectDetailPage = () => {
         position: 'relative',
         backgroundColor: COLORS.charcoal
       }}>
-        <img
+        <OptimizedImage
           src={project.heroImage}
           alt={project.title}
+          cloudflareImageId={project.cloudflareImageId ?? undefined}
+          cloudflareR2Url={project.cloudflareR2Url ?? undefined}
+          width={1440}
+          height={700}
+          loading="eager"
           style={{
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: 'center'
           }}
+          objectPosition="center"
         />
       </section>
 
