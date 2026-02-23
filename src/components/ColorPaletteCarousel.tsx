@@ -290,6 +290,26 @@ export const ColorPaletteCarousel = ({ colors, title }: ColorPaletteCarouselProp
     }, MOBILE_TAP_PAUSE_MS);
   }, [breakpoint, restart]);
 
+  // ── Pause during resize (recalculating layout mid-animation is jumpy) ──
+  const resizeTimer = useRef<number | null>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      pausedRef.current = true;
+      if (resizeTimer.current !== null) clearTimeout(resizeTimer.current);
+      resizeTimer.current = window.setTimeout(() => {
+        resizeTimer.current = null;
+        restart();
+      }, 300);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (resizeTimer.current !== null) clearTimeout(resizeTimer.current);
+    };
+  }, [restart]);
+
   // Cleanup on unmount
   useEffect(() => {
     return () => {
