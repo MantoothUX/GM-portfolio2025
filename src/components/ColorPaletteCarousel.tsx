@@ -157,6 +157,9 @@ export const ColorPaletteCarousel = ({ colors, title }: ColorPaletteCarouselProp
   const tapTimer = useRef<number | null>(null);
   const pressTimer = useRef<number | null>(null);
   const [loopToken, setLoopToken] = useState(0);
+  const [viewportWidth, setViewportWidth] = useState(
+    () => (typeof window !== 'undefined' ? window.innerWidth : 1200),
+  );
 
   // Card sizing
   const cardWidth = breakpoint === 'phone' ? 150 : breakpoint === 'tablet' ? 180 : 200;
@@ -166,7 +169,6 @@ export const ColorPaletteCarousel = ({ colors, title }: ColorPaletteCarouselProp
   const heroMargin = Math.round(40 * (cardWidth / 200));
 
   // Visible cards
-  const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
   const sideCount = Math.ceil(viewportWidth / (2 * cardStep)) + 1;
   const visibleCards: { colorIndex: number; position: number }[] = [];
   for (let i = -sideCount; i <= sideCount; i++) {
@@ -299,6 +301,7 @@ export const ColorPaletteCarousel = ({ colors, title }: ColorPaletteCarouselProp
       if (resizeTimer.current !== null) clearTimeout(resizeTimer.current);
       resizeTimer.current = window.setTimeout(() => {
         resizeTimer.current = null;
+        setViewportWidth(window.innerWidth);
         restart();
       }, 300);
     };
