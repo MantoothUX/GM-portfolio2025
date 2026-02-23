@@ -2,6 +2,7 @@ import React from 'react';
 import { COLORS, SPACING } from '@/components/Page1';
 import { useBreakpoint, type Breakpoint } from '@/hooks/use-breakpoint';
 import OptimizedImage from '@/components/OptimizedImage';
+import { ColorPaletteCarousel } from '@/components/ColorPaletteCarousel';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -45,7 +46,22 @@ export interface TextBand {
   body?: string;
 }
 
-export type GallerySection = GridRow | TextBand;
+export interface ColorPaletteColor {
+  name: string;
+  hex: string;
+  pms?: string;
+  cmyk?: string;
+  rgb?: string;
+  icon?: string; // Image URL for optional icon
+}
+
+export interface ColorPaletteSection {
+  type: 'color-palette';
+  colors: ColorPaletteColor[];
+  title?: string; // Optional section title (e.g., "palette")
+}
+
+export type GallerySection = GridRow | TextBand | ColorPaletteSection;
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
@@ -69,6 +85,10 @@ function getFluidHeight(size: RowSize): string {
 
 function isTextBand(section: GallerySection): section is TextBand {
   return 'type' in section && (section as TextBand).type === 'text-band';
+}
+
+function isColorPalette(section: GallerySection): section is ColorPaletteSection {
+  return 'type' in section && (section as ColorPaletteSection).type === 'color-palette';
 }
 
 function getResponsiveSpan(span: number, breakpoint: Breakpoint): number {
@@ -354,6 +374,16 @@ export const ProjectGallery = ({ sections }: ProjectGalleryProps) => {
               heading={section.heading}
               body={section.body}
               breakpoint={breakpoint}
+            />
+          );
+        }
+
+        if (isColorPalette(section)) {
+          return (
+            <ColorPaletteCarousel
+              key={idx}
+              colors={section.colors}
+              title={section.title}
             />
           );
         }
