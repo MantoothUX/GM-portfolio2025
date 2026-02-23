@@ -261,18 +261,27 @@ export const ColorPaletteCarousel = ({ colors, title }: ColorPaletteCarouselProp
   }, [breakpoint, restart]);
 
   // ── Tap: tablet + phone, hero only ──
+  // First tap pauses (with auto-resume after MOBILE_TAP_PAUSE_MS).
+  // Second tap while paused cancels the timer and resumes immediately.
   const handleTap = useCallback((isHero: boolean) => {
     if (breakpoint === 'desktop' || !isHero) return;
 
-    // Click scale
-    setPressedPosition(0); // hero is always position 0 at rest
+    // Click scale (fires on both pause and play)
+    setPressedPosition(0);
     if (pressTimer.current !== null) clearTimeout(pressTimer.current);
     pressTimer.current = window.setTimeout(() => {
       setPressedPosition(null);
       pressTimer.current = null;
     }, 200);
 
-    // Tap pause
+    // Toggle: if already paused, resume immediately
+    if (pausedRef.current) {
+      if (tapTimer.current !== null) { clearTimeout(tapTimer.current); tapTimer.current = null; }
+      restart();
+      return;
+    }
+
+    // Otherwise pause with auto-resume
     pausedRef.current = true;
     if (tapTimer.current !== null) clearTimeout(tapTimer.current);
     tapTimer.current = window.setTimeout(() => {
