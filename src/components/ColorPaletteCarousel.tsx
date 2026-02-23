@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { SPACING } from '@/components/Page1';
 import { useBreakpoint } from '@/hooks/use-breakpoint';
 import type { ColorPaletteColor } from '@/components/ProjectGallery';
@@ -10,8 +10,7 @@ function isDark(hex: string): boolean {
   const r = parseInt(c.substring(0, 2), 16) / 255;
   const g = parseInt(c.substring(2, 4), 16) / 255;
   const b = parseInt(c.substring(4, 6), 16) / 255;
-  const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-  return lum < 0.45;
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b < 0.45;
 }
 
 function textColor(hex: string): string {
@@ -24,65 +23,66 @@ function subtextColor(hex: string): string {
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 
-const PAUSE_MS = 1200;       // Dwell time: how long cards sit still between shifts
-const SHIFT_MS = 1200;       // Slide duration: how long the shift animation takes
-const RESUME_DELAY_MS = 200; // Delay before first shift after mouse leave
-const HERO_SCALE = 1.4;      // Hero card scale (1.4 = 140% of original size)
+const PAUSE_MS = 1200;
+const SHIFT_MS = 1200;
+const MOBILE_TAP_PAUSE_MS = 2400;
+const HERO_SCALE = 1.4;
+const CLICK_SCALE_BOOST = 0.4;
 
-// ─── Card sub-component ─────────────────────────────────────────────────────
+// ─── Card (pure presentation) ───────────────────────────────────────────────
 
 interface PaletteCardProps {
   color: ColorPaletteColor;
   isHero: boolean;
+  isPressed: boolean;
   cardWidth: number;
   cardHeight: number;
-  /** When true, skip the CSS transition (used during snap resets) */
   suppressTransition: boolean;
 }
 
-const PaletteCard = React.memo(({ color, isHero, cardWidth, cardHeight, suppressTransition }: PaletteCardProps) => {
+const COLOR_FIELDS = ['pms', 'cmyk', 'rgb', 'hex'] as const;
+
+const PaletteCard = React.memo(({ color, isHero, isPressed, cardWidth, cardHeight, suppressTransition }: PaletteCardProps) => {
   const fg = textColor(color.hex);
   const fgSub = subtextColor(color.hex);
-  const nameParts = color.name.split('\n');
-
-  const transitionValue = suppressTransition
-    ? 'none'
-    : `transform ${SHIFT_MS}ms ease-in-out, border-color ${SHIFT_MS}ms ease-in-out, margin ${SHIFT_MS}ms ease-in-out`;
+  const s = cardWidth / 200;
+  const baseScale = isHero ? HERO_SCALE : 1;
+  const currentScale = isPressed ? baseScale + CLICK_SCALE_BOOST : baseScale;
 
   return (
     <div
       style={{
+        pointerEvents: 'none',
         width: cardWidth,
         height: cardHeight,
         minWidth: cardWidth,
-        borderRadius: 16,
+        borderRadius: Math.round(16 * s),
         backgroundColor: color.hex,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        padding: '24px 20px 20px',
+        padding: `${Math.round(24 * s)}px ${Math.round(20 * s)}px ${Math.round(20 * s)}px`,
         boxSizing: 'border-box',
         boxShadow: '0 4px 24px rgba(0,0,0,0.12)',
         border: isHero ? '1px solid #FFFFFF' : '1px solid transparent',
-        transform: isHero ? `scale(${HERO_SCALE})` : 'scale(1)',
-        margin: isHero ? '0 40px' : '0',
-        transition: transitionValue,
-        position: 'relative',
-        flexShrink: 0,
+        transform: `scale(${currentScale})`,
+        transformOrigin: 'center center',
+        transition: suppressTransition
+          ? 'none'
+          : `transform ${SHIFT_MS}ms ease-in-out, border-color ${SHIFT_MS}ms ease-in-out`,
       }}
     >
-      {/* Top section: icon + headline */}
       <div>
         {color.icon && (
           <img
             src={color.icon}
             alt=""
             style={{
-              width: 40,
-              height: 40,
-              borderRadius: 8,
+              width: Math.round(40 * s),
+              height: Math.round(40 * s),
+              borderRadius: Math.round(8 * s),
               objectFit: 'cover',
-              marginBottom: 16,
+              marginBottom: Math.round(16 * s),
               display: 'block',
             }}
           />
@@ -90,7 +90,7 @@ const PaletteCard = React.memo(({ color, isHero, cardWidth, cardHeight, suppress
         <h4
           style={{
             margin: 0,
-            fontSize: 'clamp(22px, 2.4vw, 32px)',
+            fontSize: Math.round(26 * s),
             fontFamily: '"Compadre Narrow", sans-serif',
             fontWeight: 700,
             color: fg,
@@ -98,52 +98,32 @@ const PaletteCard = React.memo(({ color, isHero, cardWidth, cardHeight, suppress
             whiteSpace: 'pre-line',
           }}
         >
-          {nameParts.length > 1
-            ? nameParts.map((part, i) => (
-                <React.Fragment key={i}>
-                  {part}
-                  {i < nameParts.length - 1 && <br />}
-                </React.Fragment>
-              ))
-            : color.name}
+          {color.name}
         </h4>
       </div>
 
-      {/* Bottom section: color values */}
       <div
         style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: 4,
-          fontSize: 11,
+          gap: Math.round(4 * s),
+          fontSize: Math.round(11 * s),
           fontFamily: '"Vulf Mono", monospace',
           fontWeight: 400,
           color: fgSub,
           lineHeight: 1.5,
         }}
       >
-        {color.pms && (
-          <div style={{ display: 'flex', gap: 16 }}>
-            <span style={{ width: 40 }}>PMS</span>
-            <span style={{ color: fg }}>{color.pms}</span>
-          </div>
-        )}
-        {color.cmyk && (
-          <div style={{ display: 'flex', gap: 16 }}>
-            <span style={{ width: 40 }}>CMYK</span>
-            <span style={{ color: fg }}>{color.cmyk}</span>
-          </div>
-        )}
-        {color.rgb && (
-          <div style={{ display: 'flex', gap: 16 }}>
-            <span style={{ width: 40 }}>RGB</span>
-            <span style={{ color: fg }}>{color.rgb}</span>
-          </div>
-        )}
-        <div style={{ display: 'flex', gap: 16 }}>
-          <span style={{ width: 40 }}>HEX</span>
-          <span style={{ color: fg }}>{color.hex.toLowerCase()}</span>
-        </div>
+        {COLOR_FIELDS.map((field) => {
+          const value = field === 'hex' ? color.hex.toLowerCase() : color[field];
+          if (!value) return null;
+          return (
+            <div key={field} style={{ display: 'flex', gap: Math.round(12 * s) }}>
+              <span style={{ width: Math.round(40 * s) }}>{field.toUpperCase()}</span>
+              <span style={{ color: fg }}>{value}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -160,106 +140,155 @@ interface ColorPaletteCarouselProps {
 
 export const ColorPaletteCarousel = ({ colors, title }: ColorPaletteCarouselProps) => {
   const breakpoint = useBreakpoint();
-  const [isPaused, setIsPaused] = useState(false);
   const [heroIndex, setHeroIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  // Briefly true during the snap frame to suppress card CSS transitions
   const [isSnapping, setIsSnapping] = useState(false);
-
-  const timerRef = useRef<number | null>(null);
+  const [pressedPosition, setPressedPosition] = useState<number | null>(null);
 
   const n = colors.length;
+
+  // Pause mechanism: a ref the loop checks, plus a token to restart it.
+  const pausedRef = useRef(false);
+  const loopTimer = useRef<number | null>(null);
+  const snapTimer = useRef<number | null>(null);
+  const snapRaf = useRef<number | null>(null);
+  const tapTimer = useRef<number | null>(null);
+  const pressTimer = useRef<number | null>(null);
+  const [loopToken, setLoopToken] = useState(0);
 
   // Card sizing
   const cardWidth = breakpoint === 'phone' ? 150 : breakpoint === 'tablet' ? 180 : 200;
   const cardHeight = breakpoint === 'phone' ? 240 : breakpoint === 'tablet' ? 280 : 320;
   const cardGap = breakpoint === 'phone' ? 12 : 20;
   const cardStep = cardWidth + cardGap;
+  const heroMargin = Math.round(40 * (cardWidth / 200));
 
-  // How many cards to render on each side of the hero
+  // Visible cards
   const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
   const sideCount = Math.ceil(viewportWidth / (2 * cardStep)) + 1;
-
-  // Build the visible card list: hero at position 0, neighbors spread out
   const visibleCards: { colorIndex: number; position: number }[] = [];
   for (let i = -sideCount; i <= sideCount; i++) {
-    const colorIndex = (((heroIndex + i) % n) + n) % n;
-    visibleCards.push({ colorIndex, position: i });
+    visibleCards.push({ colorIndex: (((heroIndex + i) % n) + n) % n, position: i });
   }
 
-  // Centering: compute the pixel offset from the track's left edge to the
-  // hero card's center, then shift the track so that point aligns with 50vw.
-  //
-  // In the flex row (with gap), cards before the hero occupy:
-  //   sideCount cards × cardStep each = sideCount * cardStep
-  // Plus the hero's own left margin (40px) and half its width.
-  const HERO_MARGIN = 40;
-  const heroCenter = sideCount * cardStep + HERO_MARGIN + cardWidth / 2;
+  // Centering
+  const heroCenter = sideCount * cardStep + heroMargin + cardWidth / 2;
   const restX = viewportWidth / 2 - heroCenter;
+  const currentX = isAnimating ? restX - cardStep : restX;
 
-  // During animation we shift one full cardStep to the left.
-  // The incoming hero also gains 40px margin on each side while the outgoing
-  // hero loses its margin — but since we snap-reset after the transition,
-  // the animateX only needs to account for the cardStep shift.
-  const animateX = restX - cardStep;
-  const currentX = isAnimating ? animateX : restX;
-
-  // Background: transitions to next hero's color during animation
+  // Background
   const nextHeroIndex = (heroIndex + 1) % n;
   const heroBg = isAnimating ? colors[nextHeroIndex].hex : colors[heroIndex].hex;
   const titleFg = textColor(heroBg);
 
-  // Track whether we're resuming from a hover pause
-  const wasJustPausedRef = useRef(false);
+  // ── Animation loop ──
+  //
+  // 1. Wait PAUSE_MS
+  // 2. If paused, stop. Otherwise start slide.
+  // 3. Wait SHIFT_MS for CSS transition.
+  // 4. Snap-reset (suppress transitions, bump heroIndex).
+  // 5. Next frame: re-enable transitions, go to 1.
+  //
+  // If paused mid-slide, the CSS transition finishes visually.
+  // The snap still fires so state stays in sync. We just don't
+  // start the next slide.
 
-  // Timer cycle: pause → slide → snap → pause → ...
   useEffect(() => {
-    if (isPaused) {
-      if (timerRef.current !== null) {
-        clearTimeout(timerRef.current);
-        timerRef.current = null;
-      }
-      wasJustPausedRef.current = true;
-      return;
-    }
+    let cancelled = false;
 
-    const scheduleTick = (delay: number) => {
-      timerRef.current = window.setTimeout(() => {
-        // Begin the slide animation
+    const run = () => {
+      loopTimer.current = window.setTimeout(() => {
+        if (cancelled || pausedRef.current) return;
+
         setIsAnimating(true);
 
-        timerRef.current = window.setTimeout(() => {
-          // Snap: suppress transitions, update hero, reset position
+        snapTimer.current = window.setTimeout(() => {
+          if (cancelled) return;
+
           setIsSnapping(true);
           setIsAnimating(false);
           setHeroIndex((prev) => (prev + 1) % n);
 
-          // Re-enable transitions on the next frame
-          requestAnimationFrame(() => {
+          snapRaf.current = requestAnimationFrame(() => {
+            if (cancelled) return;
+            snapRaf.current = null;
             setIsSnapping(false);
-            scheduleTick(PAUSE_MS);
+
+            if (pausedRef.current) return;
+            run();
           });
         }, SHIFT_MS);
-      }, delay);
+      }, PAUSE_MS);
     };
 
-    // Use shorter delay when resuming from hover, full pause otherwise
-    const initialDelay = wasJustPausedRef.current ? RESUME_DELAY_MS : PAUSE_MS;
-    wasJustPausedRef.current = false;
-    scheduleTick(initialDelay);
+    run();
 
     return () => {
-      if (timerRef.current !== null) {
-        clearTimeout(timerRef.current);
-      }
+      cancelled = true;
+      if (loopTimer.current !== null) clearTimeout(loopTimer.current);
+      if (snapTimer.current !== null) clearTimeout(snapTimer.current);
+      if (snapRaf.current !== null) cancelAnimationFrame(snapRaf.current);
+      loopTimer.current = null;
+      snapTimer.current = null;
+      snapRaf.current = null;
     };
-  }, [isPaused, n]);
+  }, [n, loopToken]);
+
+  // Restart the loop (clears old timers via effect cleanup)
+  const restart = useCallback(() => {
+    pausedRef.current = false;
+    setLoopToken((t) => t + 1);
+  }, []);
+
+  // ── Hover: desktop + tablet, only hero can START a pause ──
+  // Any card leaving can END one (fixes stale-closure when hero
+  // shifts out from under the cursor mid-animation).
+  const handleHoverIn = useCallback(() => {
+    if (breakpoint === 'phone') return;
+    pausedRef.current = true;
+  }, [breakpoint]);
+
+  const handleHoverOut = useCallback(() => {
+    if (breakpoint === 'phone') return;
+    if (!pausedRef.current) return;
+    restart();
+  }, [breakpoint, restart]);
+
+  // ── Tap: tablet + phone, hero only ──
+  const handleTap = useCallback((isHero: boolean) => {
+    if (breakpoint === 'desktop' || !isHero) return;
+
+    // Click scale
+    setPressedPosition(0); // hero is always position 0 at rest
+    if (pressTimer.current !== null) clearTimeout(pressTimer.current);
+    pressTimer.current = window.setTimeout(() => {
+      setPressedPosition(null);
+      pressTimer.current = null;
+    }, 200);
+
+    // Tap pause
+    pausedRef.current = true;
+    if (tapTimer.current !== null) clearTimeout(tapTimer.current);
+    tapTimer.current = window.setTimeout(() => {
+      tapTimer.current = null;
+      restart();
+    }, MOBILE_TAP_PAUSE_MS);
+  }, [breakpoint, restart]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (tapTimer.current !== null) clearTimeout(tapTimer.current);
+      if (pressTimer.current !== null) clearTimeout(pressTimer.current);
+    };
+  }, []);
+
+  // ── Render ──
+  const wrapperTransition = isSnapping ? 'none' : `margin ${SHIFT_MS}ms ease-in-out`;
 
   return (
     <section
       aria-label={title || 'Color palette'}
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
       style={{
         width: '100vw',
         marginLeft: 'calc(-50vw + 50%)',
@@ -270,7 +299,6 @@ export const ColorPaletteCarousel = ({ colors, title }: ColorPaletteCarouselProp
         position: 'relative',
       }}
     >
-      {/* Optional title */}
       {title && (
         <div
           style={{
@@ -297,43 +325,52 @@ export const ColorPaletteCarousel = ({ colors, title }: ColorPaletteCarouselProp
         </div>
       )}
 
-      {/* Card container */}
-      <div
-        style={{
-          position: 'relative',
-          height: Math.ceil(cardHeight * HERO_SCALE) + 20,
-          width: '100%',
-        }}
-      >
-        {/* Sliding track */}
+      <div style={{ position: 'relative', height: Math.ceil(cardHeight * HERO_SCALE) + 20, width: '100%' }}>
         <div
           style={{
             position: 'absolute',
             top: '50%',
             left: 0,
             transform: `translate(${currentX}px, -50%)`,
-            transition: isAnimating
-              ? `transform ${SHIFT_MS}ms ease-in-out`
-              : 'none',
+            transition: isAnimating ? `transform ${SHIFT_MS}ms ease-in-out` : 'none',
             display: 'flex',
             gap: cardGap,
             alignItems: 'center',
           }}
         >
           {visibleCards.map(({ colorIndex, position }) => {
-            // During the slide, the card arriving at center (position 1) becomes hero.
-            // At rest, position 0 is the hero.
             const isHero = isAnimating ? position === 1 : position === 0;
-
             return (
-              <PaletteCard
+              <div
                 key={`pos-${position}`}
-                color={colors[colorIndex]}
-                isHero={isHero}
-                cardWidth={cardWidth}
-                cardHeight={cardHeight}
-                suppressTransition={isSnapping}
-              />
+                onMouseEnter={isHero ? handleHoverIn : undefined}
+                onMouseLeave={handleHoverOut}
+                onClick={isHero ? () => handleTap(true) : undefined}
+                style={{
+                  cursor: isHero ? 'pointer' : 'default',
+                  width: cardWidth,
+                  height: cardHeight,
+                  minWidth: cardWidth,
+                  flexShrink: 0,
+                  margin: isHero ? `0 ${heroMargin}px` : '0',
+                  transition: wrapperTransition,
+                  overflow: 'visible',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  WebkitTapHighlightColor: 'transparent',
+                  userSelect: 'none',
+                }}
+              >
+                <PaletteCard
+                  color={colors[colorIndex]}
+                  isHero={isHero}
+                  isPressed={pressedPosition === position}
+                  cardWidth={cardWidth}
+                  cardHeight={cardHeight}
+                  suppressTransition={isSnapping}
+                />
+              </div>
             );
           })}
         </div>
