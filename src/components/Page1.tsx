@@ -184,6 +184,7 @@ interface CardProps extends BaseComponentProps {
   description: string;
   backgroundColor: string;
   index: number;
+  extraScrollHeight?: number; // additional vh to extend card for scroll dwell
 }
 
 const StickyCard = ({
@@ -191,23 +192,19 @@ const StickyCard = ({
   headline,
   description,
   backgroundColor,
-  index
+  index,
+  extraScrollHeight = 0
 }: CardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const topOffset = 70 + index * 30; // 30px visible stripe per card (reduced from 60px)
 
+  // Visible viewport portion — used for centering
+  const visibleHeight = `calc(100vh - ${topOffset}px - 80px)`;
+
   return (
     <section ref={cardRef} style={{
       width: '100%',
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      paddingTop: '180px',
-      paddingBottom: '60px',
-      paddingLeft: '60px',
-      paddingRight: '60px',
+      height: `calc(${100 + extraScrollHeight}vh - ${topOffset}px - 80px)`,
       backgroundColor,
       boxSizing: 'border-box',
       position: 'sticky',
@@ -215,41 +212,55 @@ const StickyCard = ({
       zIndex: 50 + index,
       transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
     }}>
+      {/* Inner div sized to the visible viewport portion so centering is always correct */}
       <div style={{
-        maxWidth: '888px',
-        width: '100%',
+        height: visibleHeight,
         display: 'flex',
         flexDirection: 'column',
-        gap: '48px'
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: '60px',
+        paddingBottom: '60px',
+        paddingLeft: 'clamp(24px, 5vw, 60px)',
+        paddingRight: 'clamp(24px, 5vw, 60px)',
+        boxSizing: 'border-box',
       }}>
         <div style={{
+          maxWidth: '888px',
+          width: '100%',
           display: 'flex',
           flexDirection: 'column',
-          gap: '24px'
+          gap: '48px'
         }}>
-          <h2 style={{
-            margin: 0,
-            color: isDarkBackground(backgroundColor) ? COLORS.offWhite : COLORS.charcoal,
-            fontSize: '48px',
-            fontFamily: '"Vulf Mono", monospace',
-            fontStyle: 'italic',
-            fontWeight: 300,
-            lineHeight: '1.2',
-            textTransform: 'lowercase'
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '24px'
           }}>
-            {headline}
-          </h2>
-          <p style={{
-            margin: 0,
-            maxWidth: '727px',
-            color: isDarkBackground(backgroundColor) ? COLORS.offWhite : COLORS.deepBrown,
-            fontSize: '20px',
-            fontFamily: '"Vulf Mono", monospace',
-            fontWeight: 300,
-            lineHeight: '1.6'
-          }}>
-            {description}
-          </p>
+            <h2 style={{
+              margin: 0,
+              color: isDarkBackground(backgroundColor) ? COLORS.offWhite : COLORS.charcoal,
+              fontSize: 'clamp(26px, 4vw, 48px)',
+              fontFamily: '"Vulf Mono", monospace',
+              fontStyle: 'italic',
+              fontWeight: 300,
+              lineHeight: '1.2',
+              textTransform: 'lowercase'
+            }}>
+              {headline}
+            </h2>
+            <p style={{
+              margin: 0,
+              maxWidth: '727px',
+              color: isDarkBackground(backgroundColor) ? COLORS.offWhite : COLORS.deepBrown,
+              fontSize: 'clamp(16px, 1.7vw, 20px)',
+              fontFamily: '"Vulf Mono", monospace',
+              fontWeight: 300,
+              lineHeight: '1.6'
+            }}>
+              {description}
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -500,7 +511,7 @@ const ProjectCard = ({
     }}>
       <h3 style={{
         margin: 0,
-        fontSize: '28px',
+        fontSize: 'clamp(18px, 2.5vw, 28px)',
         fontFamily: '"Compadre Narrow", sans-serif',
         fontWeight: 400,
         color: COLORS.charcoal,
@@ -547,7 +558,7 @@ const FeaturedProjects = () => {
       backgroundColor: COLORS.card3
     }}>
       <h2 style={{
-        fontSize: '36px',
+        fontSize: 'clamp(22px, 3vw, 36px)',
         fontFamily: '"Vulf Mono", monospace',
         fontStyle: 'italic',
         fontWeight: 300,
@@ -634,7 +645,7 @@ const AboutSection = () => {
       padding: '0 32px'
     }}>
       <h2 style={{
-        fontSize: '36px',
+        fontSize: 'clamp(22px, 3vw, 36px)',
         fontFamily: '"Vulf Mono", monospace',
         fontStyle: 'italic',
         fontWeight: 300,
@@ -680,7 +691,7 @@ const AboutSection = () => {
         }}>
           <p style={{
             margin: 0,
-            fontSize: '20px',
+            fontSize: 'clamp(16px, 1.7vw, 20px)',
             fontFamily: '"Vulf Mono", monospace',
             fontWeight: 300,
             lineHeight: '1.7',
@@ -809,13 +820,13 @@ export const HomePage = () => {
         headline="A really stylish headline will go here"
         description="A bunch of really nice supporting text will go here. It will probably be several lines and that is neat. How about a third line for the children? Let's bring it on home with a fourth line, for good measure."
         backgroundColor={COLORS.card3}
+        extraScrollHeight={50}
       />
 
-      {/* Media Wall Section - Full bleed, no padding */}
+      {/* Media Wall Section - Full bleed, scrolls up naturally from below */}
       <section style={{
         height: '100vh',
-        position: 'sticky',
-        top: '70px',
+        position: 'relative',
         zIndex: 100,
         backgroundColor: COLORS.card3
       }}>
@@ -863,7 +874,7 @@ export const ProjectsPage = () => {
         padding: `${SPACING.lg} 32px`
       }}>
         <h1 style={{
-          fontSize: '64px',
+          fontSize: 'clamp(32px, 5vw, 64px)',
           fontFamily: '"Vulf Mono", monospace',
           fontStyle: 'italic',
           fontWeight: 300,
@@ -1012,7 +1023,7 @@ export const ProjectDetailPage = () => {
             </button>
 
             <h1 style={{
-              fontSize: '36px',
+              fontSize: 'clamp(24px, 3.5vw, 36px)',
               fontFamily: '"Compadre Narrow", sans-serif',
               fontWeight: 400,
               color: '#3f3e32',
@@ -1083,7 +1094,7 @@ export const ProjectDetailPage = () => {
             {/* Headline/Description */}
             <p style={{
               margin: 0,
-              fontSize: '20px',
+              fontSize: 'clamp(16px, 1.7vw, 20px)',
               fontFamily: '"Vulf Mono", monospace',
               fontWeight: 300,
               lineHeight: '1.6',
@@ -1095,7 +1106,7 @@ export const ProjectDetailPage = () => {
             {/* Body copy */}
             <p style={{
               margin: 0,
-              fontSize: '16px',
+              fontSize: 'clamp(14px, 1.3vw, 16px)',
               fontFamily: '"Vulf Mono", monospace',
               fontWeight: 300,
               lineHeight: '1.7',
@@ -1105,7 +1116,7 @@ export const ProjectDetailPage = () => {
             </p>
             <p style={{
               margin: 0,
-              fontSize: '16px',
+              fontSize: 'clamp(14px, 1.3vw, 16px)',
               fontFamily: '"Vulf Mono", monospace',
               fontWeight: 300,
               lineHeight: '1.7',
@@ -1142,7 +1153,7 @@ export const ProjectDetailPage = () => {
             </button>
 
             <h1 style={{
-              fontSize: '64px',
+              fontSize: 'clamp(32px, 5vw, 64px)',
               fontFamily: '"Compadre Narrow", sans-serif',
               fontWeight: 400,
               color: '#3f3e32',
@@ -1224,7 +1235,7 @@ export const ProjectDetailPage = () => {
               <div>
                 <p style={{
                   margin: 0,
-                  fontSize: '24px',
+                  fontSize: 'clamp(18px, 2vw, 24px)',
                   fontFamily: '"Vulf Mono", monospace',
                   fontWeight: 300,
                   lineHeight: '1.6',
@@ -1234,7 +1245,7 @@ export const ProjectDetailPage = () => {
                 </p>
                 <p style={{
                   marginTop: SPACING.md,
-                  fontSize: '18px',
+                  fontSize: 'clamp(14px, 1.5vw, 18px)',
                   fontFamily: '"Vulf Mono", monospace',
                   fontWeight: 300,
                   lineHeight: '1.7',
@@ -1244,7 +1255,7 @@ export const ProjectDetailPage = () => {
                 </p>
                 <p style={{
                   marginTop: SPACING.sm,
-                  fontSize: '18px',
+                  fontSize: 'clamp(14px, 1.5vw, 18px)',
                   fontFamily: '"Vulf Mono", monospace',
                   fontWeight: 300,
                   lineHeight: '1.7',
