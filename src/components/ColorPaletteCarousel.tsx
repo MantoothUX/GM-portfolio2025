@@ -25,6 +25,7 @@ function subtextColor(hex: string): string {
 
 const PAUSE_MS = 1200;
 const SHIFT_MS = 1200;
+const RESUME_DELAY_MS = 100;
 const MOBILE_TAP_PAUSE_MS = 2400;
 const HERO_SCALE = 1.4;
 const CLICK_SCALE_BOOST = 0.4;
@@ -149,6 +150,7 @@ export const ColorPaletteCarousel = ({ colors, title }: ColorPaletteCarouselProp
 
   // Pause mechanism: a ref the loop checks, plus a token to restart it.
   const pausedRef = useRef(false);
+  const resumingRef = useRef(false);
   const loopTimer = useRef<number | null>(null);
   const snapTimer = useRef<number | null>(null);
   const snapRaf = useRef<number | null>(null);
@@ -197,6 +199,9 @@ export const ColorPaletteCarousel = ({ colors, title }: ColorPaletteCarouselProp
     let cancelled = false;
 
     const run = () => {
+      const delay = resumingRef.current ? RESUME_DELAY_MS : PAUSE_MS;
+      resumingRef.current = false;
+
       loopTimer.current = window.setTimeout(() => {
         if (cancelled || pausedRef.current) return;
 
@@ -218,7 +223,7 @@ export const ColorPaletteCarousel = ({ colors, title }: ColorPaletteCarouselProp
             run();
           });
         }, SHIFT_MS);
-      }, PAUSE_MS);
+      }, delay);
     };
 
     run();
@@ -251,6 +256,7 @@ export const ColorPaletteCarousel = ({ colors, title }: ColorPaletteCarouselProp
   const handleHoverOut = useCallback(() => {
     if (breakpoint === 'phone') return;
     if (!pausedRef.current) return;
+    resumingRef.current = true;
     restart();
   }, [breakpoint, restart]);
 
