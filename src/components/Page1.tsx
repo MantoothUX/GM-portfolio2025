@@ -992,7 +992,7 @@ export const ProjectDetailPage = () => {
         maxWidth: '1190px',
         width: '100%',
         margin: '0 auto',
-        padding: isMobile ? `${SPACING.md} ${SPACING.xs}` : `${SPACING.lg} 32px`
+        padding: isMobile ? `16px ${SPACING.xs} ${SPACING.md}` : `27px 32px ${SPACING.lg}`
       }}>
         {/* Mobile layout: stacked order */}
         {isMobile ? (
@@ -1001,27 +1001,6 @@ export const ProjectDetailPage = () => {
             flexDirection: 'column',
             gap: SPACING.md
           }}>
-            {/* Back button */}
-            <button
-              onClick={handleBack}
-              style={{
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                fontSize: '14px',
-                fontFamily: '"Vulf Mono", monospace',
-                fontWeight: 300,
-                color: COLORS.charcoal,
-                padding: '8px 0',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                transition: 'color 0.2s ease'
-              }}
-            >
-              ← Back to {from === 'projects' ? 'all projects' : 'home'}
-            </button>
-
             <h1 style={{
               fontSize: 'clamp(24px, 3.5vw, 36px)',
               fontFamily: '"Compadre Narrow", sans-serif',
@@ -1118,30 +1097,6 @@ export const ProjectDetailPage = () => {
         ) : (
           /* Desktop layout: side-by-side */
           <>
-            {/* Back button */}
-            <button
-              onClick={handleBack}
-              style={{
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                fontSize: '14px',
-                fontFamily: '"Vulf Mono", monospace',
-                fontWeight: 300,
-                color: COLORS.charcoal,
-                marginBottom: SPACING.lg,
-                padding: '8px 0',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                transition: 'color 0.2s ease'
-              }}
-              onMouseEnter={e => e.currentTarget.style.color = COLORS.warmGray}
-              onMouseLeave={e => e.currentTarget.style.color = COLORS.charcoal}
-            >
-              ← Back to {from === 'projects' ? 'all projects' : 'home'}
-            </button>
-
             <h1 style={{
               fontSize: 'clamp(32px, 5vw, 64px)',
               fontFamily: '"Compadre Narrow", sans-serif',
