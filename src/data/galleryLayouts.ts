@@ -38,7 +38,7 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
     // Color palette carousel
     {
       type: 'color-palette',
-      title: 'palette',
+      title: 'color palette',
       colors: [
         {
           name: 'Black\nLicorice',
@@ -154,13 +154,22 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
     },
     {
       type: 'color-palette',
-      title: 'palette',
+      title: 'color palette',
       colors: [
-        { name: 'Espresso', hex: '#3C2415', pms: '4625 C', cmyk: '37/63/80/48', rgb: '60/36/21' },
-        { name: 'Cream', hex: '#F5F0E8', pms: '7527 C', cmyk: '3/3/8/0', rgb: '245/240/232' },
-        { name: 'Burnt\nSienna', hex: '#C1440E', pms: '1675 C', cmyk: '11/80/100/3', rgb: '193/68/14' },
-        { name: 'Sage', hex: '#A3B18A', pms: '5783 C', cmyk: '30/13/42/0', rgb: '163/177/138' },
-        { name: 'Charcoal', hex: '#333333', pms: 'Black 7 C', cmyk: '62/54/53/29', rgb: '51/51/51' },
+        { name: 'Stickerbox\nRed',    hex: '#e4002b', pms: '185 C',              cmyk: '0/100/96/0',   rgb: '228/0/43'    },
+        { name: 'Button\nWhite',      hex: '#ffffff',  pms: '',                   cmyk: '0/0/0/0',      rgb: '255/255/255' },
+        { name: 'String\nCheese',     hex: '#f6eedf',  pms: '7500 C 40% tint',    cmyk: '2/5/12/0',     rgb: '246/238/223' },
+        { name: 'Black\nLicorice',    hex: '#231f20',  pms: '419 C',              cmyk: '69/68/64/74',  rgb: '35/31/32'    },
+        { name: 'Double\nBubble',     hex: '#ea94bd',  pms: '1905 C',             cmyk: '0/56/0/0',     rgb: '234/148/189' },
+        { name: 'Pink\nMilk',         hex: '#f7d4e5',  pms: '2043 C',             cmyk: '0/22/0/0',     rgb: '247/212/229' },
+        { name: 'Punkin\nPie',        hex: '#d8752b',  pms: '716 C',              cmyk: '6/68/100/0',   rgb: '216/117/43'  },
+        { name: 'Circus\nPeanut',     hex: '#efc8aa',  pms: '4030 C',             cmyk: '2/24/34/0',    rgb: '239/200/170' },
+        { name: 'Candy\nShell',       hex: '#037f59',  pms: '340 C',              cmyk: '98/23/84/10',  rgb: '3/127/89'    },
+        { name: 'Taffy\nPull',        hex: '#a4d1c3',  pms: '565 C',              cmyk: '40/1/28/0',    rgb: '164/209/195' },
+        { name: 'Gummy\nBear',        hex: '#f4d242',  pms: '7405 C',             cmyk: '3/14/100/0',   rgb: '244/210/66'  },
+        { name: 'Banana\nFana',       hex: '#fbedb3',  pms: '7401 C',             cmyk: '2/4/39/0',     rgb: '251/237/179' },
+        { name: 'Rocket\nPop',        hex: '#49a3e2',  pms: '2995 C',             cmyk: '72/20/0/0',    rgb: '73/163/226'  },
+        { name: 'Brain\nFreeze',      hex: '#9fdaf4',  pms: '2975 C',             cmyk: '39/0/1/0',     rgb: '159/218/244' },
       ],
     },
     {
@@ -183,7 +192,7 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
     },
     {
       type: 'color-palette',
-      title: 'palette',
+      title: 'color palette',
       colors: [
         { name: 'Forest\nFloor', hex: '#2D4A22', pms: '364 C', cmyk: '72/24/100/11', rgb: '45/74/34' },
         { name: 'Petal\nBlush', hex: '#F2D7D5', pms: '503 C', cmyk: '2/16/9/0', rgb: '242/215/213' },
@@ -213,7 +222,7 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
     },
     {
       type: 'color-palette',
-      title: 'palette',
+      title: 'color palette',
       colors: [
         { name: 'Ink', hex: '#1A1A2E', pms: '2768 C', cmyk: '86/78/36/32', rgb: '26/26/46' },
         { name: 'Linen', hex: '#F0EBE3', pms: '7534 C', cmyk: '4/5/9/0', rgb: '240/235/227' },
@@ -242,7 +251,7 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
     },
     {
       type: 'color-palette',
-      title: 'palette',
+      title: 'color palette',
       colors: [
         { name: 'Midnight', hex: '#0D1B2A', pms: '296 C', cmyk: '100/75/34/40', rgb: '13/27/42' },
         { name: 'Brass', hex: '#B5936B', pms: '4515 C', cmyk: '18/34/56/2', rgb: '181/147/107' },
@@ -272,7 +281,7 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
     },
     {
       type: 'color-palette',
-      title: 'palette',
+      title: 'color palette',
       colors: [
         { name: 'Ocean\nDeep', hex: '#1B4965', pms: '302 C', cmyk: '90/48/24/8', rgb: '27/73/101' },
         { name: 'Sky\nWash', hex: '#BEE9E8', pms: '317 C', cmyk: '22/0/6/0', rgb: '190/233/232' },
