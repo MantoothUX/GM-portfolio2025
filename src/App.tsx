@@ -12,7 +12,7 @@ function App() {
           <Route path="/project/:id" element={<ProjectDetailPage />} />
         </Routes>
       </Layout>
-      {import.meta.env.DEV && <Agentation />}
+      {import.meta.env.DEV && <Agentation endpoint="http://localhost:4747" />}
     </BrowserRouter>
   );
 }

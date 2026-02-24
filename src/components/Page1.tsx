@@ -1112,17 +1112,7 @@ export const ProjectDetailPage = () => {
               lineHeight: '1.7',
               color: COLORS.deepBrown
             }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-            <p style={{
-              margin: 0,
-              fontSize: 'clamp(14px, 1.3vw, 16px)',
-              fontFamily: '"Vulf Mono", monospace',
-              fontWeight: 300,
-              lineHeight: '1.7',
-              color: COLORS.deepBrown
-            }}>
-              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+              Foul Mouth Creative tapped Greta to lead design efforts for Stickerbox, a startup toy company and the first of its kind to offer safe generative-AI play for kids. Greta crafted a fun-but-edgy visual personality inspired by punk rock paste-up posters (minus any angst). Clean, crisp vector graphics pair with cut-out black-and-white photocopy moments to create a look that is quirky but clear + always fun.
             </p>
           </div>
         ) : (
@@ -1251,17 +1241,7 @@ export const ProjectDetailPage = () => {
                   lineHeight: '1.7',
                   color: COLORS.deepBrown
                 }}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-                <p style={{
-                  marginTop: SPACING.sm,
-                  fontSize: 'clamp(14px, 1.5vw, 18px)',
-                  fontFamily: '"Vulf Mono", monospace',
-                  fontWeight: 300,
-                  lineHeight: '1.7',
-                  color: COLORS.deepBrown
-                }}>
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+                  Foul Mouth Creative tapped Greta to lead design efforts for Stickerbox, a startup toy company and the first of its kind to offer safe generative-AI play for kids. Greta crafted a fun-but-edgy visual personality inspired by punk rock paste-up posters (minus any angst). Clean, crisp vector graphics pair with cut-out black-and-white photocopy moments to create a look that is quirky but clear + always fun.
                 </p>
               </div>
             </div>
