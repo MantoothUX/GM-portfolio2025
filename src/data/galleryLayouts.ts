@@ -5,8 +5,12 @@ import type { GallerySection } from '@/components/ProjectGallery';
  * Keyed by project ID from the PROJECTS array in Page1.tsx.
  *
  * Each project's layout is an array of GallerySection items:
- *   - GridRow: { size: 'sm'|'md'|'lg'|'xl', items: [...] }  (item spans must sum to 4)
+ *   - GridRow: { size: 'sm'|'md'|'lg'|'xl'|'2xl', items: [...], centered?: boolean }
+ *       · Item spans must sum to 4 (unless centered: true, which allows partial rows)
+ *       · centered: true — desktop only; items sit centred with negative space on each side
+ *       · GridImage extras: square (1:1 crop), aspectRatio (any CSS value), objectPosition
  *   - TextBand: { type: 'text-band', heading?, body? }
+ *   - ColorPaletteSection: { type: 'color-palette', colors: [...], title? }
  *
  * Projects without an entry here will fall back to getDefaultLayout(),
  * which generates a simple 2-up grid from the legacy galleryImages array.
@@ -143,13 +147,13 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
     },
   ],
 
-  // ─── Project 2: Digital Experience — Morning Ritual Coffee ─────────────
+  // ─── Project 2: Startup Brand Identity — Stickerbox by Hapiko ──────────
   '2': [
     {
       size: 'md',
       items: [
-        { type: 'image', src: 'https://picsum.photos/id/34/800/600', alt: 'Gallery image 1', span: 2 },
-        { type: 'image', src: 'https://picsum.photos/id/35/800/600', alt: 'Gallery image 2', span: 2 },
+        { type: 'image', src: '/Projects/Stickerbox/Gallery_Stickerbox_001.gif', alt: 'Stickerbox brand image 1', span: 2, square: true },
+        { type: 'image', src: '/Projects/Stickerbox/Gallery_Stickerbox_002.png', alt: 'Stickerbox brand image 2', span: 2, square: true },
       ],
     },
     {
@@ -175,8 +179,42 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
     {
       size: 'md',
       items: [
-        { type: 'image', src: 'https://picsum.photos/id/36/800/600', alt: 'Gallery image 3', span: 2 },
-        { type: 'image', src: 'https://picsum.photos/id/37/800/600', alt: 'Gallery image 4', span: 2 },
+        { type: 'image', src: '/Projects/Stickerbox/Gallery_Stickerbox_003.png', alt: 'Stickerbox brand image 3', span: 2, square: true },
+        { type: 'image', src: '/Projects/Stickerbox/Gallery_Stickerbox_004.png', alt: 'Stickerbox brand image 4', span: 2, square: true },
+      ],
+    },
+    {
+      size: 'md',
+      items: [
+        { type: 'image', src: '/Projects/Stickerbox/Gallery_Stickerbox_005.png', alt: 'Stickerbox brand image 5', span: 2, square: true },
+        { type: 'image', src: '/Projects/Stickerbox/Gallery_Stickerbox_006.png', alt: 'Stickerbox brand image 6', span: 2, square: true },
+      ],
+    },
+    {
+      size: 'md',
+      items: [
+        { type: 'image', src: '/Projects/Stickerbox/Gallery_Stickerbox_007.png', alt: 'Stickerbox brand image 7', span: 2, square: true },
+        { type: 'image', src: '/Projects/Stickerbox/Gallery_Stickerbox_008.gif', alt: 'Stickerbox brand image 8', span: 2, square: true },
+      ],
+    },
+    {
+      size: '2xl',
+      items: [
+        { type: 'image', src: '/Projects/Stickerbox/Gallery_Stickerbox_009.png', alt: 'Stickerbox brand image 9', span: 4 },
+      ],
+    },
+    {
+      size: 'md',
+      items: [
+        { type: 'image', src: '/Projects/Stickerbox/Gallery_Stickerbox_010.png', alt: 'Stickerbox brand image 10', span: 2, aspectRatio: '3 / 4' },
+        { type: 'image', src: '/Projects/Stickerbox/Gallery_Stickerbox_011.png', alt: 'Stickerbox brand image 11', span: 2, aspectRatio: '3 / 4' },
+      ],
+    },
+    {
+      size: 'md',
+      centered: true,
+      items: [
+        { type: 'image', src: '/Projects/Stickerbox/Gallery_Stickerbox_012.gif', alt: 'Stickerbox brand image 12', span: 2, square: true },
       ],
     },
   ],

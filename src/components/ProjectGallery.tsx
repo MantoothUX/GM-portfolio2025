@@ -6,13 +6,15 @@ import { ColorPaletteCarousel } from '@/components/ColorPaletteCarousel';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
-export type RowSize = 'sm' | 'md' | 'lg' | 'xl';
+export type RowSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 export interface GridImage {
   type: 'image';
   src: string;
   alt: string;
   span: 1 | 2 | 3 | 4;
+  square?: boolean;        // Convenience shorthand for aspectRatio: '1 / 1'
+  aspectRatio?: string;    // Any CSS aspect-ratio value (e.g. '3 / 4', '16 / 9'). Overrides row height and square.
   objectPosition?: string;
   cloudflareImageId?: string | null;
   cloudflareR2Url?: string | null;
@@ -38,6 +40,7 @@ export type GridItem = GridImage | GridVideo | GridText;
 export interface GridRow {
   size: RowSize;
   items: GridItem[];
+  centered?: boolean; // Center items with negative space on sides (desktop only)
 }
 
 export interface TextBand {
@@ -70,10 +73,11 @@ const GAP = 16;
 // Row heights: [min (phone), max (desktop)]
 // clamp() interpolates fluidly between these using viewport width
 const ROW_HEIGHT_RANGES: Record<RowSize, { min: number; max: number; vw: number }> = {
-  sm: { min: 180, max: 250, vw: 22 },
-  md: { min: 220, max: 400, vw: 30 },
-  lg: { min: 280, max: 550, vw: 40 },
-  xl: { min: 320, max: 700, vw: 50 },
+  sm:  { min: 180, max: 250, vw: 22 },
+  md:  { min: 220, max: 400, vw: 30 },
+  lg:  { min: 280, max: 550, vw: 40 },
+  xl:  { min: 320, max: 700, vw: 50 },
+  '2xl': { min: 350, max: 780, vw: 58 }, // Full-width landscape rows (e.g. 3:2 images at span 4)
 };
 
 function getFluidHeight(size: RowSize): string {
@@ -110,6 +114,8 @@ const GalleryImage = ({
   alt,
   objectPosition,
   height,
+  square,
+  aspectRatio,
   cloudflareImageId,
   cloudflareR2Url,
 }: {
@@ -117,10 +123,12 @@ const GalleryImage = ({
   alt: string;
   objectPosition?: string;
   height: string;
+  square?: boolean;
+  aspectRatio?: string;
   cloudflareImageId?: string | null;
   cloudflareR2Url?: string | null;
 }) => (
-  <div style={{ width: '100%', height, overflow: 'hidden' }}>
+  <div style={{ width: '100%', ...(aspectRatio ? { aspectRatio } : square ? { aspectRatio: '1 / 1' } : { height }), overflow: 'hidden' }}>
     <OptimizedImage
       src={src}
       alt={alt}
@@ -281,35 +289,41 @@ const GalleryRow = ({
   size,
   items,
   breakpoint,
+  centered,
 }: {
   size: RowSize;
   items: GridItem[];
   breakpoint: Breakpoint;
+  centered?: boolean;
 }) => {
   const height = getFluidHeight(size);
 
   // Dev warning for misconfigured rows
   if (process.env.NODE_ENV === 'development') {
     const total = items.reduce((sum, item) => sum + item.span, 0);
-    if (total !== 4) {
+    if (!centered && total !== 4) {
       console.warn(`[ProjectGallery] Row spans sum to ${total}, expected 4`);
     }
   }
 
+  // On desktop, centered rows use flex so items sit centred with negative space either side.
+  // width formula for span S in a 4-col grid: calc(S*25% + GAP*(S/4 - 1))
+  const useFlex = centered && breakpoint === 'desktop';
+
   return (
     <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: getGridColumns(breakpoint),
-        gap: `${GAP}px`,
-      }}
+      style={
+        useFlex
+          ? { display: 'flex', justifyContent: 'center', gap: `${GAP}px` }
+          : { display: 'grid', gridTemplateColumns: getGridColumns(breakpoint), gap: `${GAP}px` }
+      }
     >
       {items.map((item, idx) => {
         const responsiveSpan = getResponsiveSpan(item.span, breakpoint);
 
-        const cellStyle: React.CSSProperties = {
-          gridColumn: `span ${responsiveSpan}`,
-        };
+        const cellStyle: React.CSSProperties = useFlex
+          ? { width: `calc(${responsiveSpan * 25}% + ${GAP * (responsiveSpan / 4 - 1)}px)`, flexShrink: 0 }
+          : { gridColumn: `span ${responsiveSpan}` };
 
         return (
           <div key={idx} style={cellStyle}>
@@ -319,6 +333,8 @@ const GalleryRow = ({
                 alt={item.alt}
                 objectPosition={item.objectPosition}
                 height={height}
+                square={item.square}
+                aspectRatio={item.aspectRatio}
                 cloudflareImageId={item.cloudflareImageId}
                 cloudflareR2Url={item.cloudflareR2Url}
               />
@@ -394,6 +410,7 @@ export const ProjectGallery = ({ sections }: ProjectGalleryProps) => {
             size={section.size}
             items={section.items}
             breakpoint={breakpoint}
+            centered={section.centered}
           />
         );
       })}
