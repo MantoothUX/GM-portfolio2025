@@ -13,6 +13,7 @@ export interface GridImage {
   src: string;
   alt: string;
   span: 1 | 2 | 3 | 4;
+  rowSpan?: number;        // Span multiple grid rows (used with other items stacked alongside)
   square?: boolean;        // Convenience shorthand for aspectRatio: '1 / 1'
   aspectRatio?: string;    // Any CSS aspect-ratio value (e.g. '3 / 4', '16 / 9'). Overrides row height and square.
   objectPosition?: string;
@@ -25,6 +26,7 @@ export interface GridVideo {
   src: string;
   poster?: string;
   span: 1 | 2 | 3 | 4;
+  rowSpan?: number;
   cloudflareR2Url?: string | null;
 }
 
@@ -33,6 +35,7 @@ export interface GridText {
   heading?: string;
   body?: string;
   span: 1 | 2 | 3 | 4;
+  rowSpan?: number;
 }
 
 export type GridItem = GridImage | GridVideo | GridText;
@@ -41,6 +44,7 @@ export interface GridRow {
   size: RowSize;
   items: GridItem[];
   centered?: boolean; // Center items with negative space on sides (desktop only)
+  columns?: number;   // Override grid column count (default: 4 on desktop, 2 on tablet, 1 on phone)
 }
 
 export interface TextBand {
@@ -178,16 +182,14 @@ const GalleryVideo = ({
 const GalleryTextCell = ({
   heading,
   body,
-  height,
 }: {
   heading?: string;
   body?: string;
-  height: string;
 }) => (
   <div
     style={{
       width: '100%',
-      height,
+      height: '100%',  // Fill the grid cell — row height is set by the adjacent image's aspect ratio
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
@@ -290,19 +292,25 @@ const GalleryRow = ({
   items,
   breakpoint,
   centered,
+  columns,
 }: {
   size: RowSize;
   items: GridItem[];
   breakpoint: Breakpoint;
   centered?: boolean;
+  columns?: number;
 }) => {
   const height = getFluidHeight(size);
+  const effectiveColumns = columns ?? 4;
 
-  // Dev warning for misconfigured rows
+  // Dev warning for misconfigured rows (skip for rowSpan rows — spans intentionally exceed column count)
   if (process.env.NODE_ENV === 'development') {
-    const total = items.reduce((sum, item) => sum + item.span, 0);
-    if (!centered && total !== 4) {
-      console.warn(`[ProjectGallery] Row spans sum to ${total}, expected 4`);
+    const hasRowSpanItems = items.some(item => item.rowSpan);
+    if (!centered && !hasRowSpanItems) {
+      const total = items.reduce((sum, item) => sum + item.span, 0);
+      if (total !== effectiveColumns) {
+        console.warn(`[ProjectGallery] Row spans sum to ${total}, expected ${effectiveColumns}`);
+      }
     }
   }
 
@@ -310,20 +318,31 @@ const GalleryRow = ({
   // width formula for span S in a 4-col grid: calc(S*25% + GAP*(S/4 - 1))
   const useFlex = centered && breakpoint === 'desktop';
 
+  const gridTemplateColumns = breakpoint === 'desktop'
+    ? `repeat(${effectiveColumns}, 1fr)`
+    : getGridColumns(breakpoint);
+
   return (
     <div
       style={
         useFlex
           ? { display: 'flex', justifyContent: 'center', gap: `${GAP}px` }
-          : { display: 'grid', gridTemplateColumns: getGridColumns(breakpoint), gap: `${GAP}px` }
+          : { display: 'grid', gridTemplateColumns, gap: `${GAP}px` }
       }
     >
       {items.map((item, idx) => {
         const responsiveSpan = getResponsiveSpan(item.span, breakpoint);
+        const hasRowSpan = !!item.rowSpan && breakpoint === 'desktop';
 
         const cellStyle: React.CSSProperties = useFlex
           ? { width: `calc(${responsiveSpan * 25}% + ${GAP * (responsiveSpan / 4 - 1)}px)`, flexShrink: 0 }
-          : { gridColumn: `span ${responsiveSpan}` };
+          : {
+              gridColumn: `span ${responsiveSpan}`,
+              ...(hasRowSpan ? { gridRow: `span ${item.rowSpan}` } : {}),
+            };
+
+        // Items spanning multiple rows fill the full combined grid area height
+        const itemHeight = hasRowSpan ? '100%' : height;
 
         return (
           <div key={idx} style={cellStyle}>
@@ -332,7 +351,7 @@ const GalleryRow = ({
                 src={item.src}
                 alt={item.alt}
                 objectPosition={item.objectPosition}
-                height={height}
+                height={itemHeight}
                 square={item.square}
                 aspectRatio={item.aspectRatio}
                 cloudflareImageId={item.cloudflareImageId}
@@ -343,15 +362,14 @@ const GalleryRow = ({
               <GalleryVideo
                 src={item.src}
                 poster={item.poster}
-                height={height}
+                height={itemHeight}
                 cloudflareR2Url={item.cloudflareR2Url}
               />
             )}
-            {item.type === 'text' && (
+            {item.type === 'text' && (breakpoint === 'desktop' || item.heading || item.body) && (
               <GalleryTextCell
                 heading={item.heading}
                 body={item.body}
-                height={height}
               />
             )}
           </div>
@@ -411,6 +429,7 @@ export const ProjectGallery = ({ sections }: ProjectGalleryProps) => {
             items={section.items}
             breakpoint={breakpoint}
             centered={section.centered}
+            columns={section.columns}
           />
         );
       })}

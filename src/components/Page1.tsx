@@ -4,6 +4,7 @@ import { Mail, Linkedin, Pin } from 'lucide-react';
 import { ProjectGallery, getDefaultLayout } from '@/components/ProjectGallery';
 import { GALLERY_LAYOUTS } from '@/data/galleryLayouts';
 import OptimizedImage from '@/components/OptimizedImage';
+import { useBreakpoint } from '@/hooks/use-breakpoint';
 import projectsData from '@/data/projects.json';
 
 interface BaseComponentProps {
@@ -729,9 +730,12 @@ Her passion lies in empowering businesses to articulate their unique value propo
 };
 
 // Footer with background and placeholder GIF
-const Footer = () => (
+const Footer = () => {
+  const breakpoint = useBreakpoint();
+  const isMobileFooter = breakpoint === 'phone';
+  return (
   <footer style={{
-    padding: `${SPACING.lg} 0`,
+    padding: `${isMobileFooter ? SPACING.md : SPACING.lg} 0`,
     backgroundColor: COLORS.charcoal,
     display: 'flex',
     flexDirection: 'column',
@@ -786,7 +790,8 @@ const Footer = () => (
       © 2024 Greta Mantooth
     </p>
   </footer>
-);
+  );
+};
 
 // Home Page
 export const HomePage = () => {
@@ -1207,8 +1212,8 @@ export const ProjectDetailPage = () => {
       {/* Project gallery grid */}
       <section style={{
         width: '100%',
-        paddingTop: SPACING.lg,
-        paddingBottom: SPACING.lg,
+        paddingTop: isMobile ? SPACING.md : SPACING.lg,
+        paddingBottom: isMobile ? SPACING.md : SPACING.lg,
       }}>
         <ProjectGallery
           sections={GALLERY_LAYOUTS[project.id] || getDefaultLayout(project.galleryImages)}

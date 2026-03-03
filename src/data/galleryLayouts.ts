@@ -16,133 +16,101 @@ import type { GallerySection } from '@/components/ProjectGallery';
  * which generates a simple 2-up grid from the legacy galleryImages array.
  */
 export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
-  // ─── Project 1: Brand Identity System — EcoThread Collective ────────────
+  // ─── Project 1: Indeed Brand Identity ───────────────────────────────────
   '1': [
-    // Full-width hero image
+    // 001–002: portrait pair (3:4)
+    {
+      size: 'md',
+      items: [
+        { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_001.png', alt: 'Indeed brand identity 1', span: 2, aspectRatio: '3 / 4' },
+        { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_002.png', alt: 'Indeed brand identity 2', span: 2, aspectRatio: '3 / 4' },
+      ],
+    },
+    // 003–004: portrait pair (3:4)
+    {
+      size: 'md',
+      items: [
+        { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_003.png', alt: 'Indeed brand identity 3', span: 2, aspectRatio: '3 / 4' },
+        { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_004.png', alt: 'Indeed brand identity 4', span: 2, aspectRatio: '3 / 4' },
+      ],
+    },
+    // 005–006: wide landscape pair (2:1) — side by side, stacks on mobile
+    {
+      size: 'md',
+      items: [
+        { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_005.png', alt: 'Indeed brand identity 5', span: 2, aspectRatio: '2 / 1' },
+        { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_006.png', alt: 'Indeed brand identity 6', span: 2, aspectRatio: '2 / 1' },
+      ],
+    },
+    // 007: landscape full-width (3:2)
+    {
+      size: 'md',
+      items: [
+        { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_007.png', alt: 'Indeed brand identity 7', span: 4, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 008 portrait left spanning 2 rows | 009 video + 010 landscape stacked on right
     {
       size: 'lg',
       items: [
-        { type: 'image', src: 'https://picsum.photos/id/10/1400/700', alt: 'Brand identity overview', span: 4 },
+        { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_008.png', alt: 'Indeed brand identity 8', span: 2, rowSpan: 2 },
+        { type: 'video', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_009.mp4', span: 2 },
+        { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_010.png', alt: 'Indeed brand identity 10', span: 2, aspectRatio: '2 / 1' },
       ],
     },
-    // Two half-width images side by side
+    // 011 left | text right
     {
       size: 'md',
       items: [
-        { type: 'image', src: 'https://picsum.photos/id/11/700/500', alt: 'Logo design', span: 2 },
-        { type: 'image', src: 'https://picsum.photos/id/12/700/500', alt: 'Color palette', span: 2 },
+        { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_011.png', alt: 'Indeed brand identity 11', span: 2, aspectRatio: '3 / 2' },
+        { type: 'text', span: 2, heading: 'A Living System', body: 'The new identity flexes across every touchpoint — from job postings to stadium signage — while staying unmistakably Indeed.' },
       ],
     },
-    // Text band break
-    {
-      type: 'text-band',
-      heading: 'The Approach',
-      body: 'We developed a comprehensive brand identity system rooted in sustainability and craft. Every element — from the wordmark to the color palette — was designed to communicate EcoThread\'s commitment to ethical fashion without sacrificing visual sophistication.',
-    },
-    // Color palette carousel
-    {
-      type: 'color-palette',
-      title: 'color palette',
-      colors: [
-        {
-          name: 'Black\nLicorice',
-          hex: '#2D2D2A',
-          pms: '2043 C',
-          cmyk: '0/22/0/0',
-          rgb: '247/212/229',
-          icon: undefined,
-        },
-        {
-          name: 'String\nCheese',
-          hex: '#f7d4e5',
-          pms: '716 C',
-          cmyk: '6/68/100/0',
-          rgb: '216/117/43',
-          icon: undefined,
-        },
-        {
-          name: 'Stickerbox\nRed',
-          hex: '#e4002b',
-          pms: '185 C',
-          cmyk: '0/100/96/0',
-          rgb: '228/0/43',
-          icon: undefined,
-        },
-        {
-          name: 'Double\nBubble',
-          hex: '#ea94bd',
-          pms: '1905 C',
-          cmyk: '0/56/0/0',
-          rgb: '234/148/189',
-          icon: undefined,
-        },
-        {
-          name: 'Pink\nMilk',
-          hex: '#f7d4e5',
-          pms: '2043 C',
-          cmyk: '0/22/0/0',
-          rgb: '247/212/229',
-          icon: undefined,
-        },
-        {
-          name: 'Punkin\nPie',
-          hex: '#d8752b',
-          pms: '716 C',
-          cmyk: '6/68/100/0',
-          rgb: '216/117/43',
-          icon: undefined,
-        },
-        {
-          name: 'Circus\nPeanut',
-          hex: '#efc8aa',
-          pms: '4030 C',
-          cmyk: '2/24/34/0',
-          rgb: '239/200/170',
-          icon: undefined,
-        },
-      ],
-    },
-    // Text cell + image side by side
-    {
-      size: 'md',
-      items: [
-        {
-          type: 'text',
-          heading: 'Typography',
-          body: 'A custom type pairing balances warmth and precision, reflecting the brand\'s handcrafted ethos.',
-          span: 2,
-        },
-        { type: 'image', src: 'https://picsum.photos/id/13/700/500', alt: 'Typography samples', span: 2 },
-      ],
-    },
-    // Four quarter-width images
-    {
-      size: 'sm',
-      items: [
-        { type: 'image', src: 'https://picsum.photos/id/14/350/300', alt: 'Icon set 1', span: 1 },
-        { type: 'image', src: 'https://picsum.photos/id/15/350/300', alt: 'Icon set 2', span: 1 },
-        { type: 'image', src: 'https://picsum.photos/id/16/350/300', alt: 'Icon set 3', span: 1 },
-        { type: 'image', src: 'https://picsum.photos/id/17/350/300', alt: 'Icon set 4', span: 1 },
-      ],
-    },
-    // Three-quarter image + quarter text
-    {
-      size: 'md',
-      items: [
-        { type: 'image', src: 'https://picsum.photos/id/18/1050/500', alt: 'Brand guidelines spread', span: 3 },
-        {
-          type: 'text',
-          heading: 'Guidelines',
-          body: 'A 48-page brand book ensures consistency across all touchpoints.',
-          span: 1,
-        },
-      ],
-    },
-    // Full-width closing image
+    // 012: full-width XL (3:2)
     {
       size: 'xl',
       items: [
-        { type: 'image', src: 'https://picsum.photos/id/19/1400/800', alt: 'Final brand application', span: 4 },
+        { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_012.png', alt: 'Indeed brand identity 12', span: 4, aspectRatio: '3 / 2' },
+      ],
+    },
+    // text left | 013 right-aligned ~2/3 width (3:2)
+    {
+      size: 'md',
+      items: [
+        { type: 'text', span: 1, heading: 'Type in Motion', body: 'Custom letterforms built for clarity at every scale.' },
+        { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_013.png', alt: 'Indeed brand identity 13', span: 3, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 014–015–016: three equal squares spanning full gallery width (3-col grid)
+    {
+      size: 'md',
+      columns: 3,
+      items: [
+        { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_014.png', alt: 'Indeed brand identity 14', span: 1, square: true },
+        { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_015.png', alt: 'Indeed brand identity 15', span: 1, square: true },
+        { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_016.png', alt: 'Indeed brand identity 16', span: 1, square: true },
+      ],
+    },
+    // 017: landscape full-width (3:2)
+    {
+      size: 'md',
+      items: [
+        { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_017.png', alt: 'Indeed brand identity 17', span: 4, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 019 left | text right
+    {
+      size: 'md',
+      items: [
+        { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_019.png', alt: 'Indeed brand identity 19', span: 2, aspectRatio: '3 / 2' },
+        { type: 'text', span: 2, heading: 'Brand in the Wild', body: 'From digital products to physical spaces, the system holds together everywhere people encounter Indeed.' },
+      ],
+    },
+    // 018: full-width XL (3:2)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_018.png', alt: 'Indeed brand identity 18', span: 4, aspectRatio: '3 / 2' },
       ],
     },
   ],
