@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { Mail, Linkedin, Pin } from 'lucide-react';
 import { ProjectGallery, getDefaultLayout } from '@/components/ProjectGallery';
@@ -273,39 +273,110 @@ const StickyCard = ({
 // Gallery image data - sourced from JSON for Cloudflare integration
 const galleryImages = projectsData.mediaGallery;
 
-const GALLERY_WIDTH = 2542;
+// Column layout for the carousel: squares stack in pairs, verticals/xl are full-height
+const CAROUSEL_COLUMNS: Array<{ type: 'stack' | 'vertical' | 'xl'; imageIndices: number[] }> = [
+  { type: 'stack', imageIndices: [0, 1] },       // 01 + 02
+  { type: 'vertical', imageIndices: [2] },        // 03
+  { type: 'stack', imageIndices: [3, 4] },        // 04 + 05
+  { type: 'vertical', imageIndices: [5] },        // 06
+  { type: 'stack', imageIndices: [6, 7] },        // 07 + 08
+  { type: 'stack', imageIndices: [8, 9] },        // 09 + 10
+  { type: 'xl', imageIndices: [10] },             // 11
+  { type: 'vertical', imageIndices: [11] },       // 12
+  { type: 'vertical', imageIndices: [12] },       // 13
+  { type: 'stack', imageIndices: [13, 14] },      // 14 + 15
+  { type: 'stack', imageIndices: [15, 16] },      // 16 + 17
+  { type: 'vertical', imageIndices: [17] },       // 18
+  { type: 'stack', imageIndices: [18, 19] },      // 19 + 20
+  { type: 'vertical', imageIndices: [20] },       // 21
+];
 
-// Media Gallery with infinite scroll and drag-to-navigate (no click functionality)
+// Width multipliers relative to carousel height: stack=0.5, vertical=0.75 (3:4), xl=1.5 (3:2)
+const COL_WIDTH_MULT: Record<string, number> = { stack: 0.5, vertical: 0.75, xl: 1.5 };
+
+// Media Gallery with bidirectional infinite scroll, drag-to-navigate, and touch support
+// Uses CSS transform instead of scrollLeft for seamless wrapping in both directions.
+// Three copies of the carousel are rendered; offset is kept in [0, 2*setWidth) so there
+// is always content visible on both sides of the viewport.
 const MediaGallery = () => {
+  const breakpoint = useBreakpoint();
+  const isMobile = breakpoint === 'phone';
   const containerRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
+  const firstSetRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
-  const scrollPosRef = useRef(0);
+  const offsetRef = useRef(0);
   const isPausedRef = useRef(false);
   const isDraggingRef = useRef(false);
   const startXRef = useRef(0);
-  const scrollLeftRef = useRef(0);
+  const dragStartOffsetRef = useRef(0);
+  const setWidthRef = useRef(0);
+  const pauseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const initializedRef = useRef(false);
+
+  // Apply transform to inner container
+  const applyTransform = useCallback(() => {
+    if (innerRef.current) {
+      innerRef.current.style.transform = `translateX(${-offsetRef.current}px)`;
+    }
+  }, []);
+
+  // Wrap offset to keep it in [0, 2*setWidth) — always has content on both sides
+  const wrapOffset = useCallback(() => {
+    const w = setWidthRef.current;
+    if (w <= 0) return;
+    while (offsetRef.current >= 2 * w) offsetRef.current -= w;
+    while (offsetRef.current < 0) offsetRef.current += w;
+  }, []);
+
+  // Measure the width of one full set of columns
+  const measureSetWidth = useCallback(() => {
+    if (firstSetRef.current) {
+      const oldW = setWidthRef.current;
+      setWidthRef.current = firstSetRef.current.offsetWidth;
+      if (!initializedRef.current && setWidthRef.current > 0) {
+        // Start viewing the middle copy
+        offsetRef.current = setWidthRef.current;
+        applyTransform();
+        initializedRef.current = true;
+      } else if (oldW > 0 && setWidthRef.current !== oldW) {
+        // On resize, maintain relative position
+        offsetRef.current = (offsetRef.current / oldW) * setWidthRef.current;
+        wrapOffset();
+        applyTransform();
+      }
+    }
+  }, [applyTransform, wrapOffset]);
+
+  useEffect(() => {
+    measureSetWidth();
+    window.addEventListener('resize', measureSetWidth);
+    return () => window.removeEventListener('resize', measureSetWidth);
+  }, [measureSetWidth]);
 
   // Continuous infinite scroll animation
   useEffect(() => {
     const animate = () => {
-      if (!isPausedRef.current && !isDraggingRef.current && containerRef.current) {
-        scrollPosRef.current += 0.5;
-        
-        // Reset seamlessly when we've scrolled one full set
-        if (scrollPosRef.current >= GALLERY_WIDTH) {
-          scrollPosRef.current = 0;
-        }
-        
-        containerRef.current.scrollLeft = scrollPosRef.current;
+      if (!isPausedRef.current && !isDraggingRef.current) {
+        offsetRef.current += 0.5;
+        wrapOffset();
+        applyTransform();
       }
       animationRef.current = requestAnimationFrame(animate);
     };
 
     animationRef.current = requestAnimationFrame(animate);
-    
     return () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
     };
+  }, [wrapOffset, applyTransform]);
+
+  // Helper to resume auto-scroll after a delay
+  const resumeAfterDelay = useCallback(() => {
+    if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
+    pauseTimerRef.current = setTimeout(() => {
+      isPausedRef.current = false;
+    }, 3000);
   }, []);
 
   // Mouse drag handlers
@@ -314,96 +385,132 @@ const MediaGallery = () => {
     e.stopPropagation();
     isDraggingRef.current = true;
     isPausedRef.current = true;
-    startXRef.current = e.pageX - (containerRef.current?.offsetLeft || 0);
-    scrollLeftRef.current = containerRef.current?.scrollLeft || 0;
-    if (containerRef.current) {
-      containerRef.current.style.cursor = 'grabbing';
-    }
+    startXRef.current = e.pageX;
+    dragStartOffsetRef.current = offsetRef.current;
+    if (containerRef.current) containerRef.current.style.cursor = 'grabbing';
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDraggingRef.current) return;
     e.preventDefault();
     e.stopPropagation();
-    const x = e.pageX - (containerRef.current?.offsetLeft || 0);
-    const walk = (x - startXRef.current) * 1.5;
-    if (containerRef.current) {
-      containerRef.current.scrollLeft = scrollLeftRef.current - walk;
-      scrollPosRef.current = containerRef.current.scrollLeft;
-    }
+    const walk = (e.pageX - startXRef.current) * 1.5;
+    offsetRef.current = dragStartOffsetRef.current - walk;
+    wrapOffset();
+    applyTransform();
   };
 
   const handleMouseUp = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     isDraggingRef.current = false;
-    if (containerRef.current) {
-      containerRef.current.style.cursor = 'grab';
-      scrollPosRef.current = containerRef.current.scrollLeft;
-    }
-    setTimeout(() => {
-      isPausedRef.current = false;
-    }, 3000);
+    if (containerRef.current) containerRef.current.style.cursor = 'grab';
+    resumeAfterDelay();
   };
 
   const handleMouseLeave = () => {
     if (isDraggingRef.current) {
       isDraggingRef.current = false;
-      if (containerRef.current) {
-        containerRef.current.style.cursor = 'grab';
-        scrollPosRef.current = containerRef.current.scrollLeft;
-      }
-      setTimeout(() => {
-        isPausedRef.current = false;
-      }, 3000);
+      if (containerRef.current) containerRef.current.style.cursor = 'grab';
+      resumeAfterDelay();
     }
   };
 
   const handleWheel = (e: React.WheelEvent) => {
     e.preventDefault();
     isPausedRef.current = true;
-    if (containerRef.current) {
-      scrollPosRef.current = containerRef.current.scrollLeft;
-    }
-    setTimeout(() => {
-      isPausedRef.current = false;
-    }, 3000);
+    offsetRef.current += e.deltaX || e.deltaY;
+    wrapOffset();
+    applyTransform();
+    resumeAfterDelay();
   };
 
-  // Render gallery images (duplicated for seamless loop) - no click handlers
-  const renderGalleryImages = (offset: number, keyPrefix: string) => {
-    return galleryImages.map((img, idx) => (
-      <div
-        key={`${keyPrefix}-${idx}`}
-        style={{
-          position: 'absolute',
-          left: `${img.left + offset}px`,
-          top: `${img.top}px`,
-          width: `${img.width}px`,
-          height: `${img.height}px`,
-          backgroundColor: COLORS.offWhite,
-          overflow: 'hidden',
-          pointerEvents: 'none'
-        }}
-      >
-        <OptimizedImage
-          src={img.image}
-          alt=""
-          cloudflareImageId={img.cloudflareImageId ?? undefined}
-          cloudflareR2Url={img.cloudflareR2Url ?? undefined}
-          width={img.width}
-          height={img.height}
-          loading="lazy"
+  // Touch handlers for mobile drag
+  const handleTouchStart = (e: React.TouchEvent) => {
+    isDraggingRef.current = true;
+    isPausedRef.current = true;
+    startXRef.current = e.touches[0].pageX;
+    dragStartOffsetRef.current = offsetRef.current;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDraggingRef.current) return;
+    const walk = (e.touches[0].pageX - startXRef.current) * 1.5;
+    offsetRef.current = dragStartOffsetRef.current - walk;
+    wrapOffset();
+    applyTransform();
+  };
+
+  const handleTouchEnd = () => {
+    isDraggingRef.current = false;
+    resumeAfterDelay();
+  };
+
+  // Height in vh units: 80vh desktop (down 20% from 100), 64vh phone (down 20% from 80)
+  const heightVh = isMobile ? 64 : 80;
+
+  // Per-image object-position overrides (index into galleryImages)
+  const imageObjectPosition: Record<number, string> = {
+    11: 'top', // Image 12 (Captain America kid) — keep Target logo in upper-right visible
+  };
+
+  // Render one set of carousel columns
+  const renderColumns = (keyPrefix: string) => {
+    return CAROUSEL_COLUMNS.map((col, colIdx) => {
+      const widthVh = COL_WIDTH_MULT[col.type] * heightVh;
+
+      return (
+        <div
+          key={`${keyPrefix}-col-${colIdx}`}
           style={{
-            width: '100%',
+            width: `${widthVh}vh`,
             height: '100%',
-            objectFit: 'cover',
-            userSelect: 'none',
-            pointerEvents: 'none',
+            flexShrink: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden',
           }}
-        />
-      </div>
-    ));
+        >
+          {col.imageIndices.map((imgIdx, itemIdx) => {
+            const img = galleryImages[imgIdx];
+            const isStack = col.type === 'stack';
+
+            return (
+              <div
+                key={`${keyPrefix}-img-${imgIdx}`}
+                style={{
+                  width: '100%',
+                  flex: isStack ? '1 1 0%' : '1 1 100%',
+                  minHeight: 0,
+                  overflow: 'hidden',
+                  pointerEvents: 'none',
+                }}
+              >
+                <OptimizedImage
+                  src={img.image}
+                  alt=""
+                  cloudflareImageId={img.cloudflareImageId ?? undefined}
+                  cloudflareR2Url={img.cloudflareR2Url ?? undefined}
+                  width={img.width}
+                  height={img.height}
+                  loading="lazy"
+                  objectPosition={imageObjectPosition[imgIdx]}
+                  style={{
+                    display: 'block',
+                    width: 'calc(100% + 2px)',
+                    height: 'calc(100% + 2px)',
+                    margin: '-1px',
+                    objectFit: 'cover',
+                    userSelect: 'none',
+                    pointerEvents: 'none',
+                  }}
+                />
+              </div>
+            );
+          })}
+        </div>
+      );
+    });
   };
 
   return (
@@ -414,28 +521,37 @@ const MediaGallery = () => {
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
       onDragStart={(e) => e.preventDefault()}
       style={{
         width: '100%',
-        height: '100vh',
-        overflowX: 'auto',
-        overflowY: 'hidden',
+        height: `${heightVh}vh`,
+        overflow: 'hidden',
         backgroundColor: COLORS.background,
-        scrollbarWidth: 'none',
         cursor: 'grab',
-        userSelect: 'none'
+        userSelect: 'none',
       }}
     >
-      <div style={{
-        display: 'flex',
-        height: '100%',
-        width: `${GALLERY_WIDTH * 2}px`,
-        position: 'relative'
-      }}>
-        {/* First set of images */}
-        {renderGalleryImages(0, 'set1')}
-        {/* Duplicate set for seamless loop */}
-        {renderGalleryImages(GALLERY_WIDTH, 'set2')}
+      <div
+        ref={innerRef}
+        style={{
+          display: 'flex',
+          height: '100%',
+          willChange: 'transform',
+        }}
+      >
+        {/* Three copies for seamless bidirectional looping */}
+        <div style={{ display: 'flex', height: '100%', flexShrink: 0 }}>
+          {renderColumns('set0')}
+        </div>
+        <div ref={firstSetRef} style={{ display: 'flex', height: '100%', flexShrink: 0 }}>
+          {renderColumns('set1')}
+        </div>
+        <div style={{ display: 'flex', height: '100%', flexShrink: 0 }}>
+          {renderColumns('set2')}
+        </div>
       </div>
     </div>
   );

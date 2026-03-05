@@ -5,7 +5,11 @@
       "title": "Brand Identity System",
       "description": "Complete visual identity for a sustainable fashion startup",
       "client": "EcoThread Collective",
-      "roles": ["Brand Strategy", "Visual Identity", "Guidelines"],
+      "roles": [
+        "Brand Strategy",
+        "Visual Identity",
+        "Guidelines"
+      ],
       "heroImage": "/Projects/Indeed Brand/Hero_Indeed.png",
       "galleryImages": [
         "https://picsum.photos/id/30/800/600",
@@ -14,16 +18,34 @@
         "https://picsum.photos/id/33/800/600"
       ],
       "cloudflareImageId": null,
-      "cloudflareGalleryIds": [],
+      "cloudflareGalleryIds": [
+        null,
+        null,
+        null,
+        null
+      ],
       "cloudflareR2Url": null,
-      "cloudflareGalleryR2Urls": []
+      "cloudflareGalleryR2Urls": [
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "2",
       "title": "STARTUP BRAND IDENTITY",
       "description": "A playful, punky brand identity for a bold new AI-driven toy",
       "client": "Stickerbox by Hapiko",
-      "roles": ["Design direction", "Brand identity", "Hands-on design", "Brand toolkit", "Photography style", "Color", "Typography"],
+      "roles": [
+        "Design direction",
+        "Brand identity",
+        "Hands-on design",
+        "Brand toolkit",
+        "Photography style",
+        "Color",
+        "Typography"
+      ],
       "heroImage": "/Projects/Stickerbox/Hero_Stickerbox_.png",
       "galleryImages": [
         "/Projects/Stickerbox/Gallery_Stickerbox_001.gif",
@@ -40,16 +62,46 @@
         "/Projects/Stickerbox/Gallery_Stickerbox_012.gif"
       ],
       "cloudflareImageId": null,
-      "cloudflareGalleryIds": [],
+      "cloudflareGalleryIds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
       "cloudflareR2Url": null,
-      "cloudflareGalleryR2Urls": []
+      "cloudflareGalleryR2Urls": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "3",
       "title": "Packaging Design",
       "description": "Product packaging for a botanical skincare line",
       "client": "Verdant Botanicals",
-      "roles": ["Packaging", "Print Design", "Brand Extension"],
+      "roles": [
+        "Packaging",
+        "Print Design",
+        "Brand Extension"
+      ],
       "heroImage": "https://picsum.photos/id/21/1400/800",
       "galleryImages": [
         "https://picsum.photos/id/38/800/600",
@@ -58,16 +110,30 @@
         "https://picsum.photos/id/41/800/600"
       ],
       "cloudflareImageId": null,
-      "cloudflareGalleryIds": [],
+      "cloudflareGalleryIds": [
+        null,
+        null,
+        null,
+        null
+      ],
       "cloudflareR2Url": null,
-      "cloudflareGalleryR2Urls": []
+      "cloudflareGalleryR2Urls": [
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "4",
       "title": "Editorial Design",
       "description": "Magazine layout and art direction for quarterly publication",
       "client": "Slow Living Magazine",
-      "roles": ["Editorial", "Typography", "Layout"],
+      "roles": [
+        "Editorial",
+        "Typography",
+        "Layout"
+      ],
       "heroImage": "https://picsum.photos/id/22/1400/800",
       "galleryImages": [
         "https://picsum.photos/id/42/800/600",
@@ -76,16 +142,30 @@
         "https://picsum.photos/id/45/800/600"
       ],
       "cloudflareImageId": null,
-      "cloudflareGalleryIds": [],
+      "cloudflareGalleryIds": [
+        null,
+        null,
+        null,
+        null
+      ],
       "cloudflareR2Url": null,
-      "cloudflareGalleryR2Urls": []
+      "cloudflareGalleryR2Urls": [
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "5",
       "title": "Environmental Graphics",
       "description": "Wayfinding and signage for boutique hotel",
       "client": "The Wanderer Hotel",
-      "roles": ["Signage", "Wayfinding", "Environmental"],
+      "roles": [
+        "Signage",
+        "Wayfinding",
+        "Environmental"
+      ],
       "heroImage": "https://picsum.photos/id/23/1400/800",
       "galleryImages": [
         "https://picsum.photos/id/46/800/600",
@@ -94,16 +174,30 @@
         "https://picsum.photos/id/49/800/600"
       ],
       "cloudflareImageId": null,
-      "cloudflareGalleryIds": [],
+      "cloudflareGalleryIds": [
+        null,
+        null,
+        null,
+        null
+      ],
       "cloudflareR2Url": null,
-      "cloudflareGalleryR2Urls": []
+      "cloudflareGalleryR2Urls": [
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "6",
       "title": "Campaign Design",
       "description": "Integrated marketing campaign for wellness brand",
       "client": "Breathe Wellness",
-      "roles": ["Campaign", "Digital", "Print"],
+      "roles": [
+        "Campaign",
+        "Digital",
+        "Print"
+      ],
       "heroImage": "https://picsum.photos/id/24/1400/800",
       "galleryImages": [
         "https://picsum.photos/id/50/800/600",
@@ -112,20 +206,190 @@
         "https://picsum.photos/id/53/800/600"
       ],
       "cloudflareImageId": null,
-      "cloudflareGalleryIds": [],
+      "cloudflareGalleryIds": [
+        null,
+        null,
+        null,
+        null
+      ],
       "cloudflareR2Url": null,
-      "cloudflareGalleryR2Urls": []
+      "cloudflareGalleryR2Urls": [
+        null,
+        null,
+        null,
+        null
+      ]
     }
   ],
   "mediaGallery": [
-    { "image": "https://picsum.photos/id/60/378/378", "width": 378, "height": 378, "top": 0, "left": 0, "cloudflareImageId": null, "cloudflareR2Url": null },
-    { "image": "https://picsum.photos/id/61/378/378", "width": 378, "height": 378, "top": 378, "left": 0, "cloudflareImageId": null, "cloudflareR2Url": null },
-    { "image": "https://picsum.photos/id/62/583/756", "width": 583, "height": 756, "top": 0, "left": 378, "cloudflareImageId": null, "cloudflareR2Url": null },
-    { "image": "https://picsum.photos/id/63/378/378", "width": 378, "height": 378, "top": 0, "left": 961, "cloudflareImageId": null, "cloudflareR2Url": null },
-    { "image": "https://picsum.photos/id/64/378/378", "width": 378, "height": 378, "top": 378, "left": 961, "cloudflareImageId": null, "cloudflareR2Url": null },
-    { "image": "https://picsum.photos/id/65/825/756", "width": 825, "height": 756, "top": 0, "left": 1339, "cloudflareImageId": null, "cloudflareR2Url": null },
-    { "image": "https://picsum.photos/id/66/378/378", "width": 378, "height": 378, "top": 0, "left": 2164, "cloudflareImageId": null, "cloudflareR2Url": null },
-    { "image": "https://picsum.photos/id/67/378/378", "width": 378, "height": 378, "top": 378, "left": 2164, "cloudflareImageId": null, "cloudflareR2Url": null }
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_01_Square.png",
+      "type": "square",
+      "width": 985,
+      "height": 986,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    },
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_02_Square.jpg",
+      "type": "square",
+      "width": 1080,
+      "height": 1080,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    },
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_03_Vertical.png",
+      "type": "vertical",
+      "width": 1078,
+      "height": 1526,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    },
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_04_Square.png",
+      "type": "square",
+      "width": 985,
+      "height": 985,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    },
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_05_Square.png",
+      "type": "square",
+      "width": 985,
+      "height": 984,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    },
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_06_Vertical.png",
+      "type": "vertical",
+      "width": 1200,
+      "height": 1600,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    },
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_07_Square.png",
+      "type": "square",
+      "width": 984,
+      "height": 984,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    },
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_08_Square.gif",
+      "type": "square",
+      "width": 1200,
+      "height": 1200,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    },
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_09_Square.png",
+      "type": "square",
+      "width": 1476,
+      "height": 1476,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    },
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_10_Square.png",
+      "type": "square",
+      "width": 1272,
+      "height": 1272,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    },
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_11_XL.png",
+      "type": "xl",
+      "width": 2400,
+      "height": 1600,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    },
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_12_Vertical.png",
+      "type": "vertical",
+      "width": 1186,
+      "height": 1786,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    },
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_13_Vertical.png",
+      "type": "vertical",
+      "width": 1200,
+      "height": 1600,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    },
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_14_Square.png",
+      "type": "square",
+      "width": 985,
+      "height": 985,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    },
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_15_Square.png",
+      "type": "square",
+      "width": 1844,
+      "height": 1844,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    },
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_16_Square.png",
+      "type": "square",
+      "width": 1808,
+      "height": 1780,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    },
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_17_Square.png",
+      "type": "square",
+      "width": 800,
+      "height": 800,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    },
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_18_Vertical.png",
+      "type": "vertical",
+      "width": 1100,
+      "height": 1474,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    },
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_19_Square.png",
+      "type": "square",
+      "width": 1390,
+      "height": 1388,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    },
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_20_Square.png",
+      "type": "square",
+      "width": 1200,
+      "height": 1200,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    },
+    {
+      "image": "/Projects/Homepage Carousel/Homepage_Carousel_21_Vertical.jpg",
+      "type": "vertical",
+      "width": 2500,
+      "height": 3750,
+      "cloudflareImageId": null,
+      "cloudflareR2Url": null
+    }
   ],
   "about": {
     "photo": "https://picsum.photos/id/64/600/500",
