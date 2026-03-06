@@ -301,6 +301,7 @@ const COL_WIDTH_MULT: Record<string, number> = { stack: 0.5, vertical: 0.75, xl:
 const MediaGallery = () => {
   const breakpoint = useBreakpoint();
   const isMobile = breakpoint === 'phone';
+  const isDesktop = breakpoint === 'desktop';
   const containerRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
   const firstSetRef = useRef<HTMLDivElement>(null);
@@ -376,7 +377,7 @@ const MediaGallery = () => {
     if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
     pauseTimerRef.current = setTimeout(() => {
       isPausedRef.current = false;
-    }, 3000);
+    }, 300);
   }, []);
 
   // Mouse drag handlers
@@ -414,15 +415,6 @@ const MediaGallery = () => {
       if (containerRef.current) containerRef.current.style.cursor = 'grab';
       resumeAfterDelay();
     }
-  };
-
-  const handleWheel = (e: React.WheelEvent) => {
-    e.preventDefault();
-    isPausedRef.current = true;
-    offsetRef.current += e.deltaX || e.deltaY;
-    wrapOffset();
-    applyTransform();
-    resumeAfterDelay();
   };
 
   // Touch handlers for mobile drag
@@ -513,24 +505,28 @@ const MediaGallery = () => {
     });
   };
 
+  // Desktop: click-and-drag only (no wheel/swipe)
+  // Tablet & mobile: touch swipe only (no mouse drag)
   return (
     <div
       ref={containerRef}
-      onWheel={handleWheel}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseLeave}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      onDragStart={(e) => e.preventDefault()}
+      {...(isDesktop ? {
+        onMouseDown: handleMouseDown,
+        onMouseMove: handleMouseMove,
+        onMouseUp: handleMouseUp,
+        onMouseLeave: handleMouseLeave,
+        onDragStart: (e: React.DragEvent) => e.preventDefault(),
+      } : {
+        onTouchStart: handleTouchStart,
+        onTouchMove: handleTouchMove,
+        onTouchEnd: handleTouchEnd,
+      })}
       style={{
         width: '100%',
         height: `${heightVh}vh`,
         overflow: 'hidden',
         backgroundColor: COLORS.background,
-        cursor: 'grab',
+        cursor: isDesktop ? 'grab' : 'default',
         userSelect: 'none',
       }}
     >
@@ -588,15 +584,15 @@ const ProjectCard = ({
       cursor: 'pointer',
       transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
       border: '1px solid rgba(30, 36, 22, 0.15)',
-      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05)'
+      boxShadow: '0 1px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02)'
     }}
     onMouseEnter={e => {
-      e.currentTarget.style.transform = 'translateY(-8px)';
-      e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08)';
+      e.currentTarget.style.transform = 'scale(1.02)';
+      e.currentTarget.style.boxShadow = '0 3px 8px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04)';
     }}
     onMouseLeave={e => {
-      e.currentTarget.style.transform = 'translateY(0)';
-      e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05)';
+      e.currentTarget.style.transform = 'scale(1)';
+      e.currentTarget.style.boxShadow = '0 1px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02)';
     }}
   >
     <div style={{
@@ -941,18 +937,27 @@ export const HomePage = () => {
         headline="A really stylish headline will go here"
         description="A bunch of really nice supporting text will go here. It will probably be several lines and that is neat. How about a third line for the children? Let's bring it on home with a fourth line, for good measure."
         backgroundColor={COLORS.card3}
-        extraScrollHeight={50}
+        extraScrollHeight={30}
       />
 
-      {/* Media Wall Section - Full bleed, scrolls up naturally from below */}
-      <section style={{
-        height: '100vh',
+      {/* Media Wall Section - Scroll-pinned below nav with 30vh extra scroll.
+          Outer wrapper is tall (viewport + 30vh dwell); inner sticky div pins the
+          carousel to the nav while the wrapper scrolls through, then releases. */}
+      <div style={{
+        height: 'calc(100vh - 70px + 30vh)',
         position: 'relative',
         zIndex: 100,
-        backgroundColor: COLORS.card3
       }}>
-        <MediaGallery />
-      </section>
+        <div style={{
+          position: 'sticky',
+          top: '70px',
+          height: 'calc(100vh - 70px)',
+          overflow: 'hidden',
+          backgroundColor: COLORS.card3,
+        }}>
+          <MediaGallery />
+        </div>
+      </div>
 
       {/* Bottom Content Section */}
       <section style={{
@@ -960,7 +965,6 @@ export const HomePage = () => {
         position: 'relative',
         zIndex: 100,
         backgroundColor: COLORS.background,
-        paddingTop: SPACING.lg
       }}>
         <FeaturedProjects />
         <AboutSection />
