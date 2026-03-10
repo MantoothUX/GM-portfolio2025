@@ -15,10 +15,10 @@ interface BaseComponentProps {
 
 // Brand color palette
 export const COLORS = {
-  background: '#EDD9D6', // Off-pink main background
+  background: '#DFC6C2', // Off-pink main background
   card1: '#3F3E32',
   card2: '#E0D623',
-  card3: '#EDD9D6',
+  card3: '#DFC6C2',
   charcoal: '#2D2D2A',
   warmGray: '#8B8980',
   deepBrown: '#4A3F35',
@@ -180,23 +180,27 @@ export const TopBar = () => {
 
 // Sticky Card Component
 interface CardProps extends BaseComponentProps {
-  title: string;
   headline: string;
   description: string;
   backgroundColor: string;
   index: number;
+  image: string;
   extraScrollHeight?: number; // additional vh to extend card for scroll dwell
+  mobileGap?: number; // override mobile gap between image and text
 }
 
 const StickyCard = ({
-  title,
   headline,
   description,
   backgroundColor,
   index,
-  extraScrollHeight = 0
+  image,
+  extraScrollHeight = 0,
+  mobileGap
 }: CardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
+  const breakpoint = useBreakpoint();
+  const isMobile = breakpoint === 'phone';
   const topOffset = 70 + index * 30; // 30px visible stripe per card (reduced from 60px)
 
   // Visible viewport portion — used for centering
@@ -211,57 +215,102 @@ const StickyCard = ({
       position: 'sticky',
       top: `${topOffset}px`,
       zIndex: 50 + index,
+      overflow: 'hidden',
       transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
     }}>
       {/* Inner div sized to the visible viewport portion so centering is always correct */}
       <div style={{
         height: visibleHeight,
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: '60px',
-        paddingBottom: '60px',
+        paddingTop: isMobile ? '40px' : '60px',
+        paddingBottom: isMobile ? '40px' : '60px',
         paddingLeft: 'clamp(24px, 5vw, 60px)',
         paddingRight: 'clamp(24px, 5vw, 60px)',
         boxSizing: 'border-box',
       }}>
         <div style={{
-          maxWidth: '888px',
+          maxWidth: '1100px',
           width: '100%',
           display: 'flex',
-          flexDirection: 'column',
-          gap: '48px'
+          flexDirection: isMobile ? 'column' : 'row',
+          alignItems: isMobile ? 'center' : 'center',
+          gap: isMobile ? `${mobileGap ?? 24}px` : '48px',
         }}>
+          {/* Image — on mobile, rendered first (above text), large and centered */}
+          {isMobile && (
+            <div style={{
+              width: '100%',
+              alignSelf: 'center',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+              <img
+                src={image}
+                alt=""
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  objectFit: 'contain',
+                }}
+              />
+            </div>
+          )}
+          {/* Text column */}
           <div style={{
+            flex: isMobile ? 'none' : '1 1 0%',
+            width: isMobile ? '100%' : undefined,
+            alignSelf: isMobile ? 'flex-start' : undefined,
+            minWidth: 0,
             display: 'flex',
             flexDirection: 'column',
-            gap: '24px'
+            gap: isMobile ? '8px' : '20px',
           }}>
             <h2 style={{
               margin: 0,
               color: isDarkBackground(backgroundColor) ? COLORS.offWhite : COLORS.charcoal,
-              fontSize: 'clamp(26px, 4vw, 48px)',
-              fontFamily: '"Vulf Mono", monospace',
-              fontStyle: 'italic',
-              fontWeight: 300,
-              lineHeight: '1.2',
-              textTransform: 'lowercase'
+              fontSize: isMobile ? 'clamp(24px, 7.5vw, 34px)' : 'clamp(32px, 3.5vw, 52px)',
+              fontFamily: '"Compadre Extended", sans-serif',
+              fontWeight: 700,
+              lineHeight: '1.05',
+              textTransform: 'uppercase',
             }}>
               {headline}
             </h2>
             <p style={{
               margin: 0,
-              maxWidth: '727px',
               color: isDarkBackground(backgroundColor) ? COLORS.offWhite : COLORS.deepBrown,
-              fontSize: 'clamp(16px, 1.7vw, 20px)',
+              fontSize: isMobile ? '15.5px' : 'clamp(15px, 1.4vw, 18px)',
               fontFamily: '"Vulf Mono", monospace',
               fontWeight: 300,
-              lineHeight: '1.6'
+              lineHeight: '1.6',
             }}>
               {description}
             </p>
           </div>
+          {/* Image — on desktop, rendered after text (right side) */}
+          {!isMobile && (
+            <div style={{
+              flex: '0 0 auto',
+              width: '38%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+              <img
+                src={image}
+                alt=""
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  objectFit: 'contain',
+                }}
+              />
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -811,11 +860,11 @@ const AboutSection = () => {
             color: COLORS.deepBrown,
             whiteSpace: 'pre-line'
           }}>
-            {`As a graphic designer, Greta Mantooth merges creativity with strategic thinking to craft compelling visual identities. She specializes in helping tech startups stand out in crowded markets.
+            {`Greta Mantooth is a brand-obsessed design director available for select freelance projects. She's led agency and in-house teams on award-winning work for brands big and small — think fancy booze branding, punny holiday ads, and fresh design systems.
 
-Greta's design philosophy centers on clear communication and emotional connection. She believes that effective design should not only look good but also tell a story that resonates with the target audience.
+Greta can conjure brand identities from scratch or bring new life to tired systems, working independently or pulling in trusted partners as needed. She likes to work smart, choose joy, and surround herself with good humans.
 
-Her passion lies in empowering businesses to articulate their unique value proposition through impactful branding.`}
+She lives in the Texas hill country with her family and two very sweet and annoying rescue dogs. Together, they like to make things, especially breakfast tacos.`}
           </p>
         </div>
       </div>
@@ -919,25 +968,26 @@ export const HomePage = () => {
     <main style={{ width: '100%' }}>
       <StickyCard
         index={0}
-        title="Vision"
-        headline="A really stylish headline will go here"
-        description="A bunch of really nice supporting text will go here. It will probably be several lines and that is neat. How about a third line for the children? Let's bring it on home with a fourth line, for good measure."
+        headline="Visual Storyteller"
+        description="Narrative design direction bringing distinctive brand stories to life"
         backgroundColor={COLORS.card1}
+        image="/Projects/Homepage Cards/HomepageCard_01.png"
       />
       <StickyCard
         index={1}
-        title="Craft"
-        headline="A really stylish headline will go here"
-        description="A bunch of really nice supporting text will go here. It will probably be several lines and that is neat. How about a third line for the children? Let's bring it on home with a fourth line, for good measure."
+        headline="Creator & Curator"
+        description="Crafting and uncovering the visual details that build iconic brands"
         backgroundColor={COLORS.card2}
+        image="/Projects/Homepage Cards/HomepageCard_02.png"
       />
       <StickyCard
         index={2}
-        title="Elevate"
-        headline="A really stylish headline will go here"
-        description="A bunch of really nice supporting text will go here. It will probably be several lines and that is neat. How about a third line for the children? Let's bring it on home with a fourth line, for good measure."
+        headline="Maker & Mentor"
+        description="Hands-on design and high-touch design leadership for teams"
         backgroundColor={COLORS.card3}
+        image="/Projects/Homepage Cards/HomepageCard_03.png"
         extraScrollHeight={30}
+        mobileGap={12}
       />
 
       {/* Media Wall Section - Scroll-pinned below nav with 30vh extra scroll.
