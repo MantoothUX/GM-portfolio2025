@@ -827,23 +827,19 @@ const AboutSection = () => {
         <div style={{
           flex: '1',
           minWidth: '300px',
-          height: '500px',
-          backgroundColor: COLORS.offWhite,
           overflow: 'hidden',
-          position: 'relative'
         }}>
           <OptimizedImage
             src={projectsData.about.photo}
             alt="Greta Mantooth"
             cloudflareImageId={projectsData.about.cloudflareImageId ?? undefined}
             cloudflareR2Url={projectsData.about.cloudflareR2Url ?? undefined}
-            width={600}
-            height={500}
+            width={1200}
+            height={1657}
             loading="eager"
             style={{
               width: '100%',
-              height: '100%',
-              objectFit: 'cover',
+              height: 'auto',
             }}
           />
         </div>
@@ -860,11 +856,9 @@ const AboutSection = () => {
             color: COLORS.deepBrown,
             whiteSpace: 'pre-line'
           }}>
-            {`Greta Mantooth is a brand-obsessed design director available for select freelance projects. She's led agency and in-house teams on award-winning work for brands big and small — think fancy booze branding, punny holiday ads, and fresh design systems.
+            {`Greta Mantooth is a brand-obsessed design director with agency roots and in-house expertise. She's led teams on award-winning work for brands big and small — think fancy booze branding, punny holiday campaigns, and fresh design systems. She likes to work smart, choose joy, and surround herself with good humans.
 
-Greta can conjure brand identities from scratch or bring new life to tired systems, working independently or pulling in trusted partners as needed. She likes to work smart, choose joy, and surround herself with good humans.
-
-She lives in the Texas hill country with her family and two very sweet and annoying rescue dogs. Together, they like to make things, especially breakfast tacos.`}
+Greta lives in the Texas hill country with her family and two very sweet and annoying rescue dogs. Together, they like to make things, especially breakfast tacos.`}
           </p>
         </div>
       </div>
