@@ -509,7 +509,7 @@
     "cloudflareR2Url": null
   },
   "footer": {
-    "gifImage": null,
+    "gifImage": "/Projects/Footer_Stars.gif",
     "gifCloudflareR2Url": null
   }
 }

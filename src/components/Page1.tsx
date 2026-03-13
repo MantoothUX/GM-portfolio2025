@@ -5,6 +5,7 @@ import { ProjectGallery, getDefaultLayout } from '@/components/ProjectGallery';
 import { GALLERY_LAYOUTS } from '@/data/galleryLayouts';
 import OptimizedImage from '@/components/OptimizedImage';
 import { useBreakpoint } from '@/hooks/use-breakpoint';
+import FooterStars from '@/components/FooterStars';
 import projectsData from '@/data/projects.json';
 
 interface BaseComponentProps {
@@ -803,7 +804,7 @@ const AboutSection = () => {
 
   return (
     <section style={{
-      maxWidth: '1190px',
+      maxWidth: '1020px',
       width: '100%',
       margin: '100px auto',
       padding: '0 32px'
@@ -846,15 +847,15 @@ const AboutSection = () => {
           />
         </div>
         <div style={{
-          flex: '1',
+          flex: '1.3',
           minWidth: '300px'
         }}>
           <p style={{
             margin: 0,
-            fontSize: 'clamp(16px, 1.7vw, 20px)',
+            fontSize: 'clamp(15px, 1.6vw, 19px)',
             fontFamily: '"Vulf Mono", monospace',
             fontWeight: 300,
-            lineHeight: '1.7',
+            lineHeight: '1.62',
             color: COLORS.deepBrown,
             whiteSpace: 'pre-line'
           }}>
@@ -869,18 +870,18 @@ Greta lives in the Texas hill country with her family and two very sweet and ann
         gap: '20px',
         flexWrap: 'wrap'
       }}>
-        <button style={socialButtonStyle} onMouseEnter={e => e.currentTarget.style.backgroundColor = COLORS.warmGray} onMouseLeave={e => e.currentTarget.style.backgroundColor = COLORS.charcoal}>
+        <a href="mailto:greta.mantooth@gmail.com" style={{...socialButtonStyle, textDecoration: 'none'}} onMouseEnter={e => e.currentTarget.style.backgroundColor = COLORS.warmGray} onMouseLeave={e => e.currentTarget.style.backgroundColor = COLORS.charcoal}>
           <Mail size={18} />
           Mail
-        </button>
-        <button style={socialButtonStyle} onMouseEnter={e => e.currentTarget.style.backgroundColor = COLORS.warmGray} onMouseLeave={e => e.currentTarget.style.backgroundColor = COLORS.charcoal}>
+        </a>
+        <a href="https://www.linkedin.com/in/gretamantooth/" target="_blank" rel="noopener noreferrer" style={{...socialButtonStyle, textDecoration: 'none'}} onMouseEnter={e => e.currentTarget.style.backgroundColor = COLORS.warmGray} onMouseLeave={e => e.currentTarget.style.backgroundColor = COLORS.charcoal}>
           <Linkedin size={18} />
           LinkedIn
-        </button>
-        <button style={socialButtonStyle} onMouseEnter={e => e.currentTarget.style.backgroundColor = COLORS.warmGray} onMouseLeave={e => e.currentTarget.style.backgroundColor = COLORS.charcoal}>
+        </a>
+        <a href="https://www.pinterest.com/theladytooth/" target="_blank" rel="noopener noreferrer" style={{...socialButtonStyle, textDecoration: 'none'}} onMouseEnter={e => e.currentTarget.style.backgroundColor = COLORS.warmGray} onMouseLeave={e => e.currentTarget.style.backgroundColor = COLORS.charcoal}>
           <Pin size={18} />
           Pinterest
-        </button>
+        </a>
       </div>
     </section>
   );
@@ -892,59 +893,28 @@ const Footer = () => {
   const isMobileFooter = breakpoint === 'phone';
   return (
   <footer style={{
-    padding: `${isMobileFooter ? SPACING.md : SPACING.lg} 0`,
+    paddingTop: isMobileFooter ? '24px' : '40px',
+    paddingBottom: isMobileFooter ? '24px' : '40px',
     backgroundColor: COLORS.charcoal,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: SPACING.sm
+    gap: '0px'
   }}>
-    {/* Animated GIF - served from R2 when available */}
-    {(projectsData.footer.gifCloudflareR2Url || projectsData.footer.gifImage) ? (
-      <div style={{
-        width: '120px',
-        height: '120px',
-        overflow: 'hidden',
-        borderRadius: '8px',
-      }}>
-        <OptimizedImage
-          src={projectsData.footer.gifImage || ''}
-          alt="Greta Mantooth animated logo"
-          cloudflareR2Url={projectsData.footer.gifCloudflareR2Url ?? undefined}
-          width={120}
-          height={120}
-          loading="eager"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        />
-      </div>
-    ) : (
-      <div style={{
-        width: '120px',
-        height: '120px',
-        backgroundColor: COLORS.white,
-        borderRadius: '8px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontFamily: '"Vulf Mono", monospace',
-        fontSize: '10px',
-        color: COLORS.charcoal,
-        textAlign: 'center',
-        padding: '8px'
-      }}>
-        [animated gif placeholder]
-      </div>
-    )}
+    <div style={{ transform: 'scale(0.95)' }}>
+      <FooterStars />
+    </div>
     <p style={{
       margin: 0,
       color: COLORS.white,
       fontFamily: '"Vulf Mono", monospace',
       fontWeight: 300,
-      fontSize: '12px',
-      letterSpacing: '0.5px'
+      fontSize: isMobileFooter ? '10px' : '12px',
+      letterSpacing: '0.5px',
+      textAlign: 'center',
     }}>
-      © 2024 Greta Mantooth
+      &copy; 2026 Greta Mantooth and respective brands
     </p>
   </footer>
   );
@@ -1244,11 +1214,11 @@ export const ProjectDetailPage = () => {
             {/* Headline/Description */}
             <p style={{
               margin: 0,
-              fontSize: 'clamp(14px, 1.5vw, 18px)',
+              fontSize: 'clamp(13px, 1.4vw, 17px)',
               fontFamily: '"Vulf Mono", monospace',
               fontStyle: 'italic',
               fontWeight: 300,
-              lineHeight: '1.6',
+              lineHeight: '1.52',
               color: COLORS.deepBrown
             }}>
               {project.description}
@@ -1258,10 +1228,10 @@ export const ProjectDetailPage = () => {
             {project.bodyCopy && project.bodyCopy.split('\n').map((para, idx) => (
               <p key={idx} style={{
                 margin: 0,
-                fontSize: 'clamp(14px, 1.3vw, 16px)',
+                fontSize: 'clamp(13px, 1.2vw, 15px)',
                 fontFamily: '"Vulf Mono", monospace',
                 fontWeight: 300,
-                lineHeight: '1.7',
+                lineHeight: '1.62',
                 color: COLORS.deepBrown
               }}>
                 {para}
@@ -1354,11 +1324,11 @@ export const ProjectDetailPage = () => {
               <div>
                 <p style={{
                   margin: 0,
-                  fontSize: 'clamp(16px, 1.8vw, 22px)',
+                  fontSize: 'clamp(15px, 1.7vw, 21px)',
                   fontFamily: '"Vulf Mono", monospace',
                   fontStyle: 'italic',
                   fontWeight: 300,
-                  lineHeight: '1.6',
+                  lineHeight: '1.52',
                   color: COLORS.deepBrown
                 }}>
                   {project.description}
@@ -1366,10 +1336,10 @@ export const ProjectDetailPage = () => {
                 {project.bodyCopy && project.bodyCopy.split('\n').map((para, idx) => (
                   <p key={idx} style={{
                     marginTop: idx === 0 ? SPACING.md : SPACING.sm,
-                    fontSize: 'clamp(14px, 1.5vw, 18px)',
+                    fontSize: 'clamp(13px, 1.4vw, 17px)',
                     fontFamily: '"Vulf Mono", monospace',
                     fontWeight: 300,
-                    lineHeight: '1.7',
+                    lineHeight: '1.62',
                     color: COLORS.deepBrown
                   }}>
                     {para}
