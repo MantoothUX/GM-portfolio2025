@@ -159,7 +159,7 @@ export const TopBar = () => {
           transition: 'color 0.2s ease',
           textTransform: 'lowercase'
         }} onMouseEnter={e => e.currentTarget.style.color = COLORS.warmGray} onMouseLeave={e => e.currentTarget.style.color = COLORS.charcoal}>
-          portfolio
+          projects
         </button>
         <button onClick={handleAboutClick} style={{
           background: 'none',
@@ -630,7 +630,7 @@ const ProjectCard = ({
       minWidth: '300px',
       display: 'flex',
       flexDirection: 'column',
-      backgroundColor: COLORS.offWhite,
+      backgroundColor: '#f2efe9',
       overflow: 'hidden',
       borderRadius: '10px',
       cursor: 'pointer',
@@ -1014,17 +1014,17 @@ export const ProjectsPage = () => {
         margin: '0 auto',
         padding: `${SPACING.lg} 32px`
       }}>
-        <h1 style={{
-          fontSize: 'clamp(32px, 5vw, 64px)',
+        <h2 style={{
+          fontSize: 'clamp(22px, 3vw, 36px)',
           fontFamily: '"Vulf Mono", monospace',
           fontStyle: 'italic',
           fontWeight: 300,
-          marginBottom: '64px',
+          marginBottom: '48px',
           color: COLORS.charcoal,
           textTransform: 'lowercase'
         }}>
           All Projects
-        </h1>
+        </h2>
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
@@ -1102,7 +1102,7 @@ export const ProjectDetailPage = () => {
     <main style={{
       width: '100%',
       minHeight: '100vh',
-      backgroundColor: COLORS.background
+      backgroundColor: '#f2efe9'
     }}>
       {/* Full bleed hero */}
       <section style={{
@@ -1200,7 +1200,7 @@ export const ProjectDetailPage = () => {
                     fontFamily: '"Compadre Narrow", sans-serif',
                     fontWeight: 400,
                     color: COLORS.charcoal,
-                    backgroundColor: COLORS.white,
+                    backgroundColor: '#eae4da',
                     padding: '4px 12px',
                     borderRadius: '2px',
                     textTransform: 'uppercase'
@@ -1308,7 +1308,7 @@ export const ProjectDetailPage = () => {
                         fontFamily: '"Compadre Narrow", sans-serif',
                         fontWeight: 400,
                         color: COLORS.charcoal,
-                        backgroundColor: COLORS.white,
+                        backgroundColor: '#eae4da',
                         padding: '4px 12px',
                         borderRadius: '2px',
                         textTransform: 'uppercase'
