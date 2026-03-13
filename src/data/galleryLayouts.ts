@@ -63,7 +63,7 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
       size: 'md',
       items: [
         { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_011.png', alt: 'Indeed brand identity 11', span: 2, aspectRatio: '3 / 2' },
-        { type: 'text', span: 2, heading: 'A Living System', body: 'The new identity flexes across every touchpoint — from job postings to stadium signage — while staying unmistakably Indeed.' },
+        { type: 'text', span: 2, heading: 'Guardrails, with room to grow', body: 'Indeed\u2019s brand identity had to get more disciplined while allowing flex for new concepts and brand extensions. A strict but broad color palette and signature typeface (crafted by Dalton Maag) helped create ownability within an expansive, ever-changing system.' },
       ],
     },
     // 012: full-width XL (3:2)
@@ -77,7 +77,7 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
     {
       size: 'md',
       items: [
-        { type: 'text', span: 1, heading: 'Type in Motion', body: 'Custom letterforms built for clarity at every scale.' },
+        { type: 'text', span: 1, heading: 'Cinematic Humanism', body: 'One of the biggest challenges facing Indeed was how to express humanity as an HR tech brand, easily perceived as cold and corporate. Greta honed a signature approach to photography leaning into real, authentic human stories, a lightly art directed documentary style aimed at keeping it real and approachable, capturing real job seekers and employers (and their real stories) whenever possible.' },
         { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_013.png', alt: 'Indeed brand identity 13', span: 3, aspectRatio: '3 / 2' },
       ],
     },
@@ -103,7 +103,7 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
       size: 'md',
       items: [
         { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_019.png', alt: 'Indeed brand identity 19', span: 2, aspectRatio: '3 / 2' },
-        { type: 'text', span: 2, heading: 'Brand in the Wild', body: 'From digital products to physical spaces, the system holds together everywhere people encounter Indeed.' },
+        { type: 'text', span: 2, heading: 'Fan favorites', body: 'Global sport partnerships, such as Indeed\u2019s sponsorship of Eintracht Frankfurt and the Ireland Olympic team, were opportunities for the brand to play nice on the field while letting teams retain their own identities. Greta pushed her design team (and multinational marketing partners) to stretch the edges of Indeed\u2019s brand while making sure Indeed got credit wherever they showed up.' },
       ],
     },
     // 018: full-width XL (3:2)
@@ -187,120 +187,519 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
     },
   ],
 
-  // ─── Project 3: Packaging Design — Verdant Botanicals ──────────────────
+  // ─── Project 3: FutureWorks Brand Identity ──────────────────────────────
   '3': [
+    // 00: video full-width (16:9)
+    {
+      size: '2xl',
+      items: [
+        { type: 'video', src: '/Projects/FutureWorks/Gallery_FW_00.mp4', span: 4 },
+      ],
+    },
+    // 01+02: square pair
     {
       size: 'md',
       items: [
-        { type: 'image', src: 'https://picsum.photos/id/38/800/600', alt: 'Gallery image 1', span: 2 },
-        { type: 'image', src: 'https://picsum.photos/id/39/800/600', alt: 'Gallery image 2', span: 2 },
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_01.png', alt: 'FutureWorks brand identity 1', span: 2, square: true },
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_02.png', alt: 'FutureWorks brand identity 2', span: 2, square: true },
       ],
     },
-    {
-      type: 'color-palette',
-      title: 'color palette',
-      colors: [
-        { name: 'Forest\nFloor', hex: '#2D4A22', pms: '364 C', cmyk: '72/24/100/11', rgb: '45/74/34' },
-        { name: 'Petal\nBlush', hex: '#F2D7D5', pms: '503 C', cmyk: '2/16/9/0', rgb: '242/215/213' },
-        { name: 'Ivory', hex: '#FFFEF2', pms: '7499 C', cmyk: '1/0/6/0', rgb: '255/254/242' },
-        { name: 'Terracotta', hex: '#C4704B', pms: '7522 C', cmyk: '14/62/72/2', rgb: '196/112/75' },
-        { name: 'Deep\nMoss', hex: '#5A7247', pms: '5753 C', cmyk: '55/23/69/5', rgb: '90/114/71' },
-        { name: 'Warm\nSand', hex: '#D4C5A9', pms: '4525 C', cmyk: '12/15/32/0', rgb: '212/197/169' },
-      ],
-    },
+    // 03+04: square pair
     {
       size: 'md',
       items: [
-        { type: 'image', src: 'https://picsum.photos/id/40/800/600', alt: 'Gallery image 3', span: 2 },
-        { type: 'image', src: 'https://picsum.photos/id/41/800/600', alt: 'Gallery image 4', span: 2 },
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_03.png', alt: 'FutureWorks brand identity 3', span: 2, square: true },
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_04.png', alt: 'FutureWorks brand identity 4', span: 2, square: true },
+      ],
+    },
+    // 05+06: square pair
+    {
+      size: 'md',
+      items: [
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_05.png', alt: 'FutureWorks brand identity 5', span: 2, square: true },
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_06.png', alt: 'FutureWorks brand identity 6', span: 2, square: true },
+      ],
+    },
+    // 07: super-wide landscape (3:1)
+    {
+      size: '2xl',
+      items: [
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_07.png', alt: 'FutureWorks brand identity 7', span: 4, aspectRatio: '3 / 1' },
+      ],
+    },
+    // 08: landscape full-width (3:2)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_08.png', alt: 'FutureWorks brand identity 8', span: 4, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 09+10: square pair
+    {
+      size: 'md',
+      items: [
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_09.png', alt: 'FutureWorks brand identity 9', span: 2, square: true },
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_10.png', alt: 'FutureWorks brand identity 10', span: 2, square: true },
+      ],
+    },
+    // 11+12: landscape pair (3:2)
+    {
+      size: 'lg',
+      items: [
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_11.png', alt: 'FutureWorks brand identity 11', span: 2, aspectRatio: '3 / 2' },
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_12.png', alt: 'FutureWorks brand identity 12', span: 2, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 13+14+15: square triptych (3-col)
+    {
+      size: 'md',
+      columns: 3,
+      items: [
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_13.png', alt: 'FutureWorks brand identity 13', span: 1, square: true },
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_14.png', alt: 'FutureWorks brand identity 14', span: 1, square: true },
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_15.png', alt: 'FutureWorks brand identity 15', span: 1, square: true },
+      ],
+    },
+    // 16+17: landscape pair (3:2)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_16.png', alt: 'FutureWorks brand identity 16', span: 2, aspectRatio: '3 / 2' },
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_17.png', alt: 'FutureWorks brand identity 17', span: 2, aspectRatio: '3 / 2' },
       ],
     },
   ],
 
-  // ─── Project 4: Editorial Design — Slow Living Magazine ────────────────
+  // ─── Project 4: Gather Round — A Target Holiday ───────────────────────
   '4': [
+    // 01: video full-width
+    {
+      size: 'xl',
+      items: [
+        { type: 'video', src: '/Projects/Target Holiday/Gallery_TgtHoliday_01.mp4', span: 4 },
+      ],
+    },
+    // 02: video full-width
+    {
+      size: 'xl',
+      items: [
+        { type: 'video', src: '/Projects/Target Holiday/Gallery_TgtHoliday_02.mp4', span: 4 },
+      ],
+    },
+    // 03+04: horizontal pair (30:17)
     {
       size: 'md',
       items: [
-        { type: 'image', src: 'https://picsum.photos/id/42/800/600', alt: 'Gallery image 1', span: 2 },
-        { type: 'image', src: 'https://picsum.photos/id/43/800/600', alt: 'Gallery image 2', span: 2 },
+        { type: 'image', src: '/Projects/Target Holiday/Gallery_TgtHoliday_03_Horz.png', alt: 'Target Holiday 3', span: 2, aspectRatio: '30 / 17' },
+        { type: 'image', src: '/Projects/Target Holiday/Gallery_TgtHoliday_04_Horz.png', alt: 'Target Holiday 4', span: 2, aspectRatio: '30 / 17' },
       ],
     },
-    {
-      type: 'color-palette',
-      title: 'color palette',
-      colors: [
-        { name: 'Ink', hex: '#1A1A2E', pms: '2768 C', cmyk: '86/78/36/32', rgb: '26/26/46' },
-        { name: 'Linen', hex: '#F0EBE3', pms: '7534 C', cmyk: '4/5/9/0', rgb: '240/235/227' },
-        { name: 'Dusty\nRose', hex: '#C9A9A6', pms: '5015 C', cmyk: '15/30/21/0', rgb: '201/169/166' },
-        { name: 'Slate\nBlue', hex: '#6B7A8D', pms: '5425 C', cmyk: '48/30/22/2', rgb: '107/122/141' },
-        { name: 'Gold\nLeaf', hex: '#C9A96E', pms: '4515 C', cmyk: '15/24/60/0', rgb: '201/169/110' },
-      ],
-    },
+    // 05+06: horizontal pair
     {
       size: 'md',
       items: [
-        { type: 'image', src: 'https://picsum.photos/id/44/800/600', alt: 'Gallery image 3', span: 2 },
-        { type: 'image', src: 'https://picsum.photos/id/45/800/600', alt: 'Gallery image 4', span: 2 },
+        { type: 'image', src: '/Projects/Target Holiday/Gallery_TgtHoliday_05_Horz.png', alt: 'Target Holiday 5', span: 2, aspectRatio: '30 / 17' },
+        { type: 'image', src: '/Projects/Target Holiday/Gallery_TgtHoliday_06_Horz.png', alt: 'Target Holiday 6', span: 2, aspectRatio: '30 / 17' },
+      ],
+    },
+    // 07+08: horizontal pair
+    {
+      size: 'lg',
+      items: [
+        { type: 'image', src: '/Projects/Target Holiday/Gallery_TgtHoliday_07_Horz.png', alt: 'Target Holiday 7', span: 2, aspectRatio: '30 / 17' },
+        { type: 'image', src: '/Projects/Target Holiday/Gallery_TgtHoliday_08_Horz.png', alt: 'Target Holiday 8', span: 2, aspectRatio: '30 / 17' },
+      ],
+    },
+    // 09+10: horizontal pair
+    {
+      size: 'md',
+      items: [
+        { type: 'image', src: '/Projects/Target Holiday/Gallery_TgtHoliday_09_Horz.png', alt: 'Target Holiday 9', span: 2, aspectRatio: '30 / 17' },
+        { type: 'image', src: '/Projects/Target Holiday/Gallery_TgtHoliday_10_Horz.png', alt: 'Target Holiday 10', span: 2, aspectRatio: '30 / 17' },
+      ],
+    },
+    // 11: full-width XL (3:2)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/Target Holiday/Gallery_TgtHoliday_11_XL.png', alt: 'Target Holiday 11', span: 4, aspectRatio: '3 / 2' },
       ],
     },
   ],
 
-  // ─── Project 5: Environmental Graphics — The Wanderer Hotel ────────────
+  // ─── Project 5: Indeed Brand Photography ──────────────────────────────
   '5': [
+    // 01: XL full-width (3:2)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_01_XL.png', alt: 'Indeed Brand Photography 1', span: 4, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 02: XL full-width (3:2)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_02_XL.png', alt: 'Indeed Brand Photography 2', span: 4, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 03+04: portrait pair (3:4)
     {
       size: 'md',
       items: [
-        { type: 'image', src: 'https://picsum.photos/id/46/800/600', alt: 'Gallery image 1', span: 2 },
-        { type: 'image', src: 'https://picsum.photos/id/47/800/600', alt: 'Gallery image 2', span: 2 },
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_03_Vertical.png', alt: 'Indeed Brand Photography 3', span: 2, aspectRatio: '3 / 4' },
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_04_Vertical.png', alt: 'Indeed Brand Photography 4', span: 2, aspectRatio: '3 / 4' },
       ],
     },
+    // 05: XL full-width (3:2)
     {
-      type: 'color-palette',
-      title: 'color palette',
-      colors: [
-        { name: 'Midnight', hex: '#0D1B2A', pms: '296 C', cmyk: '100/75/34/40', rgb: '13/27/42' },
-        { name: 'Brass', hex: '#B5936B', pms: '4515 C', cmyk: '18/34/56/2', rgb: '181/147/107' },
-        { name: 'Marble', hex: '#F2F2F2', pms: '663 C', cmyk: '3/2/2/0', rgb: '242/242/242' },
-        { name: 'Rust', hex: '#A44A3F', pms: '7609 C', cmyk: '18/76/72/6', rgb: '164/74/63' },
-        { name: 'Olive', hex: '#606C38', pms: '5753 C', cmyk: '47/20/88/5', rgb: '96/108/56' },
-        { name: 'Warm\nWhite', hex: '#FAF8F0', pms: '7527 C', cmyk: '1/1/5/0', rgb: '250/248/240' },
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_05_XL.png', alt: 'Indeed Brand Photography 5', span: 4, aspectRatio: '3 / 2' },
       ],
     },
+    // 06+07: portrait pair (3:4)
     {
       size: 'md',
       items: [
-        { type: 'image', src: 'https://picsum.photos/id/48/800/600', alt: 'Gallery image 3', span: 2 },
-        { type: 'image', src: 'https://picsum.photos/id/49/800/600', alt: 'Gallery image 4', span: 2 },
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_06_Vertical.png', alt: 'Indeed Brand Photography 6', span: 2, aspectRatio: '3 / 4' },
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_07_Vertical.png', alt: 'Indeed Brand Photography 7', span: 2, aspectRatio: '3 / 4' },
+      ],
+    },
+    // 08: XL full-width (3:2)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_08_XL.png', alt: 'Indeed Brand Photography 8', span: 4, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 09: XL full-width (3:2)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_09_XL.png', alt: 'Indeed Brand Photography 9', span: 4, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 10: XL full-width (3:2)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_10_XL.png', alt: 'Indeed Brand Photography 10', span: 4, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 11: XL full-width (3:2)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_11_XL.png', alt: 'Indeed Brand Photography 11', span: 4, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 12+13: landscape pair (3:2)
+    {
+      size: 'lg',
+      items: [
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_12_Span2.png', alt: 'Indeed Brand Photography 12', span: 2, aspectRatio: '3 / 2' },
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_13_Span2.png', alt: 'Indeed Brand Photography 13', span: 2, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 14: XL full-width (3:2)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_14_XL.png', alt: 'Indeed Brand Photography 14', span: 4, aspectRatio: '3 / 2' },
       ],
     },
   ],
 
-  // ─── Project 6: Campaign Design — Breathe Wellness ─────────────────────
+  // ─── Project 6: FutureWorks, Refreshed ────────────────────────────────
   '6': [
+    // 01: XL full-width (3:2)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/FutureWorks 2023/Gallery_FW23_01.png', alt: 'FutureWorks 2023 1', span: 4, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 02: video full-width (16:9)
+    {
+      size: 'xl',
+      items: [
+        { type: 'video', src: '/Projects/FutureWorks 2023/Gallery_FW23_02.mp4', span: 4 },
+      ],
+    },
+    // 03+04: landscape pair (3:2)
+    {
+      size: 'lg',
+      items: [
+        { type: 'image', src: '/Projects/FutureWorks 2023/Gallery_FW23_03.png', alt: 'FutureWorks 2023 3', span: 2, aspectRatio: '3 / 2' },
+        { type: 'image', src: '/Projects/FutureWorks 2023/Gallery_FW23_04.png', alt: 'FutureWorks 2023 4', span: 2, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 05+06: portrait pair (3:4)
     {
       size: 'md',
       items: [
-        { type: 'image', src: 'https://picsum.photos/id/50/800/600', alt: 'Gallery image 1', span: 2 },
-        { type: 'image', src: 'https://picsum.photos/id/51/800/600', alt: 'Gallery image 2', span: 2 },
+        { type: 'image', src: '/Projects/FutureWorks 2023/Gallery_FW23_05.png', alt: 'FutureWorks 2023 5', span: 2, aspectRatio: '3 / 4' },
+        { type: 'image', src: '/Projects/FutureWorks 2023/Gallery_FW23_06.png', alt: 'FutureWorks 2023 6', span: 2, aspectRatio: '3 / 4' },
       ],
     },
+    // 07: XL full-width (3:2)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/FutureWorks 2023/Gallery_FW23_07.png', alt: 'FutureWorks 2023 7', span: 4, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 08+09: landscape pair (3:2)
+    {
+      size: 'lg',
+      items: [
+        { type: 'image', src: '/Projects/FutureWorks 2023/Gallery_FW23_08.png', alt: 'FutureWorks 2023 8', span: 2, aspectRatio: '3 / 2' },
+        { type: 'image', src: '/Projects/FutureWorks 2023/Gallery_FW23_09.png', alt: 'FutureWorks 2023 9', span: 2, aspectRatio: '3 / 2' },
+      ],
+    },
+  ],
+
+  // ─── Project 7: Target x Disney Mickey Mouse Collection ───────────────
+  '7': [
+    // 01+02: square pair
+    {
+      size: 'md',
+      items: [
+        { type: 'image', src: '/Projects/Target x Disney/Gallery_TgtDisney_01_Square_Span2.gif', alt: 'Target x Disney 1', span: 2, square: true },
+        { type: 'image', src: '/Projects/Target x Disney/Gallery_TgtDisney_02_Square_Span2.png', alt: 'Target x Disney 2', span: 2, square: true },
+      ],
+    },
+    // 03–05: square row (3-col)
+    {
+      size: 'md',
+      columns: 3,
+      items: [
+        { type: 'image', src: '/Projects/Target x Disney/Gallery_TgtDisney_03_Square_Span3.png', alt: 'Target x Disney 3', span: 1, square: true },
+        { type: 'image', src: '/Projects/Target x Disney/Gallery_TgtDisney_04_Square_Span3.png', alt: 'Target x Disney 4', span: 1, square: true },
+        { type: 'image', src: '/Projects/Target x Disney/Gallery_TgtDisney_05_Square_Span3.png', alt: 'Target x Disney 5', span: 1, square: true },
+      ],
+    },
+    // 06–08: square row (3-col)
+    {
+      size: 'md',
+      columns: 3,
+      items: [
+        { type: 'image', src: '/Projects/Target x Disney/Gallery_TgtDisney_06_Square_Span3.png', alt: 'Target x Disney 6', span: 1, square: true },
+        { type: 'image', src: '/Projects/Target x Disney/Gallery_TgtDisney_07_Square_Span3.png', alt: 'Target x Disney 7', span: 1, square: true },
+        { type: 'image', src: '/Projects/Target x Disney/Gallery_TgtDisney_08_Square_Span3.png', alt: 'Target x Disney 8', span: 1, square: true },
+      ],
+    },
+    // 09–11: square row (3-col)
+    {
+      size: 'md',
+      columns: 3,
+      items: [
+        { type: 'image', src: '/Projects/Target x Disney/Gallery_TgtDisney_09_Square_Span3.png', alt: 'Target x Disney 9', span: 1, square: true },
+        { type: 'image', src: '/Projects/Target x Disney/Gallery_TgtDisney_10_Square_Span3.png', alt: 'Target x Disney 10', span: 1, square: true },
+        { type: 'image', src: '/Projects/Target x Disney/Gallery_TgtDisney_11_Square_Span3.png', alt: 'Target x Disney 11', span: 1, square: true },
+      ],
+    },
+    // Color palette
     {
       type: 'color-palette',
       title: 'color palette',
       colors: [
-        { name: 'Ocean\nDeep', hex: '#1B4965', pms: '302 C', cmyk: '90/48/24/8', rgb: '27/73/101' },
-        { name: 'Sky\nWash', hex: '#BEE9E8', pms: '317 C', cmyk: '22/0/6/0', rgb: '190/233/232' },
-        { name: 'Coral', hex: '#E07A5F', pms: '7416 C', cmyk: '6/62/62/0', rgb: '224/122/95' },
-        { name: 'Cloud', hex: '#F8F4F0', pms: '7527 C', cmyk: '2/3/4/0', rgb: '248/244/240' },
-        { name: 'Eucalyptus', hex: '#5B8C5A', pms: '7740 C', cmyk: '58/15/68/2', rgb: '91/140/90' },
+        { name: 'Bright\nWhite',        hex: '#FFFFFF', cmyk: '0/0/0/0',       rgb: '255/255/255' },
+        { name: 'Poppy\nPink',          hex: '#F4B5C9', cmyk: '0/26/18/4',     rgb: '244/181/201' },
+        { name: 'Pacific\nTeal',        hex: '#3D7E7E', cmyk: '52/0/0/51',     rgb: '61/126/126' },
+        { name: 'Wave\nHello',          hex: '#62C8CC', cmyk: '52/2/0/20',     rgb: '98/200/204' },
+        { name: 'California\nSunshine', hex: '#F9C624', cmyk: '0/20/86/2',     rgb: '249/198/36' },
+        { name: 'Target\nRed',          hex: '#CC0000', cmyk: '0/100/100/20',  rgb: '204/0/0' },
       ],
     },
+    // 12+13: vertical pair (2:3)
     {
       size: 'md',
       items: [
-        { type: 'image', src: 'https://picsum.photos/id/52/800/600', alt: 'Gallery image 3', span: 2 },
-        { type: 'image', src: 'https://picsum.photos/id/53/800/600', alt: 'Gallery image 4', span: 2 },
+        { type: 'image', src: '/Projects/Target x Disney/Gallery_TgtDisney_12_Vertical.png', alt: 'Target x Disney 12', span: 2, aspectRatio: '2 / 3' },
+        { type: 'image', src: '/Projects/Target x Disney/Gallery_TgtDisney_13_Vertical.png', alt: 'Target x Disney 13', span: 2, aspectRatio: '2 / 3' },
+      ],
+    },
+    // 14+15: vertical pair (2:3)
+    {
+      size: 'md',
+      items: [
+        { type: 'image', src: '/Projects/Target x Disney/Gallery_TgtDisney_14_Vertical.png', alt: 'Target x Disney 14', span: 2, aspectRatio: '2 / 3' },
+        { type: 'image', src: '/Projects/Target x Disney/Gallery_TgtDisney_15_Vertical.png', alt: 'Target x Disney 15', span: 2, aspectRatio: '2 / 3' },
+      ],
+    },
+    // 16+17+18: vertical triptych (3-col, 2:3)
+    {
+      size: 'md',
+      columns: 3,
+      items: [
+        { type: 'image', src: '/Projects/Target x Disney/Gallery_TgtDisney_16_Vertical_Span3.png', alt: 'Target x Disney 16', span: 1, aspectRatio: '2 / 3' },
+        { type: 'image', src: '/Projects/Target x Disney/Gallery_TgtDisney_17_Vertical_Span3.png', alt: 'Target x Disney 17', span: 1, aspectRatio: '2 / 3' },
+        { type: 'image', src: '/Projects/Target x Disney/Gallery_TgtDisney_18_Vertical_Span3.png', alt: 'Target x Disney 18', span: 1, aspectRatio: '2 / 3' },
+      ],
+    },
+    // 19: centered square finale
+    {
+      size: 'md',
+      centered: true,
+      items: [
+        { type: 'image', src: '/Projects/Target x Disney/Gallery_TgtDisney_19_Square_Center.gif', alt: 'Target x Disney 19', span: 2, square: true },
+      ],
+    },
+  ],
+
+  // ─── Project 8: Back to School with Target ────────────────────────────
+  '8': [
+    // 01–04: full-width videos
+    {
+      size: 'xl',
+      items: [
+        { type: 'video', src: '/Projects/Target BTS/Gallery_TgtBTS_01.mp4', span: 4 },
+      ],
+    },
+    {
+      size: 'xl',
+      items: [
+        { type: 'video', src: '/Projects/Target BTS/Gallery_TgtBTS_02.mp4', span: 4 },
+      ],
+    },
+    {
+      size: 'xl',
+      items: [
+        { type: 'video', src: '/Projects/Target BTS/Gallery_TgtBTS_03.mp4', span: 4 },
+      ],
+    },
+    {
+      size: 'xl',
+      items: [
+        { type: 'video', src: '/Projects/Target BTS/Gallery_TgtBTS_04.mp4', span: 4 },
+      ],
+    },
+  ],
+
+  // ─── Project 9: IDHY — ID Hot Yoga ────────────────────────────────────
+  '9': [
+    // 01: XL full-width (12:7)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/IDHY/Gallery_IDHY_01_XL.png', alt: 'IDHY 1', span: 4, aspectRatio: '12 / 7' },
+      ],
+    },
+    // 02+03: square pair
+    {
+      size: 'md',
+      items: [
+        { type: 'image', src: '/Projects/IDHY/Gallery_IDHY_02_Span2.png', alt: 'IDHY 2', span: 2, square: true },
+        { type: 'image', src: '/Projects/IDHY/Gallery_IDHY_03_Span2.png', alt: 'IDHY 3', span: 2, square: true },
+      ],
+    },
+    // 04+05: square pair
+    {
+      size: 'md',
+      items: [
+        { type: 'image', src: '/Projects/IDHY/Gallery_IDHY_04_Span2.png', alt: 'IDHY 4', span: 2, square: true },
+        { type: 'image', src: '/Projects/IDHY/Gallery_IDHY_05_Span2.png', alt: 'IDHY 5', span: 2, square: true },
+      ],
+    },
+    // 06: XL full-width (12:7)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/IDHY/Gallery_IDHY_06_XL.png', alt: 'IDHY 6', span: 4, aspectRatio: '12 / 7' },
+      ],
+    },
+    // 07: XL full-width (12:7)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/IDHY/Gallery_IDHY_07_XL.png', alt: 'IDHY 7', span: 4, aspectRatio: '12 / 7' },
+      ],
+    },
+  ],
+
+  // ─── Project 10: TED x Target ─────────────────────────────────────────
+  '10': [
+    // 01: XL full-width (3:2)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/TED x Target/Gallery_TEDxTGT_01_XL.png', alt: 'TED x Target 1', span: 4, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 02: XL full-width (3:2)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/TED x Target/Gallery_TEDxTGT_02_XL.png', alt: 'TED x Target 2', span: 4, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 03+04+05: 3-col row (30:17)
+    {
+      size: 'md',
+      columns: 3,
+      items: [
+        { type: 'image', src: '/Projects/TED x Target/Gallery_TEDxTGT_03_Span3.png', alt: 'TED x Target 3', span: 1, aspectRatio: '30 / 17' },
+        { type: 'image', src: '/Projects/TED x Target/Gallery_TEDxTGT_04_Span3.png', alt: 'TED x Target 4', span: 1, aspectRatio: '30 / 17' },
+        { type: 'image', src: '/Projects/TED x Target/Gallery_TEDxTGT_05_Span3.png', alt: 'TED x Target 5', span: 1, aspectRatio: '30 / 17' },
+      ],
+    },
+    // 06: XL full-width (3:2)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/TED x Target/Gallery_TEDxTGT_06_XL.png', alt: 'TED x Target 6', span: 4, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 07+08: landscape pair (30:17)
+    {
+      size: 'lg',
+      items: [
+        { type: 'image', src: '/Projects/TED x Target/Gallery_TEDxTGT_07_Span2.png', alt: 'TED x Target 7', span: 2, aspectRatio: '30 / 17' },
+        { type: 'image', src: '/Projects/TED x Target/Gallery_TEDxTGT_08_Span2.png', alt: 'TED x Target 8', span: 2, aspectRatio: '30 / 17' },
+      ],
+    },
+    // 09: XL full-width (3:2)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/TED x Target/Gallery_TEDxTGT_09_XL.png', alt: 'TED x Target 9', span: 4, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 10+11: landscape pair (30:17)
+    {
+      size: 'lg',
+      items: [
+        { type: 'image', src: '/Projects/TED x Target/Gallery_TEDxTGT_10_Span2.png', alt: 'TED x Target 10', span: 2, aspectRatio: '30 / 17' },
+        { type: 'image', src: '/Projects/TED x Target/Gallery_TEDxTGT_11_Span2.png', alt: 'TED x Target 11', span: 2, aspectRatio: '30 / 17' },
+      ],
+    },
+    // 12+13+14: 3-col row (30:17)
+    {
+      size: 'md',
+      columns: 3,
+      items: [
+        { type: 'image', src: '/Projects/TED x Target/Gallery_TEDxTGT_12_Span3.png', alt: 'TED x Target 12', span: 1, aspectRatio: '30 / 17' },
+        { type: 'image', src: '/Projects/TED x Target/Gallery_TEDxTGT_13_Span3.png', alt: 'TED x Target 13', span: 1, aspectRatio: '30 / 17' },
+        { type: 'image', src: '/Projects/TED x Target/Gallery_TEDxTGT_14_Span3.png', alt: 'TED x Target 14', span: 1, aspectRatio: '30 / 17' },
+      ],
+    },
+    // 15: XL full-width (3:2)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/TED x Target/Gallery_TEDxTGT_15_XL.png', alt: 'TED x Target 15', span: 4, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 16+17+18: 3-col row (30:17)
+    {
+      size: 'md',
+      columns: 3,
+      items: [
+        { type: 'image', src: '/Projects/TED x Target/Gallery_TEDxTGT_16_Span3.png', alt: 'TED x Target 16', span: 1, aspectRatio: '30 / 17' },
+        { type: 'image', src: '/Projects/TED x Target/Gallery_TEDxTGT_17_Span3.png', alt: 'TED x Target 17', span: 1, aspectRatio: '30 / 17' },
+        { type: 'image', src: '/Projects/TED x Target/Gallery_TEDxTGT_18_Span3.png', alt: 'TED x Target 18', span: 1, aspectRatio: '30 / 17' },
       ],
     },
   ],

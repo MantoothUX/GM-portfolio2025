@@ -49,6 +49,8 @@ export interface ProjectData {
   description: string;
   client: string;
   roles: string[];
+  bodyCopy?: string;
+  credits?: { name: string; role: string; url?: string }[];
   heroImage: string;
   galleryImages: string[];
   cloudflareImageId: string | null;
@@ -1242,8 +1244,9 @@ export const ProjectDetailPage = () => {
             {/* Headline/Description */}
             <p style={{
               margin: 0,
-              fontSize: 'clamp(16px, 1.7vw, 20px)',
+              fontSize: 'clamp(14px, 1.5vw, 18px)',
               fontFamily: '"Vulf Mono", monospace',
+              fontStyle: 'italic',
               fontWeight: 300,
               lineHeight: '1.6',
               color: COLORS.deepBrown
@@ -1252,16 +1255,18 @@ export const ProjectDetailPage = () => {
             </p>
 
             {/* Body copy */}
-            <p style={{
-              margin: 0,
-              fontSize: 'clamp(14px, 1.3vw, 16px)',
-              fontFamily: '"Vulf Mono", monospace',
-              fontWeight: 300,
-              lineHeight: '1.7',
-              color: COLORS.deepBrown
-            }}>
-              Foul Mouth Creative tapped Greta to lead design efforts for Stickerbox, a startup toy company and the first of its kind to offer safe generative-AI play for kids. Greta crafted a fun-but-edgy visual personality inspired by punk rock paste-up posters (minus any angst). Clean, crisp vector graphics pair with cut-out black-and-white photocopy moments to create a look that is quirky but clear + always fun.
-            </p>
+            {project.bodyCopy && project.bodyCopy.split('\n').map((para, idx) => (
+              <p key={idx} style={{
+                margin: 0,
+                fontSize: 'clamp(14px, 1.3vw, 16px)',
+                fontFamily: '"Vulf Mono", monospace',
+                fontWeight: 300,
+                lineHeight: '1.7',
+                color: COLORS.deepBrown
+              }}>
+                {para}
+              </p>
+            ))}
           </div>
         ) : (
           /* Desktop layout: side-by-side */
@@ -1349,24 +1354,27 @@ export const ProjectDetailPage = () => {
               <div>
                 <p style={{
                   margin: 0,
-                  fontSize: 'clamp(18px, 2vw, 24px)',
+                  fontSize: 'clamp(16px, 1.8vw, 22px)',
                   fontFamily: '"Vulf Mono", monospace',
+                  fontStyle: 'italic',
                   fontWeight: 300,
                   lineHeight: '1.6',
                   color: COLORS.deepBrown
                 }}>
                   {project.description}
                 </p>
-                <p style={{
-                  marginTop: SPACING.md,
-                  fontSize: 'clamp(14px, 1.5vw, 18px)',
-                  fontFamily: '"Vulf Mono", monospace',
-                  fontWeight: 300,
-                  lineHeight: '1.7',
-                  color: COLORS.deepBrown
-                }}>
-                  Foul Mouth Creative tapped Greta to lead design efforts for Stickerbox, a startup toy company and the first of its kind to offer safe generative-AI play for kids. Greta crafted a fun-but-edgy visual personality inspired by punk rock paste-up posters (minus any angst). Clean, crisp vector graphics pair with cut-out black-and-white photocopy moments to create a look that is quirky but clear + always fun.
-                </p>
+                {project.bodyCopy && project.bodyCopy.split('\n').map((para, idx) => (
+                  <p key={idx} style={{
+                    marginTop: idx === 0 ? SPACING.md : SPACING.sm,
+                    fontSize: 'clamp(14px, 1.5vw, 18px)',
+                    fontFamily: '"Vulf Mono", monospace',
+                    fontWeight: 300,
+                    lineHeight: '1.7',
+                    color: COLORS.deepBrown
+                  }}>
+                    {para}
+                  </p>
+                ))}
               </div>
             </div>
           </>
@@ -1383,6 +1391,63 @@ export const ProjectDetailPage = () => {
           sections={GALLERY_LAYOUTS[project.id] || getDefaultLayout(project.galleryImages)}
         />
       </section>
+
+      {/* Credits — hidden for now, will enable once all projects have credits data */}
+      {false && project.credits && project.credits.length > 0 && (
+        <section style={{
+          width: '100%',
+          paddingTop: isMobile ? SPACING.md : SPACING.lg,
+          paddingBottom: isMobile ? SPACING.md : SPACING.lg,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}>
+          <span style={{
+            display: 'block',
+            fontSize: isMobile ? '14px' : '16px',
+            fontFamily: '"Vulf Mono", monospace',
+            fontStyle: 'italic',
+            fontWeight: 300,
+            color: COLORS.warmGray,
+            marginBottom: '12px',
+            textTransform: 'lowercase',
+          }}>
+            credits
+          </span>
+          <ul style={{
+            listStyle: 'none',
+            margin: 0,
+            padding: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '8px',
+          }}>
+            {project.credits.map((credit, idx) => (
+              <li key={idx} style={{
+                fontSize: isMobile ? '14px' : '16px',
+                fontFamily: '"Vulf Mono", monospace',
+                fontWeight: 300,
+                color: COLORS.deepBrown,
+                textAlign: 'center',
+              }}>
+                {credit.url ? (
+                  <a href={credit.url} style={{
+                    fontWeight: 600,
+                    color: COLORS.deepBrown,
+                    textDecoration: 'none',
+                  }}>
+                    {credit.name}
+                  </a>
+                ) : (
+                  <span>{credit.name}</span>
+                )}
+                , {credit.role}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <Footer />
     </main>

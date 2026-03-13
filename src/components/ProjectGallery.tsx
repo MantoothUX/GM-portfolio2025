@@ -160,24 +160,105 @@ const GalleryVideo = ({
   poster?: string;
   height: string;
   cloudflareR2Url?: string | null;
-}) => (
-  <div style={{ width: '100%', height, overflow: 'hidden' }}>
-    <video
-      src={cloudflareR2Url || src}
-      poster={poster}
-      autoPlay
-      muted
-      loop
-      playsInline
-      style={{
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover',
-        display: 'block',
-      }}
-    />
-  </div>
-);
+}) => {
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+  const [paused, setPaused] = React.useState(false);
+  const [muted, setMuted] = React.useState(true);
+  const [showControls, setShowControls] = React.useState(false);
+  const hideTimer = React.useRef<ReturnType<typeof setTimeout>>(null);
+
+  const scheduleHide = () => {
+    if (hideTimer.current) clearTimeout(hideTimer.current);
+    hideTimer.current = setTimeout(() => setShowControls(false), 2500);
+  };
+
+  const handlePointerEnter = () => { setShowControls(true); scheduleHide(); };
+  const handlePointerLeave = () => { setShowControls(false); if (hideTimer.current) clearTimeout(hideTimer.current); };
+  const handlePointerMove = () => { setShowControls(true); scheduleHide(); };
+
+  const togglePlay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) { v.play(); setPaused(false); } else { v.pause(); setPaused(true); }
+  };
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = !v.muted;
+    setMuted(v.muted);
+  };
+
+  const btnStyle: React.CSSProperties = {
+    background: 'rgba(0,0,0,0.45)',
+    border: 'none',
+    borderRadius: '50%',
+    width: 40,
+    height: 40,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    color: '#fff',
+    backdropFilter: 'blur(4px)',
+    WebkitBackdropFilter: 'blur(4px)',
+    transition: 'opacity 0.2s',
+  };
+
+  return (
+    <div
+      style={{ width: '100%', height, overflow: 'hidden', position: 'relative' }}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
+      onPointerMove={handlePointerMove}
+    >
+      <video
+        ref={videoRef}
+        src={cloudflareR2Url || src}
+        poster={poster}
+        autoPlay
+        muted
+        loop
+        playsInline
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          display: 'block',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 12,
+          left: 12,
+          display: 'flex',
+          gap: 8,
+          opacity: showControls ? 1 : 0,
+          transition: 'opacity 0.25s ease',
+          pointerEvents: showControls ? 'auto' : 'none',
+        }}
+      >
+        <button onClick={togglePlay} style={btnStyle} aria-label={paused ? 'Play' : 'Pause'}>
+          {paused ? (
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2l10 6-10 6z" /></svg>
+          ) : (
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="2" width="4" height="12" rx="1" /><rect x="9" y="2" width="4" height="12" rx="1" /></svg>
+          )}
+        </button>
+        <button onClick={toggleMute} style={btnStyle} aria-label={muted ? 'Unmute' : 'Mute'}>
+          {muted ? (
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 2L4 6H1v4h3l4 4V2z" /><line x1="12" y1="4" x2="12" y2="12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.4" /><line x1="11" y1="8" x2="15" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /><line x1="11.5" y1="6" x2="14.5" y2="10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /><line x1="14.5" y1="6" x2="11.5" y2="10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
+          ) : (
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 2L4 6H1v4h3l4 4V2z" /><path d="M11 5.5c.8.8 1.2 1.9 1.2 2.5s-.4 1.7-1.2 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" /><path d="M13 3.5C14.3 4.8 15 6.8 15 8s-.7 3.2-2 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" /></svg>
+          )}
+        </button>
+      </div>
+    </div>
+  );
+};
 
 const GalleryTextCell = ({
   heading,

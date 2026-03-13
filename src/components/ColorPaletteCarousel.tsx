@@ -21,6 +21,14 @@ function subtextColor(hex: string): string {
   return isDark(hex) ? 'rgba(255,255,255,0.7)' : 'rgba(45,45,42,0.6)';
 }
 
+function isVeryLight(hex: string): boolean {
+  const c = hex.replace('#', '');
+  const r = parseInt(c.substring(0, 2), 16) / 255;
+  const g = parseInt(c.substring(2, 4), 16) / 255;
+  const b = parseInt(c.substring(4, 6), 16) / 255;
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.95;
+}
+
 // ─── Constants ──────────────────────────────────────────────────────────────
 
 const PAUSE_MS = 1200;
@@ -65,7 +73,7 @@ const PaletteCard = React.memo(({ color, isHero, isPressed, cardWidth, cardHeigh
         padding: `${Math.round(24 * s)}px ${Math.round(20 * s)}px ${Math.round(20 * s)}px`,
         boxSizing: 'border-box',
         boxShadow: '0 4px 24px rgba(0,0,0,0.12)',
-        border: isHero ? '1px solid #FFFFFF' : '1px solid transparent',
+        border: isVeryLight(color.hex) ? '1px solid rgba(0,0,0,0.12)' : isHero ? '1px solid #FFFFFF' : '1px solid transparent',
         transform: `scale(${currentScale})`,
         transformOrigin: 'center center',
         transition: suppressTransition
