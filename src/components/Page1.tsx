@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import { Mail, Linkedin, Pin } from 'lucide-react';
+import { Mail, Linkedin, Pin, Menu, X } from 'lucide-react';
 import { ProjectGallery, getDefaultLayout } from '@/components/ProjectGallery';
 import { GALLERY_LAYOUTS } from '@/data/galleryLayouts';
 import OptimizedImage from '@/components/OptimizedImage';
@@ -69,7 +69,10 @@ let savedHomeScrollPosition = 0;
 export const TopBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  
+  const breakpoint = useBreakpoint();
+  const isMobile = breakpoint !== 'desktop';
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const handleLogoClick = () => {
     if (location.pathname === '/') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -82,25 +85,41 @@ export const TopBar = () => {
     if (location.pathname === '/') {
       savedHomeScrollPosition = window.scrollY;
     }
+    setMenuOpen(false);
     navigate('/projects');
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
+  const scrollToAbout = () => {
+    const aboutSection = Array.from(document.querySelectorAll('h2')).find(h2 => h2.textContent === 'About Greta');
+    if (aboutSection) {
+      const top = aboutSection.getBoundingClientRect().top + window.scrollY - 70;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  };
+
   const handleAboutClick = () => {
+    setMenuOpen(false);
     if (location.pathname !== '/') {
       navigate('/');
-      setTimeout(() => {
-        const aboutSection = Array.from(document.querySelectorAll('h2')).find(h2 => h2.textContent === 'About Greta');
-        if (aboutSection) {
-          aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 100);
+      setTimeout(scrollToAbout, 100);
     } else {
-      const aboutSection = Array.from(document.querySelectorAll('h2')).find(h2 => h2.textContent === 'About Greta');
-      if (aboutSection) {
-        aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      scrollToAbout();
     }
+  };
+
+  const navButtonStyle: React.CSSProperties = {
+    background: 'none',
+    border: 'none',
+    color: COLORS.charcoal,
+    fontSize: '14px',
+    fontFamily: '"Vulf Mono", monospace',
+    fontStyle: 'italic',
+    fontWeight: 300,
+    cursor: 'pointer',
+    padding: '8px',
+    transition: 'color 0.2s ease',
+    textTransform: 'lowercase'
   };
 
   return (
@@ -111,7 +130,7 @@ export const TopBar = () => {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      padding: '0 32px',
+      padding: isMobile ? '0 16px' : '0 32px',
       backgroundColor: COLORS.offWhite,
       borderBottom: `1px solid ${COLORS.warmGray}40`,
       boxSizing: 'border-box',
@@ -131,52 +150,85 @@ export const TopBar = () => {
       }}>
         <span style={{
           color: COLORS.charcoal,
-          fontSize: '14px',
+          fontSize: isMobile ? '12px' : '14px',
           fontFamily: '"Compadre Extended", sans-serif',
           fontWeight: 400,
           letterSpacing: '0.5px',
-          textTransform: 'uppercase'
+          textTransform: 'uppercase',
+          whiteSpace: 'nowrap'
         }}>
           GRETA MANTOOTH
         </span>
       </button>
-      <nav style={{
-        display: 'flex',
-        flexDirection: 'row',
-        gap: '32px',
-        padding: '10px'
-      }}>
-        <button onClick={handleProjectsClick} style={{
-          background: 'none',
-          border: 'none',
-          color: COLORS.charcoal,
-          fontSize: '14px',
-          fontFamily: '"Vulf Mono", monospace',
-          fontStyle: 'italic',
-          fontWeight: 300,
-          cursor: 'pointer',
-          padding: '8px',
-          transition: 'color 0.2s ease',
-          textTransform: 'lowercase'
-        }} onMouseEnter={e => e.currentTarget.style.color = COLORS.warmGray} onMouseLeave={e => e.currentTarget.style.color = COLORS.charcoal}>
-          projects
-        </button>
-        <button onClick={handleAboutClick} style={{
-          background: 'none',
-          border: 'none',
-          color: COLORS.charcoal,
-          fontSize: '14px',
-          fontFamily: '"Vulf Mono", monospace',
-          fontStyle: 'italic',
-          fontWeight: 300,
-          cursor: 'pointer',
-          padding: '8px',
-          transition: 'color 0.2s ease',
-          textTransform: 'lowercase'
-        }} onMouseEnter={e => e.currentTarget.style.color = COLORS.warmGray} onMouseLeave={e => e.currentTarget.style.color = COLORS.charcoal}>
-          about
-        </button>
-      </nav>
+      {isMobile ? (
+        <div style={{ position: 'relative' }}>
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '10px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: COLORS.charcoal,
+            }}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+          {menuOpen && (
+            <nav style={{
+              position: 'absolute',
+              top: '100%',
+              right: 0,
+              marginTop: '8px',
+              backgroundColor: COLORS.offWhite,
+              border: `1px solid ${COLORS.warmGray}40`,
+              borderRadius: '4px',
+              display: 'flex',
+              flexDirection: 'column',
+              padding: '8px 0',
+              minWidth: '140px',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+            }}>
+              <button onClick={handleProjectsClick} style={{
+                ...navButtonStyle,
+                padding: '12px 24px',
+                textAlign: 'left',
+              }}>
+                projects
+              </button>
+              <button onClick={handleAboutClick} style={{
+                ...navButtonStyle,
+                padding: '12px 24px',
+                textAlign: 'left',
+              }}>
+                about
+              </button>
+            </nav>
+          )}
+        </div>
+      ) : (
+        <nav style={{
+          display: 'flex',
+          flexDirection: 'row',
+          gap: '32px',
+          padding: '10px'
+        }}>
+          <button onClick={handleProjectsClick} style={navButtonStyle}
+            onMouseEnter={e => e.currentTarget.style.color = COLORS.warmGray}
+            onMouseLeave={e => e.currentTarget.style.color = COLORS.charcoal}>
+            projects
+          </button>
+          <button onClick={handleAboutClick} style={navButtonStyle}
+            onMouseEnter={e => e.currentTarget.style.color = COLORS.warmGray}
+            onMouseLeave={e => e.currentTarget.style.color = COLORS.charcoal}>
+            about
+          </button>
+        </nav>
+      )}
     </header>
   );
 };
@@ -205,6 +257,7 @@ const StickyCard = ({
   const breakpoint = useBreakpoint();
   const isMobile = breakpoint === 'phone';
   const topOffset = 70 + index * 30; // 30px visible stripe per card (reduced from 60px)
+  const effectiveExtraScroll = isMobile ? Math.round(extraScrollHeight / 3) : extraScrollHeight;
 
   // Visible viewport portion — used for centering
   const visibleHeight = `calc(100vh - ${topOffset}px - 80px)`;
@@ -212,7 +265,7 @@ const StickyCard = ({
   return (
     <section ref={cardRef} style={{
       width: '100%',
-      height: `calc(${100 + extraScrollHeight}vh - ${topOffset}px - 80px)`,
+      height: `calc(${100 + effectiveExtraScroll}vh - ${topOffset}px - 80px)`,
       backgroundColor,
       boxSizing: 'border-box',
       position: 'sticky',
@@ -775,7 +828,7 @@ const FeaturedProjects = () => {
           onMouseEnter={e => e.currentTarget.style.backgroundColor = COLORS.warmGray}
           onMouseLeave={e => e.currentTarget.style.backgroundColor = COLORS.charcoal}
         >
-          See all projects →
+          all projects →
         </button>
       </div>
     </section>
@@ -1133,21 +1186,22 @@ export const ProjectDetailPage = () => {
         maxWidth: '1190px',
         width: '100%',
         margin: '0 auto',
-        padding: isMobile ? `16px ${SPACING.xs} ${SPACING.md}` : `27px 32px ${SPACING.lg}`
+        padding: isMobile ? `16px ${SPACING.xs} ${SPACING.md}` : `27px 32px 0px`
       }}>
         {/* Mobile layout: stacked order */}
         {isMobile ? (
           <div style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: SPACING.md
+            gap: '36px'
           }}>
             <h1 style={{
-              fontSize: 'clamp(24px, 3.5vw, 36px)',
+              fontSize: 'clamp(36px, 5.25vw, 54px)',
               fontFamily: '"Compadre Narrow", sans-serif',
               fontWeight: 400,
               color: '#3f3e32',
-              margin: '0 0 24px 0',
+              margin: 0,
+              lineHeight: 1.1,
               textTransform: 'uppercase'
             }}>
               {project.title}
@@ -1256,7 +1310,7 @@ export const ProjectDetailPage = () => {
               display: 'grid',
               gridTemplateColumns: '1fr 2fr',
               gap: SPACING.lg,
-              marginBottom: SPACING.xl
+              marginBottom: '52px'
             }}>
               {/* Sidebar info */}
               <div style={{
@@ -1267,7 +1321,7 @@ export const ProjectDetailPage = () => {
                 <div>
                   <span style={{
                     display: 'block',
-                    fontSize: '12px',
+                    fontSize: '15px',
                     fontFamily: '"Compadre Narrow", sans-serif',
                     color: COLORS.warmGray,
                     letterSpacing: '1px',
@@ -1288,7 +1342,7 @@ export const ProjectDetailPage = () => {
                 <div>
                   <span style={{
                     display: 'block',
-                    fontSize: '12px',
+                    fontSize: '15px',
                     fontFamily: '"Compadre Narrow", sans-serif',
                     color: COLORS.warmGray,
                     letterSpacing: '1px',
@@ -1304,7 +1358,7 @@ export const ProjectDetailPage = () => {
                   }}>
                     {project.roles.map((role, idx) => (
                       <span key={idx} style={{
-                        fontSize: '14px',
+                        fontSize: '18px',
                         fontFamily: '"Compadre Narrow", sans-serif',
                         fontWeight: 400,
                         color: COLORS.charcoal,
@@ -1354,7 +1408,7 @@ export const ProjectDetailPage = () => {
       {/* Project gallery grid */}
       <section style={{
         width: '100%',
-        paddingTop: isMobile ? SPACING.md : SPACING.lg,
+        paddingTop: isMobile ? SPACING.md : '16px',
         paddingBottom: isMobile ? SPACING.md : SPACING.lg,
       }}>
         <ProjectGallery

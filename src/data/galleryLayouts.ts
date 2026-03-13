@@ -73,12 +73,11 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
         { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_012.png', alt: 'Indeed brand identity 12', span: 4, aspectRatio: '3 / 2' },
       ],
     },
-    // text left | 013 right-aligned ~2/3 width (3:2)
+    // 013: full-width XL (3:2)
     {
-      size: 'md',
+      size: 'xl',
       items: [
-        { type: 'text', span: 1, heading: 'Cinematic Humanism', body: 'One of the biggest challenges facing Indeed was how to express humanity as an HR tech brand, easily perceived as cold and corporate. Greta honed a signature approach to photography leaning into real, authentic human stories, a lightly art directed documentary style aimed at keeping it real and approachable, capturing real job seekers and employers (and their real stories) whenever possible.' },
-        { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_013.png', alt: 'Indeed brand identity 13', span: 3, aspectRatio: '3 / 2' },
+        { type: 'image', src: '/Projects/Indeed Brand/Gallery_Indeed_BrandID_013.png', alt: 'Indeed brand identity 13', span: 4, aspectRatio: '3 / 2' },
       ],
     },
     // 014–015–016: three equal squares spanning full gallery width (3-col grid)
@@ -168,7 +167,7 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
     {
       size: '2xl',
       items: [
-        { type: 'image', src: '/Projects/Stickerbox/Gallery_Stickerbox_009.png', alt: 'Stickerbox brand image 9', span: 4 },
+        { type: 'image', src: '/Projects/Stickerbox/Gallery_Stickerbox_009.png', alt: 'Stickerbox brand image 9', span: 4, aspectRatio: '3 / 2' },
       ],
     },
     {
@@ -196,28 +195,24 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
         { type: 'video', src: '/Projects/FutureWorks/Gallery_FW_00.mp4', span: 4 },
       ],
     },
-    // 01+02: square pair
+    // 01–03: first row of 3 squares
     {
       size: 'md',
+      columns: 3,
       items: [
-        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_01.png', alt: 'FutureWorks brand identity 1', span: 2, square: true },
-        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_02.png', alt: 'FutureWorks brand identity 2', span: 2, square: true },
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_01.png', alt: 'FutureWorks brand identity 1', span: 1, square: true },
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_02.png', alt: 'FutureWorks brand identity 2', span: 1, square: true },
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_03.png', alt: 'FutureWorks brand identity 3', span: 1, square: true },
       ],
     },
-    // 03+04: square pair
+    // 04–06: second row of 3 squares
     {
       size: 'md',
+      columns: 3,
       items: [
-        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_03.png', alt: 'FutureWorks brand identity 3', span: 2, square: true },
-        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_04.png', alt: 'FutureWorks brand identity 4', span: 2, square: true },
-      ],
-    },
-    // 05+06: square pair
-    {
-      size: 'md',
-      items: [
-        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_05.png', alt: 'FutureWorks brand identity 5', span: 2, square: true },
-        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_06.png', alt: 'FutureWorks brand identity 6', span: 2, square: true },
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_04.png', alt: 'FutureWorks brand identity 4', span: 1, square: true },
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_05.png', alt: 'FutureWorks brand identity 5', span: 1, square: true },
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_06.png', alt: 'FutureWorks brand identity 6', span: 1, square: true },
       ],
     },
     // 07: super-wide landscape (3:1)
@@ -227,11 +222,12 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
         { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_07.png', alt: 'FutureWorks brand identity 7', span: 4, aspectRatio: '3 / 1' },
       ],
     },
-    // 08: landscape full-width (3:2)
+    // 08 left + text right
     {
-      size: 'xl',
+      size: 'md',
       items: [
-        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_08.png', alt: 'FutureWorks brand identity 8', span: 4, aspectRatio: '3 / 2' },
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_08.png', alt: 'FutureWorks brand identity 8', span: 2, aspectRatio: '3 / 2' },
+        { type: 'text', span: 2, heading: 'Immersive + Integrated', body: 'The FutureWorks design system was rolled out across every surface, from pre-event invites and social marketing to on-site wayfinding, screens, swag and interactive experiences. The arrow motif functioned on directional signage and brought visual energy to screens and surfaces.' },
       ],
     },
     // 09+10: square pair
@@ -242,11 +238,12 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
         { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_10.png', alt: 'FutureWorks brand identity 10', span: 2, square: true },
       ],
     },
-    // 11+12: landscape pair (3:2)
+    // 11+12 stacked left | text right
     {
       size: 'lg',
       items: [
         { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_11.png', alt: 'FutureWorks brand identity 11', span: 2, aspectRatio: '3 / 2' },
+        { type: 'text', span: 2, rowSpan: 2, heading: 'The future of work is human', body: 'Josh Goleman brought his signature style to capture the real job seekers behind the future of work for the event\u2019s opening video and photography. Greta and team sourced and captured real job seekers and hiring managers to bring authenticity and warmth to the HR discussions at hand.' },
         { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_12.png', alt: 'FutureWorks brand identity 12', span: 2, aspectRatio: '3 / 2' },
       ],
     },
@@ -260,12 +257,18 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
         { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_15.png', alt: 'FutureWorks brand identity 15', span: 1, square: true },
       ],
     },
-    // 16+17: landscape pair (3:2)
+    // 16: full-width XL (3:2)
     {
       size: 'xl',
       items: [
-        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_16.png', alt: 'FutureWorks brand identity 16', span: 2, aspectRatio: '3 / 2' },
-        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_17.png', alt: 'FutureWorks brand identity 17', span: 2, aspectRatio: '3 / 2' },
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_16.png', alt: 'FutureWorks brand identity 16', span: 4, aspectRatio: '3 / 2' },
+      ],
+    },
+    // 17: full-width XL (3:2)
+    {
+      size: 'xl',
+      items: [
+        { type: 'image', src: '/Projects/FutureWorks/Gallery_FW_17.png', alt: 'FutureWorks brand identity 17', span: 4, aspectRatio: '3 / 2' },
       ],
     },
   ],
@@ -304,7 +307,7 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
     },
     // 07+08: horizontal pair
     {
-      size: 'lg',
+      size: 'md',
       items: [
         { type: 'image', src: '/Projects/Target Holiday/Gallery_TgtHoliday_07_Horz.png', alt: 'Target Holiday 7', span: 2, aspectRatio: '30 / 17' },
         { type: 'image', src: '/Projects/Target Holiday/Gallery_TgtHoliday_08_Horz.png', alt: 'Target Holiday 8', span: 2, aspectRatio: '30 / 17' },
@@ -317,6 +320,12 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
         { type: 'image', src: '/Projects/Target Holiday/Gallery_TgtHoliday_09_Horz.png', alt: 'Target Holiday 9', span: 2, aspectRatio: '30 / 17' },
         { type: 'image', src: '/Projects/Target Holiday/Gallery_TgtHoliday_10_Horz.png', alt: 'Target Holiday 10', span: 2, aspectRatio: '30 / 17' },
       ],
+    },
+    // Good + Gathered text band
+    {
+      type: 'text-band',
+      heading: 'Good + Gathered',
+      body: 'All art direction and styling reinforced the idea of gathering for meaningful moments. Circular, radial compositions and color underscored the brand\u2019s core visual identity: red, white and round.',
     },
     // 11: full-width XL (3:2)
     {
@@ -333,80 +342,81 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
     {
       size: 'xl',
       items: [
-        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_01_XL.png', alt: 'Indeed Brand Photography 1', span: 4, aspectRatio: '3 / 2' },
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_01_XL.png', alt: 'Indeed Brand Photography 1', span: 4, aspectRatio: '3 / 2', caption: 'Josh Goleman, photographer' },
       ],
     },
     // 02: XL full-width (3:2)
     {
       size: 'xl',
       items: [
-        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_02_XL.png', alt: 'Indeed Brand Photography 2', span: 4, aspectRatio: '3 / 2' },
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_02_XL.png', alt: 'Indeed Brand Photography 2', span: 4, aspectRatio: '3 / 2', caption: 'Josh Goleman, photographer' },
       ],
     },
     // 03+04: portrait pair (3:4)
     {
       size: 'md',
       items: [
-        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_03_Vertical.png', alt: 'Indeed Brand Photography 3', span: 2, aspectRatio: '3 / 4' },
-        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_04_Vertical.png', alt: 'Indeed Brand Photography 4', span: 2, aspectRatio: '3 / 4' },
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_03_Vertical.png', alt: 'Indeed Brand Photography 3', span: 2, aspectRatio: '3 / 4', caption: 'Josh Goleman, photographer' },
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_04_Vertical.png', alt: 'Indeed Brand Photography 4', span: 2, aspectRatio: '3 / 4', caption: 'Josh Goleman, photographer' },
       ],
     },
-    // 05: XL full-width (3:2)
+    // text left + 05 right
     {
-      size: 'xl',
+      size: 'md',
       items: [
-        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_05_XL.png', alt: 'Indeed Brand Photography 5', span: 4, aspectRatio: '3 / 2' },
+        { type: 'text', span: 1, heading: 'Keeping it real', body: 'Whenever possible, the Indeed team cast and photographed real job seekers and employers, in different cities, at different phases in their careers. The team cast to be inclusive in their choices, representative of the real range within the working world.' },
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_05_XL.png', alt: 'Indeed Brand Photography 5', span: 3, aspectRatio: '3 / 2', caption: 'Josh Goleman, photographer' },
       ],
     },
     // 06+07: portrait pair (3:4)
     {
       size: 'md',
       items: [
-        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_06_Vertical.png', alt: 'Indeed Brand Photography 6', span: 2, aspectRatio: '3 / 4' },
-        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_07_Vertical.png', alt: 'Indeed Brand Photography 7', span: 2, aspectRatio: '3 / 4' },
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_06_Vertical.png', alt: 'Indeed Brand Photography 6', span: 2, aspectRatio: '3 / 4', caption: 'Josh Goleman, photographer' },
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_07_Vertical.png', alt: 'Indeed Brand Photography 7', span: 2, aspectRatio: '3 / 4', caption: 'Josh Goleman, photographer' },
       ],
     },
     // 08: XL full-width (3:2)
     {
       size: 'xl',
       items: [
-        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_08_XL.png', alt: 'Indeed Brand Photography 8', span: 4, aspectRatio: '3 / 2' },
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_08_XL.png', alt: 'Indeed Brand Photography 8', span: 4, aspectRatio: '3 / 2', caption: 'Josh Goleman, photographer' },
       ],
     },
     // 09: XL full-width (3:2)
     {
       size: 'xl',
       items: [
-        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_09_XL.png', alt: 'Indeed Brand Photography 9', span: 4, aspectRatio: '3 / 2' },
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_09_XL.png', alt: 'Indeed Brand Photography 9', span: 4, aspectRatio: '3 / 2', caption: 'Josh Goleman, photographer' },
       ],
     },
     // 10: XL full-width (3:2)
     {
       size: 'xl',
       items: [
-        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_10_XL.png', alt: 'Indeed Brand Photography 10', span: 4, aspectRatio: '3 / 2' },
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_10_XL.png', alt: 'Indeed Brand Photography 10', span: 4, aspectRatio: '3 / 2', caption: 'Adrian O. Walker, photographer' },
       ],
     },
     // 11: XL full-width (3:2)
     {
       size: 'xl',
       items: [
-        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_11_XL.png', alt: 'Indeed Brand Photography 11', span: 4, aspectRatio: '3 / 2' },
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_11_XL.png', alt: 'Indeed Brand Photography 11', span: 4, aspectRatio: '3 / 2', caption: 'Adrian O. Walker, photographer' },
       ],
     },
     // 12+13: landscape pair (3:2)
     {
       size: 'lg',
       items: [
-        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_12_Span2.png', alt: 'Indeed Brand Photography 12', span: 2, aspectRatio: '3 / 2' },
-        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_13_Span2.png', alt: 'Indeed Brand Photography 13', span: 2, aspectRatio: '3 / 2' },
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_12_Span2.png', alt: 'Indeed Brand Photography 12', span: 2, aspectRatio: '3 / 2', caption: 'Adrian O. Walker, photographer' },
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_13_Span2.png', alt: 'Indeed Brand Photography 13', span: 2, aspectRatio: '3 / 2', caption: 'Adrian O. Walker, photographer' },
       ],
     },
     // 14: XL full-width (3:2)
     {
       size: 'xl',
       items: [
-        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_14_XL.png', alt: 'Indeed Brand Photography 14', span: 4, aspectRatio: '3 / 2' },
+        { type: 'image', src: '/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_14_XL.png', alt: 'Indeed Brand Photography 14', span: 4, aspectRatio: '3 / 2', caption: 'Adrian O. Walker, photographer' },
       ],
     },
   ],
@@ -443,11 +453,12 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
         { type: 'image', src: '/Projects/FutureWorks 2023/Gallery_FW23_06.png', alt: 'FutureWorks 2023 6', span: 2, aspectRatio: '3 / 4' },
       ],
     },
-    // 07: XL full-width (3:2)
+    // 07 left + text right
     {
-      size: 'xl',
+      size: 'md',
       items: [
-        { type: 'image', src: '/Projects/FutureWorks 2023/Gallery_FW23_07.png', alt: 'FutureWorks 2023 7', span: 4, aspectRatio: '3 / 2' },
+        { type: 'image', src: '/Projects/FutureWorks 2023/Gallery_FW23_07.png', alt: 'FutureWorks 2023 7', span: 2, aspectRatio: '3 / 2' },
+        { type: 'text', span: 2, heading: 'Lighter + brighter', body: 'FutureWorks\u2019 second year shed the heaviness of that first pre-pandemic event moment. Colors got warmer and more saturated, and there was room to sneak in a little humor.' },
       ],
     },
     // 08+09: landscape pair (3:2)
@@ -512,6 +523,12 @@ export const GALLERY_LAYOUTS: Record<string, GallerySection[]> = {
         { name: 'California\nSunshine', hex: '#F9C624', cmyk: '0/20/86/2',     rgb: '249/198/36' },
         { name: 'Target\nRed',          hex: '#CC0000', cmyk: '0/100/100/20',  rgb: '204/0/0' },
       ],
+    },
+    // Bright + Bold text band
+    {
+      type: 'text-band',
+      heading: 'Bright + Bold',
+      body: 'A juicy, summery color palette offset beautiful photography shot by Julia Johnson and Cody Cloud, adding Target\u2019s signature design sophistication to the childlike playfulness of the Mickey brand.',
     },
     // 12+13: vertical pair (2:3)
     {

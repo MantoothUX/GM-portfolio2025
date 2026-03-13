@@ -17,6 +17,7 @@ export interface GridImage {
   square?: boolean;        // Convenience shorthand for aspectRatio: '1 / 1'
   aspectRatio?: string;    // Any CSS aspect-ratio value (e.g. '3 / 4', '16 / 9'). Overrides row height and square.
   objectPosition?: string;
+  caption?: string;           // Optional left-aligned credit line below the image
   cloudflareImageId?: string | null;
   cloudflareR2Url?: string | null;
 }
@@ -162,19 +163,14 @@ const GalleryVideo = ({
   cloudflareR2Url?: string | null;
 }) => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
+  const breakpoint = useBreakpoint();
+  const isMobile = breakpoint !== 'desktop';
   const [paused, setPaused] = React.useState(false);
   const [muted, setMuted] = React.useState(true);
   const [showControls, setShowControls] = React.useState(false);
-  const hideTimer = React.useRef<ReturnType<typeof setTimeout>>(null);
-
-  const scheduleHide = () => {
-    if (hideTimer.current) clearTimeout(hideTimer.current);
-    hideTimer.current = setTimeout(() => setShowControls(false), 2500);
-  };
-
-  const handlePointerEnter = () => { setShowControls(true); scheduleHide(); };
-  const handlePointerLeave = () => { setShowControls(false); if (hideTimer.current) clearTimeout(hideTimer.current); };
-  const handlePointerMove = () => { setShowControls(true); scheduleHide(); };
+  const handlePointerEnter = () => { if (!isMobile) setShowControls(true); };
+  const handlePointerLeave = () => { if (!isMobile) setShowControls(false); };
+  const controlsVisible = isMobile || showControls;
 
   const togglePlay = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -212,7 +208,6 @@ const GalleryVideo = ({
       style={{ width: '100%', height, overflow: 'hidden', position: 'relative' }}
       onPointerEnter={handlePointerEnter}
       onPointerLeave={handlePointerLeave}
-      onPointerMove={handlePointerMove}
     >
       <video
         ref={videoRef}
@@ -236,9 +231,9 @@ const GalleryVideo = ({
           left: 12,
           display: 'flex',
           gap: 8,
-          opacity: showControls ? 1 : 0,
+          opacity: controlsVisible ? 1 : 0,
           transition: 'opacity 0.25s ease',
-          pointerEvents: showControls ? 'auto' : 'none',
+          pointerEvents: controlsVisible ? 'auto' : 'none',
         }}
       >
         <button onClick={togglePlay} style={btnStyle} aria-label={paused ? 'Play' : 'Pause'}>
@@ -286,6 +281,7 @@ const GalleryTextCell = ({
           fontSize: 'clamp(20px, 2.2vw, 28px)',
           fontFamily: '"Compadre Narrow", sans-serif',
           fontWeight: 400,
+          lineHeight: 1,
           color: COLORS.charcoal,
           textTransform: 'uppercase',
         }}
@@ -341,6 +337,7 @@ const GalleryTextBand = ({
             fontSize: 'clamp(24px, 2.8vw, 36px)',
             fontFamily: '"Compadre Narrow", sans-serif',
             fontWeight: 400,
+            lineHeight: 1,
             color: COLORS.charcoal,
             textTransform: 'uppercase',
           }}
@@ -428,16 +425,31 @@ const GalleryRow = ({
         return (
           <div key={idx} style={cellStyle}>
             {item.type === 'image' && (
-              <GalleryImage
-                src={item.src}
-                alt={item.alt}
-                objectPosition={item.objectPosition}
-                height={itemHeight}
-                square={item.square}
-                aspectRatio={item.aspectRatio}
-                cloudflareImageId={item.cloudflareImageId}
-                cloudflareR2Url={item.cloudflareR2Url}
-              />
+              <>
+                <GalleryImage
+                  src={item.src}
+                  alt={item.alt}
+                  objectPosition={item.objectPosition}
+                  height={itemHeight}
+                  square={item.square}
+                  aspectRatio={item.aspectRatio}
+                  cloudflareImageId={item.cloudflareImageId}
+                  cloudflareR2Url={item.cloudflareR2Url}
+                />
+                {item.caption && (
+                  <p style={{
+                    margin: '6px 0 0 0',
+                    fontFamily: '"Vulf Mono", monospace',
+                    fontStyle: 'italic',
+                    fontWeight: 300,
+                    fontSize: breakpoint === 'phone' ? '11px' : '13px',
+                    color: COLORS.warmGray,
+                    textAlign: 'left',
+                  }}>
+                    {item.caption}
+                  </p>
+                )}
+              </>
             )}
             {item.type === 'video' && (
               <GalleryVideo
