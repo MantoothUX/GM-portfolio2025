@@ -16,20 +16,64 @@
       ],
       "bodyCopy": "For five years, Greta led global brand design direction for Indeed. With support from a multinational team of designers and other creatives, she led creative projects including branded events, social campaigns and executive presentations, as well as owning and evolving global brand guidelines.\nIn her leadership role, Greta evolved a disparate marketplace brand into a cohesive, distinctive brand presence on- and offline, bringing cross-functional teams and brand leadership along for the ride.",
       "credits": [
-        { "name": "Ryan Sawyer", "role": "lead brand designer", "url": "#" },
-        { "name": "Miles Gilbert", "role": "creative director", "url": "#" },
-        { "name": "Javier Torok", "role": "creative director" },
-        { "name": "Trackmeet", "role": "design partner" }
+        {
+          "name": "Ryan Sawyer",
+          "role": "lead brand designer",
+          "url": "#"
+        },
+        {
+          "name": "Miles Gilbert",
+          "role": "creative director",
+          "url": "#"
+        },
+        {
+          "name": "Javier Torok",
+          "role": "creative director"
+        },
+        {
+          "name": "Trackmeet",
+          "role": "design partner"
+        }
       ],
       "heroImage": "/Projects/Indeed Brand/Hero_Indeed.png",
       "galleryImages": [
-        "https://picsum.photos/id/30/800/600",
-        "https://picsum.photos/id/31/800/600",
-        "https://picsum.photos/id/32/800/600",
-        "https://picsum.photos/id/33/800/600"
+        "/Projects/Indeed Brand/Gallery_Indeed_BrandID_001.png",
+        "/Projects/Indeed Brand/Gallery_Indeed_BrandID_002.png",
+        "/Projects/Indeed Brand/Gallery_Indeed_BrandID_003.png",
+        "/Projects/Indeed Brand/Gallery_Indeed_BrandID_004.png",
+        "/Projects/Indeed Brand/Gallery_Indeed_BrandID_005.png",
+        "/Projects/Indeed Brand/Gallery_Indeed_BrandID_006.png",
+        "/Projects/Indeed Brand/Gallery_Indeed_BrandID_007.png",
+        "/Projects/Indeed Brand/Gallery_Indeed_BrandID_008.png",
+        "/Projects/Indeed Brand/Gallery_Indeed_BrandID_009.mp4",
+        "/Projects/Indeed Brand/Gallery_Indeed_BrandID_010.png",
+        "/Projects/Indeed Brand/Gallery_Indeed_BrandID_011.png",
+        "/Projects/Indeed Brand/Gallery_Indeed_BrandID_012.png",
+        "/Projects/Indeed Brand/Gallery_Indeed_BrandID_013.png",
+        "/Projects/Indeed Brand/Gallery_Indeed_BrandID_014.png",
+        "/Projects/Indeed Brand/Gallery_Indeed_BrandID_015.png",
+        "/Projects/Indeed Brand/Gallery_Indeed_BrandID_016.png",
+        "/Projects/Indeed Brand/Gallery_Indeed_BrandID_017.png",
+        "/Projects/Indeed Brand/Gallery_Indeed_BrandID_018.png",
+        "/Projects/Indeed Brand/Gallery_Indeed_BrandID_019.png"
       ],
       "cloudflareImageId": null,
       "cloudflareGalleryIds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         null,
         null,
         null,
@@ -37,6 +81,21 @@
       ],
       "cloudflareR2Url": null,
       "cloudflareGalleryR2Urls": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         null,
         null,
         null,
@@ -109,7 +168,15 @@
       "title": "Indeed FutureWorks Brand Identity",
       "description": "A dynamic new brand identity for a premier, annual HR tech event",
       "client": "Indeed",
-      "roles": ["Design direction", "Art direction", "Brand identity", "Creative toolkit", "Hands-on design", "Color", "Typography"],
+      "roles": [
+        "Design direction",
+        "Art direction",
+        "Brand identity",
+        "Creative toolkit",
+        "Hands-on design",
+        "Color",
+        "Typography"
+      ],
       "bodyCopy": "Greta led the brand identity design for FutureWorks, the first annual meeting of all the minds that matter in HR tech, hosted by Indeed. Greta worked with her in-house team and a few strategic freelance partners to craft an identity that was both memorable on its own, and uniquely Indeed.",
       "credits": [],
       "heroImage": "/Projects/FutureWorks/Hero_FutureWorks.png",
@@ -134,16 +201,61 @@
         "/Projects/FutureWorks/Gallery_FW_17.png"
       ],
       "cloudflareImageId": null,
-      "cloudflareGalleryIds": [],
+      "cloudflareGalleryIds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
       "cloudflareR2Url": null,
-      "cloudflareGalleryR2Urls": []
+      "cloudflareGalleryR2Urls": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "4",
       "title": "Gather Round: A Target Holiday",
       "description": "A holiday campaign dialing up every moment, big and small",
       "client": "Target",
-      "roles": ["Creative direction", "Art direction", "Creative toolkit", "Hands-on design", "Color", "Typography"],
+      "roles": [
+        "Creative direction",
+        "Art direction",
+        "Creative toolkit",
+        "Hands-on design",
+        "Color",
+        "Typography"
+      ],
       "bodyCopy": "Greta and the creative team at Deutsch creative directed Gather Round, an inclusive, playful holiday campaign for Target. Greta led creative concepting and owned the design direction for the campaign, a cohesive, seasonal approach to vibe, color, styling, sets and branding. Deliverables included broadcast spots, social content and activations, as well as a comprehensive design toolkit for agencies, in-store partners and makers.",
       "credits": [],
       "heroImage": "/Projects/Target Holiday/Hero_TgtHoliday.png",
@@ -161,17 +273,45 @@
         "/Projects/Target Holiday/Gallery_TgtHoliday_11_XL.png"
       ],
       "cloudflareImageId": null,
-      "cloudflareGalleryIds": [],
+      "cloudflareGalleryIds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
       "cloudflareR2Url": null,
-      "cloudflareGalleryR2Urls": []
+      "cloudflareGalleryR2Urls": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "5",
       "title": "Indeed Brand Photography",
       "description": "An authentic, repeatable approach to brand photography",
       "client": "Indeed",
-      "roles": ["Design direction", "Art direction", "Brand guidelines"],
-      "bodyCopy": "As Indeed rolled out an updated global brand identity, it was important to portray the modern workforce in a consistent, ownable way. Greta led Indeed Creative to hone a photography style they called Cinematic Humanism \u2013 an honest, inclusive, and empathetic look at the real world of work.",
+      "roles": [
+        "Design direction",
+        "Art direction",
+        "Brand guidelines"
+      ],
+      "bodyCopy": "As Indeed rolled out an updated global brand identity, it was important to portray the modern workforce in a consistent, ownable way. Greta led Indeed Creative to hone a photography style they called Cinematic Humanism – an honest, inclusive, and empathetic look at the real world of work.",
       "credits": [],
       "heroImage": "/Projects/Indeed Brand Photography/Hero_IndeedPhotog.png",
       "galleryImages": [
@@ -191,16 +331,55 @@
         "/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_14_XL.png"
       ],
       "cloudflareImageId": null,
-      "cloudflareGalleryIds": [],
+      "cloudflareGalleryIds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
       "cloudflareR2Url": null,
-      "cloudflareGalleryR2Urls": []
+      "cloudflareGalleryR2Urls": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "6",
       "title": "FutureWorks, Refreshed",
       "description": "An updated look and feel for FutureWorks 2.0",
       "client": "Indeed",
-      "roles": ["Design direction", "Art direction", "Brand identity", "Brand guidelines", "Creative toolkit", "Hands-on design", "Color", "Typography"],
+      "roles": [
+        "Design direction",
+        "Art direction",
+        "Brand identity",
+        "Brand guidelines",
+        "Creative toolkit",
+        "Hands-on design",
+        "Color",
+        "Typography"
+      ],
       "bodyCopy": "Back for its second year with another flagship event and a global franchise event rollout, Indeed FutureWorks needed an updated look that would continue to build brand equity for this event series while bringing fresh energy. Indeed Creative led the refresh with support from trusted partners, pulling a new dynamic gradient color story across all event touchpoints.",
       "credits": [],
       "heroImage": "/Projects/FutureWorks 2023/Hero_FutureWorks23.png",
@@ -216,16 +395,43 @@
         "/Projects/FutureWorks 2023/Gallery_FW23_09.png"
       ],
       "cloudflareImageId": null,
-      "cloudflareGalleryIds": [],
+      "cloudflareGalleryIds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
       "cloudflareR2Url": null,
-      "cloudflareGalleryR2Urls": []
+      "cloudflareGalleryR2Urls": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "7",
       "title": "Target x Disney Summer Collection",
       "description": "Two iconic brands having fun in the sun",
       "client": "Target + Disney",
-      "roles": ["Design direction", "Art direction", "Creative toolkit", "Hands-on design", "Color", "Typography"],
+      "roles": [
+        "Design direction",
+        "Art direction",
+        "Creative toolkit",
+        "Hands-on design",
+        "Color",
+        "Typography"
+      ],
       "bodyCopy": "To launch the exclusive Disney Mickey Mouse summer collection at Target, Greta and the creative team at Deutsch developed a poppy design language that allowed both beloved brands to share the stage. Color blocking paired with the iconic Mickey ear shape quickly and cleverly signaled to Disney and Target fans alike.",
       "credits": [],
       "heroImage": "/Projects/Target x Disney/Hero_TgtDisney.png",
@@ -251,16 +457,63 @@
         "/Projects/Target x Disney/Gallery_TgtDisney_19_Square_Center.gif"
       ],
       "cloudflareImageId": null,
-      "cloudflareGalleryIds": [],
+      "cloudflareGalleryIds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
       "cloudflareR2Url": null,
-      "cloudflareGalleryR2Urls": []
+      "cloudflareGalleryR2Urls": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "8",
       "title": "Back to School with Target",
-      "description": "A back-to-school campaign with kids in the driver\u2019s seat",
+      "description": "A back-to-school campaign with kids in the driver’s seat",
       "client": "Target",
-      "roles": ["Creative direction", "Art direction", "Creative toolkit", "Hands-on design", "Color", "Typography"],
+      "roles": [
+        "Creative direction",
+        "Art direction",
+        "Creative toolkit",
+        "Hands-on design",
+        "Color",
+        "Typography"
+      ],
       "bodyCopy": "Target and the creative team at Deutsch believe in kids so darn much, they hired a whole crew of them to create the campaign for back-to-school. Kid directors, kid stylists, kid illustrators and kid writers came together with grownup helpers to build a unique, kid-centric campaign from top-to-bottom. In her role as design director, Greta owned the campaign look-and-feel and built the toolkit, but the real highlight was coaching kid illustrators bringing the set designs to life.",
       "credits": [],
       "heroImage": "/Projects/Target BTS/Hero_TgtBTS.png",
@@ -271,16 +524,33 @@
         "/Projects/Target BTS/Gallery_TgtBTS_04.mp4"
       ],
       "cloudflareImageId": null,
-      "cloudflareGalleryIds": [],
+      "cloudflareGalleryIds": [
+        null,
+        null,
+        null,
+        null
+      ],
       "cloudflareR2Url": null,
-      "cloudflareGalleryR2Urls": []
+      "cloudflareGalleryR2Urls": [
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "9",
       "title": "A hot yoga brand like no other",
-      "description": "A new look and new energy for NYC\u2019s premier hot yoga studio franchise",
+      "description": "A new look and new energy for NYC’s premier hot yoga studio franchise",
       "client": "ID Hot Yoga",
-      "roles": ["Design direction", "Brand identity", "Brand guidelines", "Hands-on design", "Color", "Typography"],
+      "roles": [
+        "Design direction",
+        "Brand identity",
+        "Brand guidelines",
+        "Hands-on design",
+        "Color",
+        "Typography"
+      ],
       "bodyCopy": "Greta supported ID Hot Yoga with a new brand identity and design toolkit as they launched their signature hot yoga experience across five NY-based studios. Greta partnered with writer Janet Higdon to craft an identity blending stillness and energy, balance and motion - pulling the new look, feel and voice across brand guidelines, in-store treatments and future brand visualizations.",
       "credits": [],
       "heroImage": "/Projects/IDHY/Hero_IDHY.png",
@@ -294,16 +564,35 @@
         "/Projects/IDHY/Gallery_IDHY_07_XL.png"
       ],
       "cloudflareImageId": null,
-      "cloudflareGalleryIds": [],
+      "cloudflareGalleryIds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
       "cloudflareR2Url": null,
-      "cloudflareGalleryR2Urls": []
+      "cloudflareGalleryR2Urls": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
     },
     {
       "id": "10",
       "title": "TED x Target",
-      "description": "A branded TED conference lounge experience playing with graphic trompe l\u2019oeil",
+      "description": "A branded TED conference lounge experience playing with graphic trompe l’oeil",
       "client": "Target",
-      "roles": ["Design direction", "Art direction"],
+      "roles": [
+        "Design direction",
+        "Art direction"
+      ],
       "bodyCopy": "Target tapped the Deutsch experiential design team to design and install an interactive, creative space at TED | Truth and Dare, designed to invite curiosity and trick the mind. The space pairs signature Target brand cues (clean, bold type, pops of red) with optical illustration to create a restful but mind-bending branded lounge.",
       "credits": [],
       "heroImage": "/Projects/TED x Target/Hero_TEDxTGT.png",
@@ -328,9 +617,47 @@
         "/Projects/TED x Target/Gallery_TEDxTGT_18_Span3.png"
       ],
       "cloudflareImageId": null,
-      "cloudflareGalleryIds": [],
+      "cloudflareGalleryIds": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
       "cloudflareR2Url": null,
-      "cloudflareGalleryR2Urls": []
+      "cloudflareGalleryR2Urls": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
     }
   ],
   "mediaGallery": [
