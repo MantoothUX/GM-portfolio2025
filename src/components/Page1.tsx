@@ -912,7 +912,7 @@ const AboutSection = () => {
             color: COLORS.deepBrown,
             whiteSpace: 'pre-line'
           }}>
-            {`Greta Mantooth is a brand-obsessed design director with agency roots and in-house expertise. She's led teams on award-winning work for brands big and small — think fancy booze branding, punny holiday campaigns, and fresh design systems. She likes to work smart, choose joy, and surround herself with good humans.
+            {`Greta Mantooth is a brand-obsessed design director with agency roots and in-house expertise. With over 20 years of experience, she's led teams on award-winning work for brands big and small — think fancy booze branding, punny holiday campaigns, and fresh design systems. She likes to work smart, choose joy, and surround herself with good humans.
 
 Greta lives in the Texas hill country with her family and two very sweet and annoying rescue dogs. Together, they like to make things, especially breakfast tacos.`}
           </p>
