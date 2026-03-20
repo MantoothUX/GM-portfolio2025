@@ -1417,7 +1417,7 @@ export const ProjectDetailPage = () => {
       </section>
 
       {/* Credits — hidden for now, will enable once all projects have credits data */}
-      {false && project.credits && project.credits.length > 0 && (
+      {false && project?.credits && (project?.credits?.length ?? 0) > 0 && (
         <section style={{
           width: '100%',
           paddingTop: isMobile ? SPACING.md : SPACING.lg,
@@ -1447,7 +1447,7 @@ export const ProjectDetailPage = () => {
             alignItems: 'center',
             gap: '8px',
           }}>
-            {project.credits.map((credit, idx) => (
+            {project?.credits?.map((credit, idx) => (
               <li key={idx} style={{
                 fontSize: isMobile ? '14px' : '16px',
                 fontFamily: '"Vulf Mono", monospace',
