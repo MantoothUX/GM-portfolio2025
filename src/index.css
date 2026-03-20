@@ -21,7 +21,7 @@ html {
        url('/Compadre-Extended.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -30,7 +30,7 @@ html {
        url('/Compadre-Narrow.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -39,7 +39,7 @@ html {
        url('/VulfMono-Light.woff') format('woff');
   font-weight: 300;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -48,7 +48,7 @@ html {
        url('/VulfMono-LightItalic.woff') format('woff');
   font-weight: 300;
   font-style: italic;
-  font-display: swap;
+  font-display: block;
 }
 
 /* Hide scrollbar while keeping scroll functionality */
