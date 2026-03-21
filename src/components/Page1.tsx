@@ -636,6 +636,7 @@ const MediaGallery = () => {
         backgroundColor: COLORS.background,
         cursor: isDesktop ? 'grab' : 'default',
         userSelect: 'none',
+        touchAction: 'pan-y',
       }}
     >
       <div
@@ -683,7 +684,6 @@ const ProjectCard = ({
     onClick={onClick}
     style={{
       flex: '1',
-      minWidth: '300px',
       display: 'flex',
       flexDirection: 'column',
       backgroundColor: '#f2efe9',
@@ -1021,7 +1021,7 @@ export const HomePage = () => {
           Outer wrapper is tall (viewport + 30vh dwell); inner sticky div pins the
           carousel to the nav while the wrapper scrolls through, then releases. */}
       <div style={{
-        height: isPhone ? 'calc(64vh + 24px + 5vh)' : 'calc(100vh - 70px + 30vh)',
+        height: isPhone ? 'calc(64vh + 24px + 20vh)' : 'calc(100vh - 70px + 30vh)',
         position: 'relative',
         zIndex: 60,
         backgroundColor: COLORS.background,
@@ -1057,6 +1057,8 @@ export const HomePage = () => {
 // Projects Page
 export const ProjectsPage = () => {
   const navigate = useNavigate();
+  const breakpoint = useBreakpoint();
+  const isMobile = breakpoint !== 'desktop';
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -1076,14 +1078,14 @@ export const ProjectsPage = () => {
         maxWidth: '1190px',
         width: '100%',
         margin: '0 auto',
-        padding: `${SPACING.lg} 32px`
+        padding: isMobile ? `${SPACING.md} 16px` : `${SPACING.lg} 32px`
       }}>
         <h2 style={{
           fontSize: 'clamp(22px, 3vw, 36px)',
           fontFamily: '"Vulf Mono", monospace',
           fontStyle: 'italic',
           fontWeight: 300,
-          marginBottom: '48px',
+          marginBottom: isMobile ? '32px' : '48px',
           color: COLORS.charcoal,
           textTransform: 'lowercase'
         }}>
@@ -1091,8 +1093,8 @@ export const ProjectsPage = () => {
         </h2>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
-          gap: '40px'
+          gridTemplateColumns: `repeat(auto-fill, minmax(min(350px, 100%), 1fr))`,
+          gap: isMobile ? '24px' : '40px'
         }}>
           {PROJECTS.map(project => (
             <ProjectCard
