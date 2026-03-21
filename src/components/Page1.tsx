@@ -137,7 +137,8 @@ export const TopBar = () => {
       boxSizing: 'border-box',
       position: 'sticky',
       top: 0,
-      zIndex: 10000
+      zIndex: 10000,
+      isolation: 'isolate'
     }}>
       <button onClick={handleLogoClick} style={{
         background: 'none',
@@ -254,9 +255,8 @@ const StickyCard = ({
   extraScrollHeight = 0,
   mobileGap
 }: CardProps) => {
-  const cardRef = useRef<HTMLDivElement>(null);
   const breakpoint = useBreakpoint();
-  const isMobile = breakpoint === 'phone';
+  const isMobile = breakpoint !== 'desktop';
   const topOffset = 70 + index * 30; // 30px visible stripe per card (reduced from 60px)
   const effectiveExtraScroll = isMobile ? Math.round(extraScrollHeight / 3) : extraScrollHeight;
 
@@ -264,7 +264,7 @@ const StickyCard = ({
   const visibleHeight = `calc(100vh - ${topOffset}px - 80px)`;
 
   return (
-    <section ref={cardRef} style={{
+    <section style={{
       width: '100%',
       height: `calc(${100 + effectiveExtraScroll}vh - ${topOffset}px - 80px)`,
       backgroundColor,
@@ -293,10 +293,10 @@ const StickyCard = ({
           width: '100%',
           display: 'flex',
           flexDirection: isMobile ? 'column' : 'row',
-          alignItems: isMobile ? 'center' : 'center',
+          alignItems: 'center',
           gap: isMobile ? `${mobileGap ?? 24}px` : '48px',
         }}>
-          {/* Image — on mobile, rendered first (above text), large and centered */}
+          {/* Image — on mobile/tablet, rendered first (above text), constrained so text stays visible */}
           {isMobile && (
             <div style={{
               width: '100%',
@@ -304,13 +304,15 @@ const StickyCard = ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              flexShrink: 1,
+              overflow: 'hidden',
             }}>
               <img
                 src={image}
                 alt=""
                 style={{
                   width: '100%',
-                  height: 'auto',
+                  maxHeight: '40vh',
                   objectFit: 'contain',
                 }}
               />
@@ -756,7 +758,8 @@ const ProjectCard = ({
 // Featured Projects Section
 const FeaturedProjects = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  const breakpoint = useBreakpoint();
+  const isMobile = breakpoint !== 'desktop';
 
   const handleProjectClick = (projectId: string) => {
     savedHomeScrollPosition = window.scrollY;
@@ -774,7 +777,7 @@ const FeaturedProjects = () => {
       maxWidth: '1190px',
       width: '100%',
       margin: '0 auto',
-      padding: `${SPACING.md} 32px 0 32px`,
+      padding: isMobile ? '16px 32px 0 32px' : `${SPACING.md} 32px 0 32px`,
       backgroundColor: COLORS.card3
     }}>
       <h2 style={{
@@ -945,7 +948,7 @@ Greta lives in the Texas hill country with her family and two very sweet and ann
 // Footer with background and placeholder GIF
 const Footer = () => {
   const breakpoint = useBreakpoint();
-  const isMobileFooter = breakpoint === 'phone';
+  const isMobileFooter = breakpoint !== 'desktop';
   return (
   <footer style={{
     paddingTop: isMobileFooter ? '24px' : '40px',
@@ -977,6 +980,9 @@ const Footer = () => {
 
 // Home Page
 export const HomePage = () => {
+  const breakpoint = useBreakpoint();
+  const isPhone = breakpoint === 'phone'; // phone-specific: matches MediaGallery's 64vh carousel height
+
   useEffect(() => {
     // Restore scroll position when returning to home
     if (savedHomeScrollPosition > 0) {
@@ -1015,16 +1021,19 @@ export const HomePage = () => {
           Outer wrapper is tall (viewport + 30vh dwell); inner sticky div pins the
           carousel to the nav while the wrapper scrolls through, then releases. */}
       <div style={{
-        height: 'calc(100vh - 70px + 30vh)',
+        height: isPhone ? 'calc(64vh + 24px + 5vh)' : 'calc(100vh - 70px + 30vh)',
         position: 'relative',
-        zIndex: 100,
+        zIndex: 60,
+        backgroundColor: COLORS.background,
       }}>
         <div style={{
           position: 'sticky',
           top: '70px',
-          height: 'calc(100vh - 70px)',
+          height: isPhone ? 'calc(64vh + 24px)' : 'calc(100vh - 70px)',
           overflow: 'hidden',
           backgroundColor: COLORS.card3,
+          paddingBottom: isPhone ? '24px' : undefined,
+          boxSizing: isPhone ? 'border-box' : undefined,
         }}>
           <MediaGallery />
         </div>
@@ -1034,7 +1043,7 @@ export const HomePage = () => {
       <section style={{
         minHeight: '100vh',
         position: 'relative',
-        zIndex: 100,
+        zIndex: 60,
         backgroundColor: COLORS.background,
       }}>
         <FeaturedProjects />
@@ -1143,24 +1152,15 @@ export const ProjectDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const location = useLocation();
-  const [isMobile, setIsMobile] = useState(false);
-  
+  const breakpoint = useBreakpoint();
+  const isMobile = breakpoint !== 'desktop';
+
   const project = PROJECTS.find(p => p.id === id);
   const from = (location.state as { from?: string })?.from;
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [id]);
-
-  // Check for mobile viewport
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   const handleBack = () => {
     if (from === 'home') {
@@ -1452,63 +1452,6 @@ export const ProjectDetailPage = () => {
           )}
         />
       </section>
-
-      {/* Credits — hidden for now, will enable once all projects have credits data */}
-      {false && project?.credits && (project?.credits?.length ?? 0) > 0 && (
-        <section style={{
-          width: '100%',
-          paddingTop: isMobile ? SPACING.md : SPACING.lg,
-          paddingBottom: isMobile ? SPACING.md : SPACING.lg,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}>
-          <span style={{
-            display: 'block',
-            fontSize: isMobile ? '14px' : '16px',
-            fontFamily: '"Vulf Mono", monospace',
-            fontStyle: 'italic',
-            fontWeight: 300,
-            color: COLORS.warmGray,
-            marginBottom: '12px',
-            textTransform: 'lowercase',
-          }}>
-            credits
-          </span>
-          <ul style={{
-            listStyle: 'none',
-            margin: 0,
-            padding: 0,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '8px',
-          }}>
-            {project?.credits?.map((credit, idx) => (
-              <li key={idx} style={{
-                fontSize: isMobile ? '14px' : '16px',
-                fontFamily: '"Vulf Mono", monospace',
-                fontWeight: 300,
-                color: COLORS.deepBrown,
-                textAlign: 'center',
-              }}>
-                {credit.url ? (
-                  <a href={credit.url} style={{
-                    fontWeight: 600,
-                    color: COLORS.deepBrown,
-                    textDecoration: 'none',
-                  }}>
-                    {credit.name}
-                  </a>
-                ) : (
-                  <span>{credit.name}</span>
-                )}
-                , {credit.role}
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
 
       <Footer />
     </main>

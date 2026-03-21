@@ -10,7 +10,6 @@ interface OptimizedImageProps {
   loading?: 'lazy' | 'eager';
   cloudflareImageId?: string;
   cloudflareR2Url?: string;
-  accountHash?: string;
   style?: React.CSSProperties;
   objectPosition?: string;
 }
@@ -32,7 +31,6 @@ export default function OptimizedImage({
   loading = 'lazy',
   cloudflareImageId,
   cloudflareR2Url,
-  accountHash,
   style,
   objectPosition,
 }: OptimizedImageProps) {
@@ -87,7 +85,7 @@ export default function OptimizedImage({
     if (cloudflareR2Url) {
       return cloudflareR2Url;
     } else if (cloudflareImageId) {
-      const cloudflareUrl = generateCloudflareImageUrl(cloudflareImageId, accountHash, {});
+      const cloudflareUrl = generateCloudflareImageUrl(cloudflareImageId, undefined, {});
 
       if (cloudflareUrl) {
         return cloudflareUrl;
@@ -95,7 +93,7 @@ export default function OptimizedImage({
     }
 
     return src;
-  }, [useFallback, cloudflareR2Url, cloudflareImageId, accountHash, src, optimizedDimensions]);
+  }, [useFallback, cloudflareR2Url, cloudflareImageId, src, optimizedDimensions]);
 
   // For Cloudflare images, wait for container measurement before rendering img
   const waitingForMeasure = cloudflareImageId && !useFallback && containerWidth === null;
