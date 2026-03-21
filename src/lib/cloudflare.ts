@@ -36,18 +36,7 @@ export function generateCloudflareImageUrl(
   }
 
   const variant = options.variant || 'public';
-  const baseUrl = `https://imagedelivery.net/${hash}/${imageId}/${variant}`;
-
-  // Cloudflare Images supports transformations via URL parameters
-  const params: string[] = [];
-
-  if (options.width) params.push(`width=${options.width}`);
-  if (options.height) params.push(`height=${options.height}`);
-  if (options.fit) params.push(`fit=${options.fit}`);
-  if (options.format && options.format !== 'auto') params.push(`format=${options.format}`);
-  if (options.quality) params.push(`quality=${options.quality}`);
-
-  return params.length > 0 ? `${baseUrl}?${params.join('&')}` : baseUrl;
+  return `https://imagedelivery.net/${hash}/${imageId}/${variant}`;
 }
 
 /**

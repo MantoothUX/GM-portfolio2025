@@ -3,6 +3,7 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { Mail, Linkedin, Pin, Menu, X } from 'lucide-react';
 import { ProjectGallery, getDefaultLayout } from '@/components/ProjectGallery';
 import { GALLERY_LAYOUTS } from '@/data/galleryLayouts';
+import type { GallerySection } from '@/components/ProjectGallery';
 import OptimizedImage from '@/components/OptimizedImage';
 import { useBreakpoint } from '@/hooks/use-breakpoint';
 import FooterStars from '@/components/FooterStars';
@@ -1103,6 +1104,40 @@ export const ProjectsPage = () => {
   );
 };
 
+/**
+ * Enrich gallery layout sections with Cloudflare IDs by matching src paths
+ * to the project's galleryImages / cloudflareGalleryIds arrays.
+ */
+function enrichSectionsWithCloudflare(
+  sections: GallerySection[],
+  project: Project
+): GallerySection[] {
+  // Build a lookup: local path → { cloudflareImageId, cloudflareR2Url }
+  const lookup = new Map<string, { cfId: string | null; r2Url: string | null }>();
+  project.galleryImages.forEach((img, i) => {
+    lookup.set(img, {
+      cfId: project.cloudflareGalleryIds?.[i] ?? null,
+      r2Url: project.cloudflareGalleryR2Urls?.[i] ?? null,
+    });
+  });
+
+  return sections.map(section => {
+    if (!('items' in section)) return section;
+    return {
+      ...section,
+      items: section.items.map(item => {
+        if (item.type !== 'image' && item.type !== 'video') return item;
+        const match = lookup.get(item.src);
+        if (!match) return item;
+        if (item.type === 'video') {
+          return { ...item, cloudflareR2Url: match.r2Url };
+        }
+        return { ...item, cloudflareImageId: match.cfId, cloudflareR2Url: match.r2Url };
+      }),
+    };
+  });
+}
+
 // Project Detail Page
 export const ProjectDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -1168,10 +1203,8 @@ export const ProjectDetailPage = () => {
         <OptimizedImage
           src={project.heroImage}
           alt={project.title}
-          cloudflareImageId={project.cloudflareImageId ?? undefined}
-          cloudflareR2Url={project.cloudflareR2Url ?? undefined}
-          width={1440}
-          height={700}
+          width={2400}
+          height={1200}
           loading="eager"
           style={{
             width: '100%',
@@ -1413,7 +1446,10 @@ export const ProjectDetailPage = () => {
         paddingBottom: isMobile ? SPACING.md : SPACING.lg,
       }}>
         <ProjectGallery
-          sections={GALLERY_LAYOUTS[project.id] || getDefaultLayout(project.galleryImages)}
+          sections={enrichSectionsWithCloudflare(
+            GALLERY_LAYOUTS[project.id] || getDefaultLayout(project.galleryImages),
+            project
+          )}
         />
       </section>
 

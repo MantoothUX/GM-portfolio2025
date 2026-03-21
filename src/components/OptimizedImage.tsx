@@ -87,12 +87,7 @@ export default function OptimizedImage({
     if (cloudflareR2Url) {
       return cloudflareR2Url;
     } else if (cloudflareImageId) {
-      const cloudflareUrl = generateCloudflareImageUrl(cloudflareImageId, accountHash, {
-        width: optimizedDimensions.reqWidth,
-        height: optimizedDimensions.reqHeight,
-        format: 'auto',
-        quality: 90,
-      });
+      const cloudflareUrl = generateCloudflareImageUrl(cloudflareImageId, accountHash, {});
 
       if (cloudflareUrl) {
         return cloudflareUrl;
