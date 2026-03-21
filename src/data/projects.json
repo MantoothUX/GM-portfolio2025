@@ -57,27 +57,27 @@
         "/Projects/Indeed Brand/Gallery_Indeed_BrandID_018.png",
         "/Projects/Indeed Brand/Gallery_Indeed_BrandID_019.png"
       ],
-      "cloudflareImageId": null,
+      "cloudflareImageId": "50e4b031-7c21-4b07-d870-753ba531b500",
       "cloudflareGalleryIds": [
+        "a6f720fb-ed62-444c-35c3-803933bf3800",
+        "04423903-9f80-454b-d8cf-adff41436d00",
+        "98308f9d-f444-43bd-8cf0-1fc3d1465800",
+        "32f6ce13-ea22-4d61-da7c-106780d8d500",
+        "9fee5201-35b1-40aa-2f08-4c050e394f00",
+        "5a52e9c8-e5d4-4a93-9ee4-1e7194c58700",
+        "84afe411-caed-42ad-b768-9ac07f7c2a00",
+        "38d9ab8c-5ea9-4e26-5451-df11e1e24200",
         null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
+        "1db49fcb-a141-41bb-3af2-0b0ec141dc00",
+        "99a7d59a-1255-4edf-9a79-9c944db6da00",
+        "8af8fd98-06e4-4294-4b4e-039335654600",
+        "c8528ca6-d714-4e78-a6a5-f83067742100",
+        "d7f3d645-9b10-488a-eafe-b0f87467fb00",
+        "96d2dafd-36c1-44ea-fc03-6929bb3bfd00",
+        "38fdfd6e-772a-4c68-dcff-aca5a550d900",
+        "9defd897-974a-4127-9b68-984fc1712500",
+        "c8a0f446-45f9-428a-6a18-f82ca10e6c00",
+        "f69c3188-06b5-4897-08c2-5ca3a7951900"
       ],
       "cloudflareR2Url": null,
       "cloudflareGalleryR2Urls": [
@@ -89,7 +89,7 @@
         null,
         null,
         null,
-        null,
+        "https://078e1c828fa92749210bf77e0b1b6d31.r2.cloudflarestorage.com/Projects/Indeed Brand/Gallery_Indeed_BrandID_009.mp4",
         null,
         null,
         null,
@@ -132,20 +132,20 @@
         "/Projects/Stickerbox/Gallery_Stickerbox_011.png",
         "/Projects/Stickerbox/Gallery_Stickerbox_012.gif"
       ],
-      "cloudflareImageId": null,
+      "cloudflareImageId": "0e2eaf28-6cac-4856-84fc-cccdc4d4b500",
       "cloudflareGalleryIds": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
+        "14a5bf3f-2808-4e47-0e98-92cb9c67d800",
+        "ef5592cf-276b-4ec5-57db-408ade29a500",
+        "fa217655-279e-40ce-2878-02590f8d7400",
+        "76827c0c-1493-4f39-b25a-05e2b430a100",
+        "6505a9a8-68fb-4813-aa4d-d7ba06e56b00",
+        "02ce82e2-b572-4544-39af-0a25e20f9600",
+        "f7d9fa79-03d5-475e-44e1-c6a4f4da8100",
+        "6928c84b-f2f7-40fa-d5b3-eef81f861b00",
+        "70493c0d-0291-46a4-54e8-49129f2a9500",
+        "1039bf57-d06e-42c8-659e-ac915aabdc00",
+        "0ea7daad-1630-4e29-2f2c-267d111b1b00",
+        "84586791-1c12-4e4d-7539-2ec823c20d00"
       ],
       "cloudflareR2Url": null,
       "cloudflareGalleryR2Urls": [
@@ -200,30 +200,30 @@
         "/Projects/FutureWorks/Gallery_FW_16.png",
         "/Projects/FutureWorks/Gallery_FW_17.png"
       ],
-      "cloudflareImageId": null,
+      "cloudflareImageId": "dc9d5c05-fb32-4e85-b658-dc53239abc00",
       "cloudflareGalleryIds": [
         null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
+        "7902ca07-ccaf-40b4-80b6-40db026d4300",
+        "f08447f6-bbef-4e42-f1e0-125ca823c000",
+        "bd693294-0656-4f23-93d7-1e9283bc1300",
+        "61a78224-1894-4b55-f577-531bca68ec00",
+        "83b63df0-6472-40d1-eb62-df82c8ef2600",
+        "04671052-d820-4403-4f65-61f16b262500",
+        "712557f5-496d-4223-d769-d0df2a26a200",
+        "dcf3feb0-e443-4677-1026-1ee782391800",
+        "beaaa6a3-16e4-469b-822f-4765aadecb00",
+        "8d3ee702-fdc7-4cec-cbfb-c0d2f5554f00",
+        "d23b9478-0ea5-4bc1-257a-5a68a2a4b400",
+        "5791ad30-351b-46e1-45e9-329c4d4df400",
+        "d1613e36-5402-43da-e0cc-8fc897a30c00",
+        "507ab3de-fa38-4e14-a956-a94caa431d00",
+        "623fa9ad-2e5a-457b-f6dd-3b427a070500",
+        "7d250f82-e1e2-4811-b5ba-3407dfcd4200",
+        "df71f33f-ba18-4c0e-52fe-5ff70c3b9f00"
       ],
       "cloudflareR2Url": null,
       "cloudflareGalleryR2Urls": [
-        null,
+        "https://078e1c828fa92749210bf77e0b1b6d31.r2.cloudflarestorage.com/Projects/FutureWorks/Gallery_FW_00.mp4",
         null,
         null,
         null,
@@ -272,24 +272,24 @@
         "/Projects/Target Holiday/Gallery_TgtHoliday_10_Horz.png",
         "/Projects/Target Holiday/Gallery_TgtHoliday_11_XL.png"
       ],
-      "cloudflareImageId": null,
+      "cloudflareImageId": "7e1e7b6c-8d2c-4e8c-6243-24d6614fc000",
       "cloudflareGalleryIds": [
         null,
         null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
+        "b737ea72-ae10-4efa-7cf1-e979bc15c800",
+        "5a6db45e-c362-40e5-6b21-8a64ce789e00",
+        "a87a9a5a-6d3e-4dac-12a8-0e393c68cc00",
+        "046a8c38-a398-4371-ab4e-a6bf669fa100",
+        "f119fd55-6a01-4c34-2a4b-0480e9d27300",
+        "67ed9766-534f-4955-9cfd-aee0cf004e00",
+        "b598dc9d-39c9-45c8-ffae-164614caaf00",
+        "e17e7af9-f512-4043-643d-fd632066eb00",
+        "a0aeeaa7-a411-42cf-e10d-af79917c0c00"
       ],
       "cloudflareR2Url": null,
       "cloudflareGalleryR2Urls": [
-        null,
-        null,
+        "https://078e1c828fa92749210bf77e0b1b6d31.r2.cloudflarestorage.com/Projects/Target Holiday/Gallery_TgtHoliday_01.mp4",
+        "https://078e1c828fa92749210bf77e0b1b6d31.r2.cloudflarestorage.com/Projects/Target Holiday/Gallery_TgtHoliday_02.mp4",
         null,
         null,
         null,
@@ -330,22 +330,22 @@
         "/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_13_Span2.png",
         "/Projects/Indeed Brand Photography/Gallery_IndeedPhotog_14_XL.png"
       ],
-      "cloudflareImageId": null,
+      "cloudflareImageId": "a7f7f783-8a41-4123-0647-3ea749100300",
       "cloudflareGalleryIds": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
+        "0c2c8581-21cb-48c2-646c-9a5324f32f00",
+        "9b195001-adbe-466a-cbf3-4ee9e8ae7700",
+        "fcd7eeec-2434-456a-89a4-21c0034c0a00",
+        "ebd7975d-f784-4823-34b3-05bde14a6c00",
+        "1c7a3da8-39a6-4745-f421-5799b4a16100",
+        "32c46eab-f823-4fee-cd58-74da8bda2c00",
+        "ca445929-48c2-4078-28a6-4193bb335b00",
+        "c760467b-0928-4846-b31a-a82b21a22b00",
+        "edbf4291-70d2-4354-3486-aebd17d88900",
+        "5bbb62c3-a3ef-4b5d-ec5a-2fa725fa7700",
+        "09a22ce8-314b-47d5-e5af-063c40aead00",
+        "7e2f3a4a-e85e-4a05-f02c-460235091100",
+        "b5a6078f-54c5-4c3d-87af-0b5c99539b00",
+        "3b409651-203a-4fb9-b83b-27f0fcc8ee00"
       ],
       "cloudflareR2Url": null,
       "cloudflareGalleryR2Urls": [
@@ -394,22 +394,22 @@
         "/Projects/FutureWorks 2023/Gallery_FW23_08.png",
         "/Projects/FutureWorks 2023/Gallery_FW23_09.png"
       ],
-      "cloudflareImageId": null,
+      "cloudflareImageId": "ccb10d1a-52f3-416f-cca9-70b387087300",
       "cloudflareGalleryIds": [
+        "aab637f3-15f1-4d52-c661-319ced01ed00",
         null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
+        "5fa14d58-a49b-4c7c-5664-70b8acfdc400",
+        "a34315a0-6a5a-451a-301a-ffe2464f7b00",
+        "4a2c69a1-c633-4130-b858-db8e79296600",
+        "2b6d0d5b-87cb-449e-640a-26aee8a1c600",
+        "7b78e929-ac9f-4221-fc12-ccbe348f3600",
+        "a541f3ac-06c8-4d3b-f6cf-67e60a86eb00",
+        "d53f59d8-0b88-477e-7b75-7ad0ee024f00"
       ],
       "cloudflareR2Url": null,
       "cloudflareGalleryR2Urls": [
         null,
-        null,
+        "https://078e1c828fa92749210bf77e0b1b6d31.r2.cloudflarestorage.com/Projects/FutureWorks 2023/Gallery_FW23_02.mp4",
         null,
         null,
         null,
@@ -456,27 +456,27 @@
         "/Projects/Target x Disney/Gallery_TgtDisney_18_Vertical_Span3.png",
         "/Projects/Target x Disney/Gallery_TgtDisney_19_Square_Center.gif"
       ],
-      "cloudflareImageId": null,
+      "cloudflareImageId": "609a3f05-0360-4577-2afb-fed1d903db00",
       "cloudflareGalleryIds": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
+        "b51d1257-eb9e-4f76-b8ee-a278986b5100",
+        "900f41c7-007a-41ff-1365-ecfb164cbe00",
+        "5c4962e8-74bf-45c0-1138-b46dcc65dc00",
+        "f45eecf5-dfc5-450f-e815-a43f87ed4700",
+        "10cc61a6-7675-42d7-d45f-de1ec2158f00",
+        "6e38106d-046e-4e1f-351c-6369aec9da00",
+        "4d8764c0-bbaa-46dc-3d39-a196b28dd300",
+        "784bf9ed-7ebb-4ef4-0573-23294d048f00",
+        "87481615-658a-457f-8e83-80fb39981900",
+        "e8099ada-1d36-4681-7786-6b53f1d0bd00",
+        "7c0394be-b3a8-4481-bd4c-287bb0437300",
+        "0570a7c5-6a8f-4c01-a848-07158e38a100",
+        "2052eba0-8002-40bf-8063-c78bb1567200",
+        "8c80e606-78df-44a0-d929-fd8e94865700",
+        "6b45a0f8-e80a-46f7-4b44-237bb2958800",
+        "6922a95f-15a3-4b3d-a7a3-c3a7bd729b00",
+        "a5628488-1b4d-42bc-4976-ea47136e5800",
+        "ba2b4d3f-fb65-4dc6-4e67-98b097789d00",
+        "99df551d-87de-4fd1-41f8-a1f6b5c44500"
       ],
       "cloudflareR2Url": null,
       "cloudflareGalleryR2Urls": [
@@ -523,7 +523,7 @@
         "/Projects/Target BTS/Gallery_TgtBTS_03.mp4",
         "/Projects/Target BTS/Gallery_TgtBTS_04.mp4"
       ],
-      "cloudflareImageId": null,
+      "cloudflareImageId": "1858dc81-1065-487f-bc4d-426728ef3800",
       "cloudflareGalleryIds": [
         null,
         null,
@@ -532,10 +532,10 @@
       ],
       "cloudflareR2Url": null,
       "cloudflareGalleryR2Urls": [
-        null,
-        null,
-        null,
-        null
+        "https://078e1c828fa92749210bf77e0b1b6d31.r2.cloudflarestorage.com/Projects/Target BTS/Gallery_TgtBTS_01.mp4",
+        "https://078e1c828fa92749210bf77e0b1b6d31.r2.cloudflarestorage.com/Projects/Target BTS/Gallery_TgtBTS_02.mp4",
+        "https://078e1c828fa92749210bf77e0b1b6d31.r2.cloudflarestorage.com/Projects/Target BTS/Gallery_TgtBTS_03.mp4",
+        "https://078e1c828fa92749210bf77e0b1b6d31.r2.cloudflarestorage.com/Projects/Target BTS/Gallery_TgtBTS_04.mp4"
       ]
     },
     {
@@ -563,15 +563,15 @@
         "/Projects/IDHY/Gallery_IDHY_06_XL.png",
         "/Projects/IDHY/Gallery_IDHY_07_XL.png"
       ],
-      "cloudflareImageId": null,
+      "cloudflareImageId": "7542f267-108f-42eb-cf30-2ed554ef4100",
       "cloudflareGalleryIds": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
+        "bd06b74e-7b42-4aae-ff9f-899117b54800",
+        "a7407ac0-acdd-474e-f25c-e29263a88100",
+        "1e91fd9c-f37b-4246-2076-50b66b276e00",
+        "cfba79cc-f0f8-4b38-7150-bca716a90200",
+        "5e247375-47c2-4598-16b7-e1da16147e00",
+        "9e78b16c-1967-498f-f7f2-73eeaa881b00",
+        "ced4fa5c-8e0e-4ad5-d57b-0cb0fd56bb00"
       ],
       "cloudflareR2Url": null,
       "cloudflareGalleryR2Urls": [
@@ -616,26 +616,26 @@
         "/Projects/TED x Target/Gallery_TEDxTGT_17_Span3.png",
         "/Projects/TED x Target/Gallery_TEDxTGT_18_Span3.png"
       ],
-      "cloudflareImageId": null,
+      "cloudflareImageId": "616fdb35-7b90-4f9d-4268-11ca1e832700",
       "cloudflareGalleryIds": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
+        "d97f1682-97c6-4237-9cb6-ab628364a500",
+        "973085f9-77fb-4a4c-f198-204b60dee700",
+        "76ae3f21-29cf-424e-5d8a-92ed23d24c00",
+        "02b6c962-3209-43c6-21c3-9a0f04342c00",
+        "82c8bfcc-5731-40a5-8327-4004cf326f00",
+        "78b23c8f-147e-4624-68b3-d4ac6b432300",
+        "9a284893-0b2d-4353-53ed-0565d8c3ba00",
+        "88540c49-80ac-43e9-0962-b6e64e57fb00",
+        "9eda2ad2-b70b-4add-bc81-40f114ca0200",
+        "defe4002-54b5-4130-e32f-49fd4e671700",
+        "37770dee-526c-443b-cdd5-701670ae6a00",
+        "e6838a2b-5691-469d-04e7-e359eec03b00",
+        "219c2b2f-a9f9-4f83-9d3b-0d890a4ccc00",
+        "06ec6f6b-2812-41f4-960c-2a4309af4000",
+        "854d201e-fb06-4709-5648-a8e8a3ea1800",
+        "31443279-4a93-42ea-697b-37243d952300",
+        "b67cf63f-4756-4a41-ace7-1cd73df6e400",
+        "e9e87a19-9527-4f08-c6db-19fbdaf97200"
       ],
       "cloudflareR2Url": null,
       "cloudflareGalleryR2Urls": [
@@ -666,7 +666,7 @@
       "type": "square",
       "width": 985,
       "height": 986,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "7249fc2f-2d37-4a9d-4e10-394ff09a8800",
       "cloudflareR2Url": null
     },
     {
@@ -674,7 +674,7 @@
       "type": "square",
       "width": 1080,
       "height": 1080,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "84d39608-b4f0-4ee6-88ea-e675a49a1300",
       "cloudflareR2Url": null
     },
     {
@@ -682,7 +682,7 @@
       "type": "vertical",
       "width": 1078,
       "height": 1526,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "7b33d939-f5ee-4409-7cce-721d7dc60f00",
       "cloudflareR2Url": null
     },
     {
@@ -690,7 +690,7 @@
       "type": "square",
       "width": 985,
       "height": 985,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "255e36db-b55a-4192-c145-470ae2229600",
       "cloudflareR2Url": null
     },
     {
@@ -698,7 +698,7 @@
       "type": "square",
       "width": 985,
       "height": 984,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "bb6995fe-09f5-42f0-b5ab-4aadbbc3b000",
       "cloudflareR2Url": null
     },
     {
@@ -706,7 +706,7 @@
       "type": "vertical",
       "width": 1200,
       "height": 1600,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "4b700c5f-0118-41b6-f294-a7209610b100",
       "cloudflareR2Url": null
     },
     {
@@ -714,7 +714,7 @@
       "type": "square",
       "width": 984,
       "height": 984,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "0ba50702-90b9-4b1a-5bc6-eb6973db7e00",
       "cloudflareR2Url": null
     },
     {
@@ -722,7 +722,7 @@
       "type": "square",
       "width": 1200,
       "height": 1200,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "69771cb4-241a-4030-ec7f-9562d9536100",
       "cloudflareR2Url": null
     },
     {
@@ -730,7 +730,7 @@
       "type": "square",
       "width": 1476,
       "height": 1476,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "305cd4d8-c6d9-413f-cd06-33184039d100",
       "cloudflareR2Url": null
     },
     {
@@ -738,7 +738,7 @@
       "type": "square",
       "width": 1272,
       "height": 1272,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "e1bec269-535f-4154-325f-c57c39537b00",
       "cloudflareR2Url": null
     },
     {
@@ -746,7 +746,7 @@
       "type": "xl",
       "width": 2400,
       "height": 1600,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "e8ef1904-5d06-4215-ab37-c78cf36cd300",
       "cloudflareR2Url": null
     },
     {
@@ -754,7 +754,7 @@
       "type": "vertical",
       "width": 1186,
       "height": 1786,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "7b2c7904-4c07-4518-2ffe-02784aba1000",
       "cloudflareR2Url": null
     },
     {
@@ -762,7 +762,7 @@
       "type": "vertical",
       "width": 1200,
       "height": 1600,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "1be95afe-3877-47dc-e45f-870b2f0cfc00",
       "cloudflareR2Url": null
     },
     {
@@ -770,7 +770,7 @@
       "type": "square",
       "width": 985,
       "height": 985,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "1f9d6280-e141-4cec-3c5f-9d8903965e00",
       "cloudflareR2Url": null
     },
     {
@@ -778,7 +778,7 @@
       "type": "square",
       "width": 1844,
       "height": 1844,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "b1469a85-4eb9-4324-f52b-5a58255ab800",
       "cloudflareR2Url": null
     },
     {
@@ -786,7 +786,7 @@
       "type": "square",
       "width": 1808,
       "height": 1780,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "bf21d23c-47c7-4f3b-f3ef-1761f2e7e700",
       "cloudflareR2Url": null
     },
     {
@@ -794,7 +794,7 @@
       "type": "square",
       "width": 800,
       "height": 800,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "b07b8608-ef1c-483d-c407-601baa27b000",
       "cloudflareR2Url": null
     },
     {
@@ -802,7 +802,7 @@
       "type": "vertical",
       "width": 1100,
       "height": 1474,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "108585a9-d81a-47fd-7210-28c091da9500",
       "cloudflareR2Url": null
     },
     {
@@ -810,7 +810,7 @@
       "type": "square",
       "width": 1390,
       "height": 1388,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "c0bdfa92-fd5a-4fc5-e91b-0e2e55a5ee00",
       "cloudflareR2Url": null
     },
     {
@@ -818,7 +818,7 @@
       "type": "square",
       "width": 1200,
       "height": 1200,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "b9bbe8e4-be1c-4433-e7e1-01059fade600",
       "cloudflareR2Url": null
     },
     {
@@ -826,13 +826,13 @@
       "type": "vertical",
       "width": 2500,
       "height": 3750,
-      "cloudflareImageId": null,
+      "cloudflareImageId": "280fadec-dc6c-4b43-1867-8b1f07c6f500",
       "cloudflareR2Url": null
     }
   ],
   "about": {
     "photo": "/GM_Portrait_03_2026.png",
-    "cloudflareImageId": null,
+    "cloudflareImageId": "a1704e42-37fe-4e42-74ec-4b2814746300",
     "cloudflareR2Url": null
   },
   "footer": {

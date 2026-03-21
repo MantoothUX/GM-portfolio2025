@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { generateCloudflareImageUrl } from '../lib/cloudflare';
 
 interface OptimizedImageProps {
@@ -19,6 +19,9 @@ interface OptimizedImageProps {
  * OptimizedImage component that supports Cloudflare Images and R2.
  * Priority: cloudflareR2Url > cloudflareImageId > local src
  * Falls back to local src if Cloudflare fails.
+ *
+ * Measures its container width and requests appropriately-sized images
+ * from Cloudflare (with 2× retina multiplier) instead of full originals.
  */
 export default function OptimizedImage({
   src,
@@ -36,6 +39,44 @@ export default function OptimizedImage({
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [useFallback, setUseFallback] = useState(false);
+  const [containerWidth, setContainerWidth] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Measure container width on mount and resize
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const measure = () => {
+      const w = el.clientWidth;
+      if (w > 0) setContainerWidth(w);
+    };
+
+    measure();
+
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Compute display-appropriate dimensions for Cloudflare requests
+  const optimizedDimensions = useMemo(() => {
+    if (!containerWidth || !width) return { reqWidth: width, reqHeight: height };
+
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const reqWidth = Math.ceil(containerWidth * dpr);
+
+    // Don't request larger than the original
+    const clampedWidth = Math.min(reqWidth, width);
+
+    // Maintain aspect ratio if height is provided
+    let clampedHeight: number | undefined;
+    if (height && width) {
+      clampedHeight = Math.ceil(clampedWidth * (height / width));
+    }
+
+    return { reqWidth: clampedWidth, reqHeight: clampedHeight };
+  }, [containerWidth, width, height]);
 
   // Determine which URL to use (priority: R2 > Images > local)
   const imageUrl = useMemo(() => {
@@ -47,8 +88,8 @@ export default function OptimizedImage({
       return cloudflareR2Url;
     } else if (cloudflareImageId) {
       const cloudflareUrl = generateCloudflareImageUrl(cloudflareImageId, accountHash, {
-        width: width,
-        height: height,
+        width: optimizedDimensions.reqWidth,
+        height: optimizedDimensions.reqHeight,
         format: 'auto',
         quality: 90,
       });
@@ -59,11 +100,14 @@ export default function OptimizedImage({
     }
 
     return src;
-  }, [useFallback, cloudflareR2Url, cloudflareImageId, accountHash, src, width, height]);
+  }, [useFallback, cloudflareR2Url, cloudflareImageId, accountHash, src, optimizedDimensions]);
+
+  // For Cloudflare images, wait for container measurement before rendering img
+  const waitingForMeasure = cloudflareImageId && !useFallback && containerWidth === null;
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-      {isLoading && (
+    <div ref={containerRef} style={{ position: 'relative', width: '100%', height: '100%' }}>
+      {(isLoading || waitingForMeasure) && (
         <div style={{
           position: 'absolute',
           inset: 0,
@@ -101,7 +145,7 @@ export default function OptimizedImage({
             Image unavailable
           </span>
         </div>
-      ) : (
+      ) : !waitingForMeasure && (
         <img
           key={imageUrl}
           src={imageUrl}
