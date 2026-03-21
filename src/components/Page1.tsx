@@ -1110,7 +1110,7 @@ export const ProjectsPage = () => {
  */
 function enrichSectionsWithCloudflare(
   sections: GallerySection[],
-  project: Project
+  project: ProjectData
 ): GallerySection[] {
   // Build a lookup: local path → { cloudflareImageId, cloudflareR2Url }
   const lookup = new Map<string, { cfId: string | null; r2Url: string | null }>();
