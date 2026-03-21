@@ -1126,13 +1126,10 @@ function enrichSectionsWithCloudflare(
     return {
       ...section,
       items: section.items.map(item => {
-        if (item.type !== 'image' && item.type !== 'video') return item;
+        if (item.type !== 'image') return item;
         const match = lookup.get(item.src);
         if (!match) return item;
-        if (item.type === 'video') {
-          return { ...item, cloudflareR2Url: match.r2Url };
-        }
-        return { ...item, cloudflareImageId: match.cfId, cloudflareR2Url: match.r2Url };
+        return { ...item, cloudflareImageId: match.cfId };
       }),
     };
   });
