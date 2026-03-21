@@ -743,7 +743,8 @@ const ProjectCard = ({
         fontFamily: '"Vulf Mono", monospace',
         fontWeight: 300,
         color: COLORS.deepBrown,
-        letterSpacing: '0.3px'
+        letterSpacing: '0.3px',
+        lineHeight: 1.6
       }}>
         {description}
       </p>
