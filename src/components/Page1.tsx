@@ -1077,7 +1077,7 @@ export const ProjectsPage = () => {
         maxWidth: '1190px',
         width: '100%',
         margin: '0 auto',
-        padding: isMobile ? `${SPACING.md} 16px` : `${SPACING.lg} 32px`
+        padding: isMobile ? `${SPACING.md} 32px` : `${SPACING.lg} 32px`
       }}>
         <h2 style={{
           fontSize: 'clamp(22px, 3vw, 36px)',
