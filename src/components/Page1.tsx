@@ -792,11 +792,10 @@ const FeaturedProjects = () => {
         Featured projects
       </h2>
       <div style={{
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        gap: '40px',
-        marginBottom: '48px'
+        display: 'grid',
+        gridTemplateColumns: `repeat(auto-fill, minmax(min(350px, 100%), 1fr))`,
+        gap: isMobile ? '24px' : '40px',
+        marginBottom: isMobile ? '32px' : '48px'
       }}>
         {PROJECTS.slice(0, 2).map(project => (
           <ProjectCard
